@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="TPC_Bossetti_Nuñez.Default" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -29,4 +30,29 @@
         </button>
     </div>
     <hr />
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <%--<asp:Repeater ID="repRepetidor" runat="server">--%>
+            <%--<ItemTemplate>--%>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="" class="card-img-top" alt="..." onerror="this.src='https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=';">
+                        <div class="card-body">
+                            <h5 class="card-title">Título Libro</h5>
+                            <p class="card-text">Autor</p>
+                            <h5 class="card-title">Precio $</h5>
+                            <div class="d-grid mx-auto">
+                                <asp:Button Text="Agregar al Carrito" ID="btnAgregarCarrito" CssClass="btn btn-success" runat="server" CommandArgument='' CommandName="" />
+                            </div>
+                            <div class="d-grid mx-auto">
+                                <asp:Button Text="Ver Detalles" style="margin-top: 5px" ID="btnVerDetalles" CssClass="btn btn-info" runat="server" CommandArgument='' CommandName="" />
+                            </div>
+                            <div class="d-grid mx-auto">
+                                <asp:Button Text="Editar" style="margin-top: 5px" ID="btnEditar" CssClass="btn btn-secondary" runat="server" CommandArgument='' CommandName="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <%--</ItemTemplate>--%>
+       <%--</asp:Repeater> --%>
+    </div>
 </asp:Content>
