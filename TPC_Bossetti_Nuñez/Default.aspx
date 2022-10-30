@@ -41,13 +41,13 @@
                             <p class="card-text">Autor</p>
                             <h5 class="card-title">Precio $</h5>
                             <div class="d-grid mx-auto">
-                                <asp:Button Text="Agregar al Carrito" ID="btnAgregarCarrito" CssClass="btn btn-success" runat="server" CommandArgument='' CommandName="" />
+                                <asp:Button Text="Agregar al Carrito" ID="btnAgregarCarrito" CssClass="btn btn-success" runat="server" CommandArgument='' CommandName="" OnClick="btnAgregarCarrito_Click" />
                             </div>
                             <div class="d-grid mx-auto">
                                 <asp:Button Text="Ver Detalles" style="margin-top: 5px" ID="btnVerDetalles" CssClass="btn btn-info" runat="server" CommandArgument='' CommandName="" />
                             </div>
                             <div class="d-grid mx-auto">
-                                <asp:Button Text="Editar" style="margin-top: 5px" ID="btnEditar" CssClass="btn btn-secondary" runat="server" CommandArgument='' CommandName="" />
+                                <asp:Button Text="Editar" style="margin-top: 5px" ID="btnEditar" CssClass="btn btn-secondary" runat="server" CommandArgument='' CommandName="" OnClick="btnEditar_Click" />
                             </div>
                         </div>
                     </div>

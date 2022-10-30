@@ -13,5 +13,15 @@ namespace TPC_Bossetti_Nuñez
         {
 
         }
+
+        protected void btnAgregarCarrito_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Carrito.aspx");
+        }
+
+        protected void btnEditar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AltaLibro.aspx");
+        }
     }
 }
