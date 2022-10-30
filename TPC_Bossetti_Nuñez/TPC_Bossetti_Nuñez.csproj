@@ -67,10 +67,14 @@
   <ItemGroup>
     <Content Include="AltaLibro.aspx" />
     <Content Include="Carrito.aspx" />
+    <Content Include="DatosCliente.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Loguin.aspx" />
+    <Content Include="ModificarContraseña.aspx" />
+    <Content Include="ModificarDatos.aspx" />
     <Content Include="PrincipalAdmin.aspx" />
+    <Content Include="PrincipalCliente.aspx" />
     <Content Include="SignUp.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -88,6 +92,13 @@
     </Compile>
     <Compile Include="Carrito.aspx.designer.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DatosCliente.aspx.cs">
+      <DependentUpon>DatosCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DatosCliente.aspx.designer.cs">
+      <DependentUpon>DatosCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -113,12 +124,33 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="ModificarContraseña.aspx.cs">
+      <DependentUpon>ModificarContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarContraseña.aspx.designer.cs">
+      <DependentUpon>ModificarContraseña.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarDatos.aspx.cs">
+      <DependentUpon>ModificarDatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ModificarDatos.aspx.designer.cs">
+      <DependentUpon>ModificarDatos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PrincipalAdmin.aspx.cs">
       <DependentUpon>PrincipalAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PrincipalAdmin.aspx.designer.cs">
       <DependentUpon>PrincipalAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrincipalCliente.aspx.cs">
+      <DependentUpon>PrincipalCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PrincipalCliente.aspx.designer.cs">
+      <DependentUpon>PrincipalCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignUp.aspx.cs">
