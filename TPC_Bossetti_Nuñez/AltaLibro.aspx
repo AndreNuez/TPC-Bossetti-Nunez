@@ -40,7 +40,7 @@
             </div>
             <div class="mb-3">
                 <asp:Button Text="Aceptar" runat="server" ID="btnAceptarAlta" CssClass="btn btn-primary" OnClick="btnAceptarAlta_Click" />
-                <a href="#" class="btn btn-danger" style="margin-left: 5px">Cancelar</a>
+                <a href="PrincipalAdmin.aspx" class="btn btn-danger" style="margin-left: 5px">Cancelar</a>
             </div>
         </div>
 
