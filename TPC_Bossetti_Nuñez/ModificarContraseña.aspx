@@ -15,7 +15,8 @@
                 <label for="txtConfirmarPass" class="form-label">Confirmar contraseña: </label>
                 <asp:TextBox ID="txtConfirmarPass" runat="server" CssClass="form-control" />
             </div>
-            <asp:Button CssClass="btn btn-primary" ID="btnGuardarPass" runat="server" Text="Guardar" />
+            <asp:Button CssClass="btn btn-primary" ID="btnGuardarPass" runat="server" Text="Guardar" OnClick="btnGuardarPass_Click" />
+            <a href="DatosCliente.aspx" class="btn btn-danger" style="margin-left: 5px">Cancelar</a>
         </div>
         <div class="col-4"></div>
     </div>

@@ -13,5 +13,10 @@ namespace TPC_Bossetti_Nuñez
         {
 
         }
+
+        protected void btnGuardarDatos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DatosCliente.aspx");
+        }
     }
 }

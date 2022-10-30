@@ -7,14 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace TPC_Bossetti_Nuñez
 {
-    public partial class ModificarContraseña : System.Web.UI.Page
+    public partial class EditarDireccion : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnGuardarPass_Click(object sender, EventArgs e)
+        protected void btnGuardarDireccion_Click(object sender, EventArgs e)
         {
             Response.Redirect("DatosCliente.aspx");
         }

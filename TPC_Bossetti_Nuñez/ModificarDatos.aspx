@@ -22,7 +22,8 @@
                 <label for="txtFNac" class="form-label">Fecha de Nacimiento: </label>
                 <asp:TextBox ID="txtFNac" CssClass="form-control" TextMode="Date" runat="server" />
             </div>
-            <asp:Button CssClass="btn btn-primary" ID="btnGuardarDatos" runat="server" Text="Guardar" />
+            <asp:Button CssClass="btn btn-primary" ID="btnGuardarDatos" runat="server" Text="Guardar" OnClick="btnGuardarDatos_Click" />
+            <a href="DatosCliente.aspx" class="btn btn-danger" style="margin-left: 5px">Cancelar</a>
         </div>
         <div class="col-4"></div>
     </div>

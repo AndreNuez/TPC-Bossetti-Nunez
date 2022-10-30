@@ -17,10 +17,10 @@
             <div class="col-6">
                 <br />
                 <div class="mb-3">
-                    <a href="#">Editar Datos</a>
+                    <a href="ModificarDatos.aspx">Editar Datos</a>
                 </div>
                 <div class="mb-3">
-                    <a href="#">Modificar Contraseña</a>
+                    <a href="ModificarContraseña.aspx">Modificar Contraseña</a>
                 </div>
             </div>
         </div>
@@ -40,11 +40,14 @@
                 <div class="mb-3">
                     <asp:Label Text="Celular" ID="lblCelular" runat="server" />
                 </div>
+                <div class="mb-3">
+                    <a href="PrincipalCliente.aspx" class="btn btn-secondary">Regresar</a>
+                </div>
             </div>
             <div class="col-6">
                 <br />
                 <div class="mb-3">
-                    <a href="#">Editar Dirección</a>
+                    <a href="EditarDireccion.aspx">Editar Dirección</a>
                 </div>
             </div>
         </div>
