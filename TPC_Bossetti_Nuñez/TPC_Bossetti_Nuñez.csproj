@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -69,6 +69,10 @@
     <Content Include="Carrito.aspx" />
     <Content Include="DatosCliente.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Detalle.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Loguin.aspx" />
+    <Content Include="Pedidos.aspx" />
     <Content Include="DetallePedido.aspx" />
     <Content Include="EditarDireccion.aspx" />
     <Content Include="Global.asax" />
@@ -140,6 +144,12 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="Pedidos.aspx.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pedidos.aspx.designer.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
     <Compile Include="ModificarContraseña.aspx.cs">
       <DependentUpon>ModificarContraseña.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
