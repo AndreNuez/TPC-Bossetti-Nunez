@@ -69,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
-    <Compile Include="CarritoNegocio.cs" />
     <Compile Include="GeneroNegocio.cs" />
     <Compile Include="LibroNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
