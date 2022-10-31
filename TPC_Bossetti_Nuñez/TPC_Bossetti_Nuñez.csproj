@@ -67,6 +67,8 @@
   <ItemGroup>
     <Content Include="AltaLibro.aspx" />
     <Content Include="Carrito.aspx" />
+    <Content Include="CompraRealizada.aspx" />
+    <Content Include="ConfirmaCompra.aspx" />
     <Content Include="DatosCliente.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Detalle.aspx" />
@@ -97,6 +99,20 @@
     </Compile>
     <Compile Include="Carrito.aspx.designer.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CompraRealizada.aspx.cs">
+      <DependentUpon>CompraRealizada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompraRealizada.aspx.designer.cs">
+      <DependentUpon>CompraRealizada.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmaCompra.aspx.cs">
+      <DependentUpon>ConfirmaCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConfirmaCompra.aspx.designer.cs">
+      <DependentUpon>ConfirmaCompra.aspx</DependentUpon>
     </Compile>
     <Compile Include="DatosCliente.aspx.cs">
       <DependentUpon>DatosCliente.aspx</DependentUpon>
