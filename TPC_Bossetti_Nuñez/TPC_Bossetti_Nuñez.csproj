@@ -76,6 +76,7 @@
     <Content Include="Loguin.aspx" />
     <Content Include="ModificarContraseña.aspx" />
     <Content Include="ModificarDatos.aspx" />
+    <Content Include="Pedido.aspx" />
     <Content Include="PrincipalAdmin.aspx" />
     <Content Include="PrincipalCliente.aspx" />
     <Content Include="SignUp.aspx" />
@@ -161,6 +162,13 @@
     </Compile>
     <Compile Include="ModificarDatos.aspx.designer.cs">
       <DependentUpon>ModificarDatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pedido.aspx.cs">
+      <DependentUpon>Pedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pedido.aspx.designer.cs">
+      <DependentUpon>Pedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="PrincipalAdmin.aspx.cs">
       <DependentUpon>PrincipalAdmin.aspx</DependentUpon>
