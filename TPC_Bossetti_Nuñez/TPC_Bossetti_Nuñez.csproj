@@ -72,6 +72,7 @@
     <Content Include="Detalle.aspx" />
     <Content Include="DetallePedido.aspx" />
     <Content Include="EditarDireccion.aspx" />
+    <Content Include="EditarPedido.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Loguin.aspx" />
     <Content Include="ModificarContraseña.aspx" />
@@ -131,6 +132,13 @@
     </Compile>
     <Compile Include="EditarDireccion.aspx.designer.cs">
       <DependentUpon>EditarDireccion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditarPedido.aspx.cs">
+      <DependentUpon>EditarPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditarPedido.aspx.designer.cs">
+      <DependentUpon>EditarPedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

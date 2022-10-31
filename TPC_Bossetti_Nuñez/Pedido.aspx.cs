@@ -16,5 +16,10 @@ namespace TPC_Bossetti_Nuñez
             dgvPedidos.DataSource = pedido.listar();
             dgvPedidos.DataBind();
         }
+
+        protected void dgvPedidos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Response.Redirect("EditarPedido.aspx");
+        }
     }
 }
