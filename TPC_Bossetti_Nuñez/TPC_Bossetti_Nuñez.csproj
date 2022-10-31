@@ -69,6 +69,7 @@
     <Content Include="Carrito.aspx" />
     <Content Include="DatosCliente.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="DetallePedido.aspx" />
     <Content Include="EditarDireccion.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Loguin.aspx" />
@@ -107,6 +108,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetallePedido.aspx.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetallePedido.aspx.designer.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="EditarDireccion.aspx.cs">
       <DependentUpon>EditarDireccion.aspx</DependentUpon>

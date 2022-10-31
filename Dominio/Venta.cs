@@ -11,6 +11,7 @@ namespace Dominio
         public int IDCarrito { get; set; }
         public char FormaPago { get; set; }
         public Direccion DomicilioEntrega { get; set; }
+        public DateTime Fecha { get; set; }
         public string Estado { get; set; }
     }
 }
