@@ -11,7 +11,8 @@ namespace TPC_Bossetti_Nuñez
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ddlFormaPago.Items.Add("Efectivo");
+            ddlFormaPago.Items.Add("Pago digital");
         }
 
         protected void btnConfirmaCompra_Click(object sender, EventArgs e)

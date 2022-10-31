@@ -16,7 +16,7 @@
             <asp:Label ID="lblProvincia" runat="server" Text="Provincia"></asp:Label>
         </div>
         <div>
-            <asp:DropDownList ID="ddlFormaPago" runat="server"></asp:DropDownList>
+            <asp:DropDownList ID="ddlFormaPago" runat="server" CssClass="form-select"></asp:DropDownList>
         </div>
     </div>
     <div>

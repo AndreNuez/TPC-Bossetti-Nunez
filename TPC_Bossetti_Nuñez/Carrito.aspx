@@ -36,7 +36,7 @@
         <asp:Label ID="lblTotalCarrito" runat="server" />
     </div>
     <div class="text-end">
-        <asp:Button Text="Comprar Carrito" CssClass="btn btn-primary" runat="server" />
+        <asp:Button Text="Comprar Carrito" CssClass="btn btn-primary" runat="server" Id="btnComprarCarrito" OnClick="btnComprarCarrito_Click"/>
     </div>
     <div>
         <a class="nav-link" href="Default.aspx">Regresar al catalogo</a>

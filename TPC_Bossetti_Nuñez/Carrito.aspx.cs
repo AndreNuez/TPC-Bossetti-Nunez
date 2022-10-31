@@ -13,5 +13,10 @@ namespace TPC_Bossetti_Nuñez
         {
 
         }
+
+        protected void btnComprarCarrito_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ConfirmaCompra.aspx", false);
+        }
     }
 }
