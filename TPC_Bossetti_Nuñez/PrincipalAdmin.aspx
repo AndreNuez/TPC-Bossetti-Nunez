@@ -19,6 +19,10 @@
                 <a href="AltaLibro.aspx" class="btn btn-primary" style="margin-top: 20px">Agregar Libro</a>
             </div>
             <div class="d-grid mx-auto">
+                <a href="AltaLibro.aspx" class="btn btn-primary" style="margin-top: 20px">Modificar Libro</a>
+            </div>
+
+            <div class="d-grid mx-auto">
                 <a href="#" class="btn btn-primary" style="margin-top: 20px">Lista de Pedidos</a>
             </div>
             <br />
