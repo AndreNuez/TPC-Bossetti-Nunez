@@ -7,16 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace TPC_Bossetti_Nuñez
 {
-    public partial class Carrito : System.Web.UI.Page
+    public partial class CompraRealizada : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void btnComprarCarrito_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("ConfirmaCompra.aspx", false);
         }
     }
 }

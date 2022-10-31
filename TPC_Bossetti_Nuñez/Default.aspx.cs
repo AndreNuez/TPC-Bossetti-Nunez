@@ -23,5 +23,10 @@ namespace TPC_Bossetti_Nuñez
         {
             Response.Redirect("AltaLibro.aspx");
         }
+
+        protected void btnVerDetalles_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Detalle.aspx", false);
+        }
     }
 }

@@ -1,0 +1,80 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="EditarPedido.aspx.cs" Inherits="TPC_Bossetti_Nuñez.EditarPedido" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <div class="row">
+        <h3>Detalle Pedido #IDVenta</h3>
+        <div class="row">
+
+            <div class="col-6">
+                <br />
+                <h5>Información general</h5>
+                <div>
+                    <label for="lblFechaPedido" class="form-label" style="margin-top: 10px">Realizado el:</label>
+                    <asp:Label Text="00/00/00" ID="lblFechaPedido" runat="server" />
+                </div>
+                <div>
+                    <label for="lblCantidad" class="form-label">Cantidad de Productos:</label>
+                    <asp:Label Text="Cant" ID="lblCantidad" runat="server" />
+                </div>
+                <div>
+                    <label for="lblFormaPago" class="form-label">Forma de Pago:</label>
+                    <asp:Label Text="Efectivo - Tarjeta" ID="lblFormaPago" runat="server" />
+                </div>
+                <div>
+                    <label for="lblTotal" class="form-label">Total abonado $:</label>
+                    <asp:Label Text="100.00" ID="lblTotal" runat="server" />
+                </div>
+            </div>
+
+            <div class="col-6">
+                <br />
+                <h5>Dirección de Envío</h5>
+                <div>
+                    <asp:Label CssClass="form-label" Style="margin-top: 10px" Text="Calle + Altura + Piso + Depto" ID="lblDireccion1" runat="server" />
+                </div>
+                <div>
+                    <asp:Label CssClass="form-label" Text="(CP) + Localidad" ID="lblDireccion2" runat="server" />
+                </div>
+                <div>
+                    <asp:Label CssClass="form-label" Text="Provincia" ID="lblProvincia" runat="server" />
+                </div>
+                <br />
+            </div>
+        </div>
+        <hr />
+
+        <div class="row">
+            <div class="col-6">
+                <h5>Detalle Productos</h5>
+                <div>
+                    <label class="form-label">Mostrar grilla con Item/s del Carrito asosiado (?)</label>
+                </div>
+                <br />
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-6">
+                <h5>Estado</h5>
+                    <div class="mb-3">
+                        <asp:RadioButton ID="rdbPendiente" Text="Pendiente" runat="server" GroupName="Estado"/>
+                        <asp:RadioButton ID="rdbRecepcionado" Text="Recepcionado" runat="server" GroupName="Estado"/>
+                        <asp:RadioButton ID="rdbPreparacion" Text="Pendiente" runat="server" GroupName="Estado"/>
+                        <asp:RadioButton ID="rdbEnviado" Text="Enviado" runat="server" GroupName="Estado"/>
+                        <asp:RadioButton ID="rdbEntregado" Text="Entregado" runat="server" GroupName="Estado"/>
+                    </div>
+                <br />
+                <div>
+                    <a href="#" class="btn btn-secondary">Guardar</a>
+                    <a href="Pedido.aspx" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+</asp:Content>
