@@ -68,8 +68,10 @@
     <Content Include="AltaLibro.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Detalle.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Loguin.aspx" />
+    <Content Include="Pedidos.aspx" />
     <Content Include="PrincipalAdmin.aspx" />
     <Content Include="SignUp.aspx" />
     <Content Include="Web.config" />
@@ -96,6 +98,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Detalle.aspx.cs">
+      <DependentUpon>Detalle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Detalle.aspx.designer.cs">
+      <DependentUpon>Detalle.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -112,6 +121,13 @@
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pedidos.aspx.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pedidos.aspx.designer.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="PrincipalAdmin.aspx.cs">
       <DependentUpon>PrincipalAdmin.aspx</DependentUpon>
