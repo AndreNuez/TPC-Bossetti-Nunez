@@ -19,7 +19,7 @@ namespace Negocio
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_DB; integrated security=True");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security=True");
             //conexion = new SqlConnection("server=localhost; database=CATALOGO_DB; integrated security=true");
             comando = new SqlCommand();
         }
@@ -28,6 +28,12 @@ namespace Negocio
         {
             comando.CommandType = System.Data.CommandType.Text;
             comando.CommandText = consulta;
+        }
+
+        public void setearProcedimiento(string sp)
+        {
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = sp;
         }
 
         public void ejecutarLectura()

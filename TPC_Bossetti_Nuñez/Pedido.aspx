@@ -6,9 +6,9 @@
     <asp:GridView ID="dgvPedidos" runat="server" OnSelectedIndexChanged="dgvPedidos_SelectedIndexChanged" CssClass="table table-dark table-bordered" AutoGenerateColumns="false">
         <Columns>
             <asp:BoundField HeaderText="Id Venta" DataField="IDVenta" />
-            <asp:BoundField HeaderText="Id Cliente" DataField="FormaPago" />
-            <asp:BoundField HeaderText="Cant. Productos" DataField="Fecha" />
-            <asp:BoundField HeaderText="$ Total Platita" DataField="Estado" />
+            <%--<asp:BoundField HeaderText="Id Cliente" DataField="Carrito.IDCliente" />
+            <asp:BoundField HeaderText="Cant. Productos" DataField="Carrrito.Cantidad" />
+            <asp:BoundField HeaderText="$ Total Platita" DataField="Carrito.PrecioTotal" />--%>
             <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Editar" />
         </Columns>
     </asp:GridView>
