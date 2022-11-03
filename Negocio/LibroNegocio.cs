@@ -21,7 +21,7 @@ namespace Negocio
                 {
                     Libro aux = new Libro();
                     //aux.ID = (int)datos.Lector["id"];
-                    //aux.Titulo = (string)datos.Lector["Titulo"];
+                    aux.Titulo = (string)datos.Lector["Titulo"];
                     //aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Autor = (string)datos.Lector["Autor"];
                     //aux.Editorial = (string)datos.Lector["Editorial"];
@@ -29,7 +29,7 @@ namespace Negocio
                     //aux.Stock = (int)datos.Lector["Stock"];
                     //aux.Genero = new Genero();
                     //aux.Genero.Descripcion = (string)datos.Lector["Genero"];
-                    //aux.PortadaURL = (string)datos.Lector["Portada"];
+                    aux.PortadaURL = (string)datos.Lector["Portada"];
                     //aux.Estado = (bool)datos.Lector["estado"];
 
                     lista.Add(aux);

@@ -35,11 +35,11 @@
             <ItemTemplate>
                 <div class="col">
                     <div class="card h-100">
-                        <%--<img src="" class="card-img-top" alt="..." onerror="this.src='https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=';">--%>
+                        <img src="<%# Eval("PortadaURL")%>" class="card-img-top" alt="img_portada_libro" onerror="this.src='https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=';">
                         <div class="card-body">
-                            <h5 class="card-title"><%#Eval("Autor") %></h5>
-                            <%--<p class="card-text">Autor</p>
-                            <h5 class="card-title">Precio $</h5>--%>
+                            <h5 class="card-title"><%#Eval("Titulo") %></h5>
+                            <p class="card-text"><%#Eval("Autor")%></p>
+                            <%--<h5 class="card-title">Precio $</h5>--%>
                             <div class="d-grid mx-auto">
                                 <asp:Button Text="Agregar al Carrito" ID="btnAgregarCarrito" CssClass="btn btn-success" runat="server" CommandArgument='' CommandName="" OnClick="btnAgregarCarrito_Click" />
                             </div>
