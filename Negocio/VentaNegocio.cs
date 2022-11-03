@@ -29,6 +29,7 @@ namespace Negocio
             lista.Add(new Venta());
             lista.Add(new Venta());
             lista[0].IDVenta = 1;
+            lista[0].Carrito = new Carrito();
             //lista[0].Carrito.IDCarrito = 111;
             //lista[0].Carrito.IDCliente = 112233;
             //lista[0].Carrito.Items.ID = 456;
@@ -49,6 +50,7 @@ namespace Negocio
 
 
             lista[1].IDVenta = 2;
+            //lista[1].Carrito = new Carrito();
             //lista[1].Carrito.IDCarrito = 111;
             //lista[1].Carrito.IDCliente = 112233;
             //lista[1].Carrito.Items.ID = 456;
