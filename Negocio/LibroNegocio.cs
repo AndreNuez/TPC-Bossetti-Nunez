@@ -25,7 +25,7 @@ namespace Negocio
                     //aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Autor = (string)datos.Lector["Autor"];
                     //aux.Editorial = (string)datos.Lector["Editorial"];
-                    //aux.Precio = (int)datos.Lector["Precio"];
+                    aux.Precio = (decimal)datos.Lector["Precio"];
                     //aux.Stock = (int)datos.Lector["Stock"];
                     //aux.Genero = new Genero();
                     //aux.Genero.Descripcion = (string)datos.Lector["Genero"];

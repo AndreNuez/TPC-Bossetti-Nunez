@@ -39,7 +39,7 @@
                         <div class="card-body">
                             <h5 class="card-title"><%#Eval("Titulo") %></h5>
                             <p class="card-text"><%#Eval("Autor")%></p>
-                            <%--<h5 class="card-title">Precio $</h5>--%>
+                            <h5 class="card-title"><%#Eval("Precio")%></h5>
                             <div class="d-grid mx-auto">
                                 <asp:Button Text="Agregar al Carrito" ID="btnAgregarCarrito" CssClass="btn btn-success" runat="server" CommandArgument='' CommandName="" OnClick="btnAgregarCarrito_Click" />
                             </div>
