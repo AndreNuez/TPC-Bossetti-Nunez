@@ -12,7 +12,7 @@ namespace Dominio
         public string Descripcion { get; set; }
         public string Autor { get; set; }
         public string Editorial { get; set; }
-        public Genero Genero { get; set; }
+        public Generos Genero { get; set; }
         public decimal Precio { get; set; }
         public int Stock { get; set; }
         public string PortadaURL { get; set; }

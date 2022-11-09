@@ -5,9 +5,14 @@ using System.Web;
 
 namespace Dominio
 {
-    public class Genero
+    public class Generos
     {
-        public int IDGenero { get; set; }
+        public int IdGenero { get; set; }
         public string Descripcion { get; set; }
+        
+        public override string ToString()
+        {
+            return Descripcion;
+        }
     }
 }
