@@ -74,3 +74,15 @@ from Libros l
 inner join Generos g on l.IdGenero = g.IdGenero
 where l.Estado = 1
 go
+
+CREATE PROCEDURE SP_AltaLibro
+    @Titulo varchar(200),
+    @Descripcion varchar (1000),
+    @Autor varchar(200),
+    @Editorial varchar (100),
+    @Precio money,
+    @Stock int,
+    @IdGenero smallint,
+    @PortadaURL varchar (100)
+AS 
+INSERT INTO Libros VALUES (@Titulo, @Descripcion, @Autor, @Editorial, @Precio, @Stock, @IdGenero, @PortadaURL, 1)

@@ -15,7 +15,7 @@ namespace Negocio
             try
             {
                 datos.setearProcedimiento("SP_librosListar");
-                
+
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -41,5 +41,38 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public void Agregar(Libro nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("SP_AltaLibro");
+
+                datos.setearParametro("@Titulo", nuevo.Titulo);
+                datos.setearParametro("@Descripcion", nuevo.Descripcion);
+                datos.setearParametro("@Autor", nuevo.Autor);
+                datos.setearParametro("@Editorial", nuevo.Editorial);
+                datos.setearParametro("@IdGenero", nuevo.Genero.IdGenero);
+                datos.setearParametro("@Precio", nuevo.Precio);
+                datos.setearParametro("@Stock", nuevo.Stock);
+                datos.setearParametro("@PortadaURL", nuevo.PortadaURL);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
