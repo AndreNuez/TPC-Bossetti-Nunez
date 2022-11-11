@@ -16,9 +16,13 @@ namespace TPC_Bossetti_Nuñez
         {
             LibroNegocio negocio = new LibroNegocio();
             ListaLibro = negocio.listarConSP();
+            
+            if (!IsPostBack)
+            {
+                repRepetidor.DataSource = ListaLibro;
+                repRepetidor.DataBind();
+            }
 
-            repRepetidor.DataSource = ListaLibro;
-            repRepetidor.DataBind();
         }
 
         protected void btnAgregarCarrito_Click(object sender, EventArgs e)
@@ -28,7 +32,11 @@ namespace TPC_Bossetti_Nuñez
 
         protected void btnEditar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AltaLibro.aspx");
+
+            string IDLibro = ((Button)sender).CommandArgument;
+            Session.Add("IDLibro", IDLibro);
+
+            Response.Redirect("AltaLibro.aspx", false);
         }
 
         protected void btnVerDetalles_Click(object sender, EventArgs e)
