@@ -8,6 +8,45 @@ namespace Negocio
 {
     public class LibroNegocio
     {
+        public List<Libro> listar(string id = "")
+        {
+            List<Libro> lista = new List<Libro>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "select l.id, l.Titulo, l.Descripcion, l.Autor, l.Editorial, l.Precio, l.Stock, g.IdGenero as Genero_ID, g.Descripcion as Genero_Desc, l.Portada, l.estado from Libros l inner join Generos g on l.IdGenero = g.IdGenero where l.Estado = 1 ";
+
+                if (id != "")
+                    consulta = consulta += "and l.id =" + id;
+
+
+                datos.setearConsulta(consulta);
+
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Libro aux = new Libro();
+                    aux.ID = (short)datos.Lector["id"];
+                    aux.Titulo = (string)datos.Lector["Titulo"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Autor = (string)datos.Lector["Autor"];
+                    aux.Editorial = (string)datos.Lector["Editorial"];
+                    aux.Precio = (decimal)datos.Lector["Precio"];
+                    aux.Stock = (int)datos.Lector["Stock"];
+                    aux.Genero = new Generos();
+                    aux.Genero.IdGenero = (short)datos.Lector["Genero_ID"];
+                    aux.Genero.Descripcion = (string)datos.Lector["Genero_Desc"];
+                    aux.PortadaURL = (string)datos.Lector["Portada"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public List<Libro> listarConSP()
         {
             List<Libro> lista = new List<Libro>();
@@ -20,17 +59,17 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Libro aux = new Libro();
-                    //aux.ID = (int)datos.Lector["id"];
+                    aux.ID = (short)datos.Lector["id"];
                     aux.Titulo = (string)datos.Lector["Titulo"];
-                    //aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Autor = (string)datos.Lector["Autor"];
-                    //aux.Editorial = (string)datos.Lector["Editorial"];
+                    aux.Editorial = (string)datos.Lector["Editorial"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
-                    //aux.Stock = (int)datos.Lector["Stock"];
-                    //aux.Genero = new Genero();
-                    //aux.Genero.Descripcion = (string)datos.Lector["Genero"];
+                    aux.Stock = (int)datos.Lector["Stock"];
+                    aux.Genero = new Generos();
+                    aux.Genero.IdGenero = (short)datos.Lector["Genero_ID"];
+                    aux.Genero.Descripcion = (string)datos.Lector["Genero_Desc"];
                     aux.PortadaURL = (string)datos.Lector["Portada"];
-                    //aux.Estado = (bool)datos.Lector["estado"];
 
                     lista.Add(aux);
                 }
@@ -68,6 +107,36 @@ namespace Negocio
                 throw ex;
             }
 
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void Modificar(Libro Libro)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("SP_ModificarLibro");
+
+                datos.setearParametro("ID", Libro.ID);
+                datos.setearParametro("@Titulo", Libro.Titulo);
+                datos.setearParametro("@Descripcion", Libro.Descripcion);
+                datos.setearParametro("@Autor", Libro.Autor);
+                datos.setearParametro("Editorial", Libro.Editorial);
+                datos.setearParametro("IdGenero", Libro.Genero.IdGenero);
+                datos.setearParametro("Precio", Libro.Precio);
+                datos.setearParametro("Stock", Libro.Stock);
+                datos.setearParametro("PortadaURL", Libro.PortadaURL);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             finally
             {
                 datos.cerrarConexion();

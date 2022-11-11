@@ -27,6 +27,26 @@ namespace TPC_Bossetti_Nuñez
                     ddlGenero.DataTextField = "Descripcion";
                     ddlGenero.DataBind();
                 }
+
+                string IDLibro = Session["IDLibro"] != null ? Session["IDLibro"].ToString() : "";
+
+                if (IDLibro != "" && !IsPostBack)
+                {
+                    LibroNegocio negocio = new LibroNegocio();
+                    Libro seleccionado = (negocio.listar(IDLibro))[0];
+
+                    txtTitulo.Text = seleccionado.Titulo;
+                    txtDescripcion.Text = seleccionado.Descripcion;
+                    txtAutor.Text = seleccionado.Autor;
+                    txtEditorial.Text = seleccionado.Editorial;
+                    txtPrecio.Text = seleccionado.Precio.ToString();
+                    txtStock.Text = seleccionado.Stock.ToString();
+                    txtPortadaURL.Text = seleccionado.PortadaURL;
+                    ddlGenero.SelectedValue = seleccionado.Genero.IdGenero.ToString();
+                    txtID.Text = IDLibro;
+
+                    txtPortadaURL_TextChanged(sender, e);
+                }
             }
             catch (Exception ex)
             {
@@ -56,10 +76,16 @@ namespace TPC_Bossetti_Nuñez
                 nuevo.Genero = new Generos();
                 nuevo.Genero.IdGenero = short.Parse(ddlGenero.SelectedValue);
 
+                if (Session["IDLibro"] != null)
+                {
+                    nuevo.ID = short.Parse(txtID.Text);
+                    negocio.Modificar(nuevo);
+                }
+                else
+                    negocio.Agregar(nuevo);
 
-                negocio.Agregar(nuevo);
+
                 Response.Redirect("Default.aspx", false);
-
             }
             catch (Exception ex)
             {

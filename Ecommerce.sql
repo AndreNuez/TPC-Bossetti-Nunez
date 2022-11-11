@@ -68,12 +68,12 @@ create table Ventas(
 )
 go
 
-create procedure SP_librosListar as
-select l.id, l.Titulo, l.Descripcion, l.Autor, l.Editorial, l.Precio, l.Stock, g.Descripcion as Genero, l.Portada, l.estado 
-from Libros l
-inner join Generos g on l.IdGenero = g.IdGenero
+alter procedure [dbo].[SP_librosListar] as
+select l.id, l.Titulo, l.Descripcion, l.Autor, l.Editorial, l.Precio, l.Stock, g.IdGenero as Genero_ID, g.Descripcion as Genero_Desc, l.Portada, l.estado 
+from Libros l 
+inner join Generos g on l.IdGenero = g.IdGenero 
 where l.Estado = 1
-go
+GO
 
 CREATE PROCEDURE SP_AltaLibro
     @Titulo varchar(200),
@@ -86,3 +86,19 @@ CREATE PROCEDURE SP_AltaLibro
     @PortadaURL varchar (100)
 AS 
 INSERT INTO Libros VALUES (@Titulo, @Descripcion, @Autor, @Editorial, @Precio, @Stock, @IdGenero, @PortadaURL, 1)
+
+GO 
+
+CREATE PROCEDURE SP_ModificarLibro 
+    @Titulo varchar(200),
+    @Descripcion varchar (1000),
+    @Autor varchar(200),
+    @Editorial varchar (100),
+    @Precio money,
+    @Stock int,
+    @IdGenero smallint,
+    @PortadaURL varchar (100),
+    @Id smallint
+AS 
+UPDATE Libros SET Titulo= @Titulo, Descripcion= @Descripcion, Autor= @Autor, Editorial= @Editorial, Precio= @Precio, Stock= @Stock,
+                  IDGenero= @IdGenero, Portada= @PortadaURL WHERE Id= @Id
