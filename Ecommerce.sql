@@ -102,3 +102,49 @@ CREATE PROCEDURE SP_ModificarLibro
 AS 
 UPDATE Libros SET Titulo= @Titulo, Descripcion= @Descripcion, Autor= @Autor, Editorial= @Editorial, Precio= @Precio, Stock= @Stock,
                   IDGenero= @IdGenero, Portada= @PortadaURL WHERE Id= @Id
+GO
+
+create procedure sp_altaCliente
+	@mail varchar(500), 
+	@contraseña varchar (500),
+	@nombres varchar (100),
+	@apellidos varchar (100),
+	@DNI varchar (50),
+	@telefono varchar (100), 
+	@celular varchar (100),
+	@calle varchar (100),
+	@numero varchar (10),
+	@piso varchar (10),
+	@departamento varchar (10),
+	@CP varchar (10),
+	@localidad varchar (100),
+	@provincia varchar (100)
+as 
+insert into Clientes values (@mail,	@contraseña, @nombres, @apellidos, @DNI, @telefono, @celular, @calle, @numero, @piso, @departamento, @CP, @localidad, @provincia)
+go
+
+
+alter table Clientes
+add Estado bit not null default(1);
+go
+
+create procedure sp_listarClientes as
+select 
+	c.IdCliente, 
+	c.mail, 
+	c.Contraseña, 
+	c.Nombres, 
+	c.Apellidos, 
+	c.Dni, 
+	c.Telefono, 
+	c.Celular, 
+	c.Calle, 
+	c.Numero, 
+	c.Piso, 
+	c.Departamento, 
+	c.CP, 
+	c.Localidad, 
+	c.Provincia, 
+	c.estado
+from clientes c
+go
