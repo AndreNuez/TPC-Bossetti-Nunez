@@ -14,7 +14,7 @@ namespace TPC_Bossetti_Nuñez
         protected void Page_Load(object sender, EventArgs e)
         {
             LibroNegocio negocio = new LibroNegocio();
-            dgvListaLibros.DataSource = negocio.listarConSP();
+            dgvListaLibros.DataSource = negocio.ListarSPInactivos();
             dgvListaLibros.DataBind();
 
         }

@@ -12,5 +12,11 @@
             <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Editar" />
         </Columns>
     </asp:GridView>
-
+    <div class="row">
+        <div class="col-6">
+            <div class="mb-3">
+                <a href="PrincipalAdmin.aspx"> Regresar </a>
+            </div>
+        </div>
+    </div>
 </asp:Content>

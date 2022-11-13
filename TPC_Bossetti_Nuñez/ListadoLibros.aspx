@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ListadoLibros.aspx.cs" Inherits="TPC_Bossetti_Nuñez.ListadoLibros" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -11,4 +12,11 @@
             <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Editar" />
         </Columns>
     </asp:GridView>
+    <div class="row">
+        <div class="col-6">
+            <div class="mb-3">
+                <a href="PrincipalAdmin.aspx"> Regresar </a>
+            </div>
+        </div>
+    </div>
 </asp:Content>
