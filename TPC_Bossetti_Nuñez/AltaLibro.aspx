@@ -5,7 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager runat="server" />
     <div class="text-center">
-        <h2>Agregar Nuevo Libro</h2>
         <br />
     </div>
     <div class="row">
@@ -46,6 +45,7 @@
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
                         <asp:Button Text="Eliminar" runat="server" ID="btnEliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" />
+                        <asp:Button Text="Inactivar" runat="server" ID="btnInactivar" CssClass="btn btn-warning" OnClick="btnInactivar_Click" />
                         <div class="mb-3">
                             <%if (ConfirmaEliminacion)
                                 {%>

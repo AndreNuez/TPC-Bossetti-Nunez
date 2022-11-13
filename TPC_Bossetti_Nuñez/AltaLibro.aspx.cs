@@ -37,6 +37,7 @@ namespace TPC_Bossetti_Nuñez
                     LibroNegocio negocio = new LibroNegocio();
                     Libro seleccionado = (negocio.listar(IDLibro))[0];
 
+
                     txtTitulo.Text = seleccionado.Titulo;
                     txtDescripcion.Text = seleccionado.Descripcion;
                     txtAutor.Text = seleccionado.Autor;
@@ -123,6 +124,21 @@ namespace TPC_Bossetti_Nuñez
                 Session.Add("error", ex);
             }
 
+        }
+
+        protected void btnInactivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LibroNegocio negocio = new LibroNegocio();
+                negocio.EliminarLogico(short.Parse(txtID.Text));
+                Response.Redirect("Default.aspx", false);
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
         }
     }
 }

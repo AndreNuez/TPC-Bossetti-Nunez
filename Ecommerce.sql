@@ -153,3 +153,11 @@ CREATE PROCEDURE SP_EliminarFisico
 	@Id smallint 
 AS 
 DELETE FROM Libros WHERE Id = @Id
+
+GO
+
+CREATE PROCEDURE SP_EliminarLogico
+@Id smallint 
+AS 
+UPDATE Libros SET Estado= 0 WHERE Id = @Id
+

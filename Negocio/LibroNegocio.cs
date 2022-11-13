@@ -128,6 +128,21 @@ namespace Negocio
             }
         }
 
+        public void EliminarLogico(short id)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearProcedimiento("SP_EliminarLogico");
+                datos.setearParametro("@ID", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Modificar(Libro Libro)
         {
             AccesoDatos datos = new AccesoDatos();
