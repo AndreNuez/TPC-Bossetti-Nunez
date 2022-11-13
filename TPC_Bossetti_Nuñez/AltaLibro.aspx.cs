@@ -11,9 +11,11 @@ namespace TPC_Bossetti_Nuñez
 {
     public partial class AltaLibro : System.Web.UI.Page
     {
+        public bool ConfirmaEliminacion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             txtID.Enabled = false;
+            ConfirmaEliminacion = false;
 
             try
             {
@@ -97,6 +99,30 @@ namespace TPC_Bossetti_Nuñez
         protected void txtPortadaURL_TextChanged(object sender, EventArgs e)
         {
             imgPortada.ImageUrl = txtPortadaURL.Text;
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ConfirmaEliminacion = true;
+        }
+
+        protected void ConfirmaEliminacion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkConfirma.Checked)
+                {
+                    LibroNegocio negocio = new LibroNegocio();
+                    negocio.Eliminar(short.Parse(txtID.Text));
+                    Response.Redirect("Default.aspx", false);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
+
         }
     }
 }

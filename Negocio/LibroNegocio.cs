@@ -113,6 +113,21 @@ namespace Negocio
             }
         }
 
+        public void Eliminar(short id)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearProcedimiento("SP_EliminarFisico");
+                datos.setearParametro("@ID", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Modificar(Libro Libro)
         {
             AccesoDatos datos = new AccesoDatos();

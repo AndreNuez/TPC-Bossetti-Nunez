@@ -148,3 +148,8 @@ select
 	c.estado
 from clientes c
 go
+
+CREATE PROCEDURE SP_EliminarFisico
+	@Id smallint 
+AS 
+DELETE FROM Libros WHERE Id = @Id
