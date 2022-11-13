@@ -70,6 +70,7 @@ namespace Negocio
                     aux.Genero.IdGenero = (short)datos.Lector["Genero_ID"];
                     aux.Genero.Descripcion = (string)datos.Lector["Genero_Desc"];
                     aux.PortadaURL = (string)datos.Lector["Portada"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
 
                     lista.Add(aux);
                 }

@@ -49,6 +49,9 @@ namespace TPC_Bossetti_Nuñez
                     txtID.Text = IDLibro;
 
                     txtPortadaURL_TextChanged(sender, e);
+
+                    if (!seleccionado.Estado)
+                        btnInactivar.Text = "Reactivar";
                 }
             }
             catch (Exception ex)
