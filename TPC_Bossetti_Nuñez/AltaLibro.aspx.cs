@@ -11,9 +11,11 @@ namespace TPC_Bossetti_Nuñez
 {
     public partial class AltaLibro : System.Web.UI.Page
     {
+        public bool ConfirmaEliminacion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             txtID.Enabled = false;
+            ConfirmaEliminacion = false;
 
             try
             {
@@ -34,6 +36,7 @@ namespace TPC_Bossetti_Nuñez
                 {
                     LibroNegocio negocio = new LibroNegocio();
                     Libro seleccionado = (negocio.listar(IDLibro))[0];
+                    Session.Add("LibroSeleccionado", seleccionado);
 
                     txtTitulo.Text = seleccionado.Titulo;
                     txtDescripcion.Text = seleccionado.Descripcion;
@@ -46,6 +49,9 @@ namespace TPC_Bossetti_Nuñez
                     txtID.Text = IDLibro;
 
                     txtPortadaURL_TextChanged(sender, e);
+
+                    if (!seleccionado.Estado)
+                        btnInactivar.Text = "Reactivar";
                 }
             }
             catch (Exception ex)
@@ -97,6 +103,48 @@ namespace TPC_Bossetti_Nuñez
         protected void txtPortadaURL_TextChanged(object sender, EventArgs e)
         {
             imgPortada.ImageUrl = txtPortadaURL.Text;
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ConfirmaEliminacion = true;
+        }
+
+        protected void ConfirmaEliminacion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkConfirma.Checked)
+                {
+                    LibroNegocio negocio = new LibroNegocio();
+                    negocio.Eliminar(short.Parse(txtID.Text));
+                    Response.Redirect("Default.aspx", false);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
+
+        }
+
+        protected void btnInactivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LibroNegocio negocio = new LibroNegocio();
+                Libro seleccionado = (Libro)Session["LibroSeleccionado"];
+
+                negocio.EliminarLogico(seleccionado.ID, !seleccionado.Estado);
+                
+                Response.Redirect("Default.aspx", false);
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
         }
     }
 }

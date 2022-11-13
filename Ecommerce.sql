@@ -148,3 +148,31 @@ select
 	c.estado
 from clientes c
 go
+
+CREATE PROCEDURE SP_EliminarFisico
+	@Id smallint 
+AS 
+DELETE FROM Libros WHERE Id = @Id
+
+GO
+
+CREATE PROCEDURE SP_EliminarLogico
+@Id smallint 
+AS 
+UPDATE Libros SET Estado= 0 WHERE Id = @Id
+
+GO 
+
+CREATE PROCEDURE SP_ListarLibrosInactivos
+as
+select l.id, l.Titulo, l.Descripcion, l.Autor, l.Editorial, l.Precio, l.Stock, g.IdGenero as Genero_ID, g.Descripcion as Genero_Desc, l.Portada, l.estado 
+from Libros l 
+inner join Generos g on l.IdGenero = g.IdGenero 
+
+GO 
+
+ALTER PROCEDURE SP_EliminarLogico
+@Id smallint, 
+@Estado bit
+AS 
+UPDATE Libros SET Estado= @Estado WHERE Id = @Id

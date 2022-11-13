@@ -7,7 +7,7 @@ namespace Dominio
 {
     public class Libro
     {
-        public int ID { get; set; }
+        public short ID { get; set; }
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
         public string Autor { get; set; }
