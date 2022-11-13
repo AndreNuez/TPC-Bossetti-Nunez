@@ -32,11 +32,12 @@ namespace TPC_Bossetti_Nuñez
 
             nuevo.Direccion = new Direccion();
             nuevo.Direccion.Calle = txtCalle.Text;
-            nuevo.Direccion.Numero = int.Parse(txtNum.Text);
+            nuevo.Direccion.Numero = txtNum.Text;
+            nuevo.Direccion.Piso = txtPiso.Text;
             nuevo.Direccion.Depto = txtDepto.Text;
             nuevo.Direccion.Localidad = txtCity.Text;
             nuevo.Direccion.Provincia = txtProvincia.Text;
-            nuevo.Direccion.CodPostal = int.Parse(txtCopPostal.Text);
+            nuevo.Direccion.CodPostal = txtCopPostal.Text;
 
             negocio.Agregar(nuevo);
             Response.Redirect("Default.aspx", false);

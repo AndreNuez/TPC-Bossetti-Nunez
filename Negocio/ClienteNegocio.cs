@@ -40,5 +40,45 @@ namespace Negocio
             }
         }
 
+        public List<Cliente> listarConSP()
+        {
+            List<Cliente> lista = new List<Cliente>();
+            AccesoDatos datos = new AccesoDatos();
+        
+            try
+            {
+                datos.setearProcedimiento("sp_listarClientes");
+
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Cliente aux = new Cliente();
+                    aux.IDCliente = (short)datos.Lector["IdCliente"];
+                    aux.Mail = (string)datos.Lector["Mail"];
+                    aux.Contraseña = (string)datos.Lector["Contraseña"];
+                    aux.Nombres = (string)datos.Lector["Nombres"];
+                    aux.Apellidos = (string)datos.Lector["Apellidos"];
+                    aux.DNI = (string)datos.Lector["DNI"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
+                    aux.Celular = (string)datos.Lector["Celular"];
+                    aux.Direccion = new Direccion();
+                    aux.Direccion.Calle = (string)datos.Lector["Calle"];
+                    aux.Direccion.Numero = (string)datos.Lector["Numero"];
+                    aux.Direccion.Piso = (string)datos.Lector["Piso"];
+                    aux.Direccion.Depto = (string)datos.Lector["Departamento"];
+                    aux.Direccion.CodPostal = (string)datos.Lector["CP"];
+                    aux.Direccion.Localidad = (string)datos.Lector["Localidad"];
+                    aux.Direccion.Provincia = (string)datos.Lector["Provincia"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

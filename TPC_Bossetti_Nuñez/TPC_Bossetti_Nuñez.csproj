@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminClientes.aspx" />
     <Content Include="AltaLibro.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="CompraRealizada.aspx" />
@@ -86,6 +87,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminClientes.aspx.cs">
+      <DependentUpon>AdminClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminClientes.aspx.designer.cs">
+      <DependentUpon>AdminClientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AltaLibro.aspx.cs">
       <DependentUpon>AltaLibro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

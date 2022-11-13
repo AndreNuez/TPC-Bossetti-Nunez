@@ -66,59 +66,66 @@
         <label for="validationCalle" class="form-label">Calle</label>
         <asp:TextBox ID="txtCalle" CssClass="form-control" runat="server" />
         <div class="invalid-feedback">
+        Ingrese una ciudad válida.
+    </div>
+
+
+    <div class="col-md-6">
+        <label for="validationNum" class="form-label">Numero</label>
+        <asp:TextBox ID="txtNum" CssClass="form-control" runat="server" />
+        <div class="invalid-feedback">
+        Ingrese una ciudad válida.
+    </div>
+
+    <div class="col-md-6">
+        <label for="validationNum" class="form-label">Piso</label>
+        <asp:TextBox ID="txtPiso" CssClass="form-control" runat="server" />
+        <div class="invalid-feedback">
+        Ingrese una ciudad válida.
+    </div>
+
+    <div class="col-md-6">
+        <label for="validationDepto" class="form-label">Departamento</label>
+        <asp:TextBox ID="txtDepto" CssClass="form-control" runat="server" />
+        <div class="invalid-feedback">
             Ingrese una ciudad válida.
         </div>
 
-
-        <div class="col-md-6">
-            <label for="validationNum" class="form-label">Numero</label>
-            <asp:TextBox ID="txtNum" CssClass="form-control" runat="server" />
+    <div class="col-md-6">
+        <label for="validationCustom03" class="form-label">Ciudad</label>
+        <asp:TextBox ID="txtCity" CssClass="form-control" runat="server" />
+        <div class="invalid-feedback">
+            Ingrese una ciudad válida.
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label for="validationCustom04" class="form-label">Provincia</label>
+        <%--<asp:DropDownList ID="txtProvincia" CssClass="form-label" runat="server" />--%>
+        <asp:TextBox ID="txtProvincia" CssClass="form-control" runat="server" />
+        <div class="invalid-feedback">
+            Seleccione una Provincia válida.
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label for="validationCustom05" class="form-label">Código Postal</label>
+        <asp:TextBox CssClass="form-control" ID="txtCopPostal" runat="server"></asp:TextBox>
+        <div class="invalid-feedback">
+            Por favor use un código postal válido.
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-check">
+            <asp:CheckBox CssClass="form-check-label" ID="chkTerminosCondiciones" runat="server" />
+            <label class="form-check-label" for="invalidCheck">
+                Acepto términos y condiciones
+            </label>
             <div class="invalid-feedback">
-                Ingrese una ciudad válida.
+                Debe aceptar antes de continuar.
             </div>
-
-            <div class="col-md-6">
-                <label for="validationDepto" class="form-label">Departamento</label>
-                <asp:TextBox ID="txtDepto" CssClass="form-control" runat="server" />
-                <div class="invalid-feedback">
-                    Ingrese una ciudad válida.
-                </div>
-
-                <div class="col-md-6">
-                    <label for="validationCustom03" class="form-label">Ciudad</label>
-                    <asp:TextBox ID="txtCity" CssClass="form-control" runat="server" />
-                    <div class="invalid-feedback">
-                        Ingrese una ciudad válida.
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <label for="validationCustom04" class="form-label">Provincia</label>
-                    <%--<asp:DropDownList ID="txtProvincia" CssClass="form-label" runat="server" />--%>
-                    <asp:TextBox ID="txtProvincia" CssClass="form-control" runat="server" />
-                    <div class="invalid-feedback">
-                        Seleccione una Provincia válida.
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <label for="validationCustom05" class="form-label">Código Postal</label>
-                    <asp:TextBox CssClass="form-control" ID="txtCopPostal" runat="server"></asp:TextBox>
-                    <div class="invalid-feedback">
-                        Por favor use un código postal válido.
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-check">
-                        <asp:CheckBox CssClass="form-check-label" ID="chkTerminosCondiciones" runat="server" />
-                        <label class="form-check-label" for="invalidCheck">
-                            Acepto términos y condiciones
-                        </label>
-                        <div class="invalid-feedback">
-                            Debe aceptar antes de continuar.
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <asp:Button CssClass="btn btn-primary" runat="server" Text="Enviar" ID="btnAceptar" OnClick="btnAceptar_Click" />
-                    <a href="Default.aspx">Cancelar</a>
-                </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <asp:Button CssClass="btn btn-primary" runat="server" Text="Enviar" ID="btnAceptar" OnClick="btnAceptar_Click" />
+        <a href="Default.aspx">Cancelar</a>
+    </div>
 </asp:Content>
