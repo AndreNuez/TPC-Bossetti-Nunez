@@ -16,5 +16,17 @@ namespace TPC_Bossetti_Nuñez
             dgvClientesAdmin.DataSource = cliente.listarConSP();
             dgvClientesAdmin.DataBind();
         }
+
+        protected void dgvClientesAdmin_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string idCliente = dgvClientesAdmin.SelectedDataKey.Value.ToString();
+            Response.Redirect("SignUp.aspx?idCliente=" + idCliente);
+        }
+
+        protected void dgvClientesAdmin_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvClientesAdmin.PageIndex = e.NewPageIndex;
+            dgvClientesAdmin.DataBind();
+        }
     }
 }

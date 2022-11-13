@@ -14,7 +14,11 @@ namespace TPC_Bossetti_Nuñez
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ///configuracion para modificar clientes
+            if(Request.QueryString["idCliente"] != null)
+            {
+                ///to do
+            }        
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
