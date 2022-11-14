@@ -13,7 +13,7 @@
             <asp:BoundField HeaderText="Mail" DataField="Mail" />
             <asp:BoundField HeaderText="Nombres" DataField="Nombres" />
             <asp:BoundField HeaderText="Apellidos" DataField="Apellidos" />
-            <asp:CheckBoxField HeaderText="Activo"/>
+            <asp:CheckBoxField HeaderText="Activo" DataField="Estado"/>
             <asp:CommandField HeaderText="Modificar Estado" ShowSelectButton="true" SelectText="X" />
         </Columns>
     </asp:GridView>

@@ -80,5 +80,68 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public List<Cliente> listar(string idCliente = "")
+        {
+            List<Cliente> lista = new List<Cliente>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                string consulta = "select c.IdCliente,c.mail,c.Contraseña,c.Nombres,c.Apellidos,c.Dni,c.Telefono,c.Celular,c.Calle,c.Numero,c.Piso,c.Departamento,c.CP,c.Localidad,c.Provincia,c.estado from clientes c ";
+                
+                if (idCliente != "")
+                    consulta = consulta += "where c.IdCliente =" + idCliente;
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Cliente aux = new Cliente();
+                    aux.IDCliente = (short)datos.Lector["IdCliente"];
+                    aux.Mail = (string)datos.Lector["Mail"];
+                    aux.Contraseña = (string)datos.Lector["Contraseña"];
+                    aux.Nombres = (string)datos.Lector["Nombres"];
+                    aux.Apellidos = (string)datos.Lector["Apellidos"];
+                    aux.DNI = (string)datos.Lector["DNI"];
+                    aux.Telefono = (string)datos.Lector["Telefono"];
+                    aux.Celular = (string)datos.Lector["Celular"];
+                    aux.Direccion = new Direccion();
+                    aux.Direccion.Calle = (string)datos.Lector["Calle"];
+                    aux.Direccion.Numero = (string)datos.Lector["Numero"];
+                    aux.Direccion.Piso = (string)datos.Lector["Piso"];
+                    aux.Direccion.Depto = (string)datos.Lector["Departamento"];
+                    aux.Direccion.CodPostal = (string)datos.Lector["CP"];
+                    aux.Direccion.Localidad = (string)datos.Lector["Localidad"];
+                    aux.Direccion.Provincia = (string)datos.Lector["Provincia"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void eliminarLogico (int idCliente, bool activo =  false)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("update Clientes set Estado = @activo where IdCliente = @idCliente");
+                datos.setearParametro("@idCliente", idCliente);
+                datos.setearParametro("@activo", activo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
