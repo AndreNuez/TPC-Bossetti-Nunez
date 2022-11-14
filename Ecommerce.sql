@@ -176,3 +176,26 @@ ALTER PROCEDURE SP_EliminarLogico
 @Estado bit
 AS 
 UPDATE Libros SET Estado= @Estado WHERE Id = @Id
+go
+
+create procedure sp_modificarCliente
+@idCliente smallint, 
+@contraseña varchar(500),
+@nombres varchar(100),
+@apellidos varchar(100),
+@dni varchar (50),
+@telefono varchar (100),
+@celular varchar (100),
+@calle varchar (100),
+@numero varchar (10),
+@piso varchar (10),
+@departamento varchar (10),
+@cp varchar (10),
+@localidad varchar (100),
+@provincia varchar (100),
+@estado bit
+as
+update Clientes set Contraseña = @contraseña, Nombres = @nombres, Apellidos = @apellidos, DNI = @dni, Telefono = @telefono, 
+Celular = @celular, Calle = @calle, Numero = @numero, Piso = @piso, Departamento = @departamento, CP = @cp, Localidad = @localidad, Provincia = @provincia, Estado = @estado
+where IdCliente = @idCliente
+go
