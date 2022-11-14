@@ -5,6 +5,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="col-md-4">
+        <label class="form-label">Id Cliente</label>
+        <asp:TextBox runat="server" CssClass="form-control" ID="txtidCliente"/>
+    </div>
+
+    <div class="col-md-4">
         <label for="validationCustom01" class="form-label">Nombre</label>
         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" />
         <div class="valid-feedback">
@@ -55,7 +60,7 @@
     </div>
 
     <div class="col-md-6">
-        <label for="validationTel" class="form-label">Celular</label>
+        <label for="validationTel" class="form-label">Teléfono</label>
         <asp:TextBox ID="txtTel" CssClass="form-control" runat="server" />
         <div class="invalid-feedback">
             Ingrese un Teléfono válido.

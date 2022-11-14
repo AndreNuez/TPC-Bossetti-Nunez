@@ -143,5 +143,35 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public void modificarConSP (Cliente aux)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("sp_modificarCliente");
+                datos.setearParametro("@idCliente", aux.IDCliente);
+                datos.setearParametro("@contraseña", aux.Contraseña);
+                datos.setearParametro("@nombres", aux.Nombres);
+                datos.setearParametro("@apellidos", aux.Apellidos);
+                datos.setearParametro("@dni", aux.DNI);
+                datos.setearParametro("@telefono", aux.Telefono);
+                datos.setearParametro("@celular", aux.Celular);
+                datos.setearParametro("@calle", aux.Direccion.Calle);
+                datos.setearParametro("@numero", aux.Direccion.Numero);
+                datos.setearParametro("@piso", aux.Direccion.Piso);
+                datos.setearParametro("@departamento", aux.Direccion.Depto);
+                datos.setearParametro("@cp", aux.Direccion.CodPostal);
+                datos.setearParametro("@localidad", aux.Direccion.Localidad);
+                datos.setearParametro("@provincia", aux.Direccion.Provincia);
+                datos.setearParametro("@estado", aux.Estado);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
