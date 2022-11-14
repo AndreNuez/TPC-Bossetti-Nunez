@@ -20,7 +20,7 @@ namespace TPC_Bossetti_Nuñez
         protected void dgvClientesAdmin_SelectedIndexChanged(object sender, EventArgs e)
         {
             string idCliente = dgvClientesAdmin.SelectedDataKey.Value.ToString();
-            Response.Redirect("SignUp.aspx?idCliente=" + idCliente);
+            Response.Redirect("DatosCliente.aspx?idCliente=" + idCliente);
         }
 
         protected void dgvClientesAdmin_PageIndexChanging(object sender, GridViewPageEventArgs e)
