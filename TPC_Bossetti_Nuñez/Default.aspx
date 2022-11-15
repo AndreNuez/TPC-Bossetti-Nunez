@@ -3,6 +3,58 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="row">
+        <div class="col-6">
+            <div class="mb-3">
+                <asp:Label Text="Filtrar:" runat="server" />
+                <asp:TextBox runat="server" ID="txtFiltroRapido" CssClass="form-control" PlaceHolder="(Titulo Libro)" AutoPostBack="true" OnTextChanged="txtFiltroRapido_TextChanged" />
+            </div>
+        </div>
+        <div class="col-6" style="display: flex; flex-direction: column; justify-content: flex-end;">
+            <div class="mb-3">
+                <asp:CheckBox Text="Filtro Avanzado"
+                    CssClass="" ID="chkAvanzado" runat="server"
+                    AutoPostBack="true"
+                    OnCheckedChanged="chkAvanzado_CheckedChanged" />
+            </div>
+        </div>
+
+        <%if (chkAvanzado.Checked)
+            { %>
+        <div class="row">
+            <div class="col-3">
+                <div class="mb-3">
+                    <asp:Label Text="Campo" ID="lblCampo" runat="server" />
+                    <asp:DropDownList runat="server" AutoPostBack="true" CssClass="form-control" ID="ddlCampo" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged">
+                        <asp:ListItem Text="Título" />
+                        <asp:ListItem Text="Autor" />
+                        <asp:ListItem Text="Editorial" />
+                        <asp:ListItem Text="Precio" />
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="mb-3">
+                    <asp:Label Text="Criterio" runat="server" />
+                    <asp:DropDownList runat="server" ID="ddlCriterio" CssClass="form-control"></asp:DropDownList>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="mb-3">
+                    <asp:Label Text="Filtro" runat="server" />
+                    <asp:TextBox runat="server" ID="txtFiltroAvanzado" CssClass="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <div class="mb-3">
+                    <asp:Button Text="Buscar" runat="server" CssClass="btn btn-primary" ID="btnBuscar" OnClick="btnBuscar_Click" />
+                </div>
+            </div>
+        </div>
+        <%} %>
+    </div>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -44,15 +96,15 @@
                                 <asp:Button Text="Agregar al Carrito" ID="btnAgregarCarrito" CssClass="btn btn-success" runat="server" CommandArgument='' CommandName="" OnClick="btnAgregarCarrito_Click" />
                             </div>
                             <div class="d-grid mx-auto">
-                                <asp:Button Text="Ver Detalles" style="margin-top: 5px" ID="btnVerDetalles" CssClass="btn btn-info" runat="server" CommandArgument='' CommandName="" OnClick="btnVerDetalles_Click"/>
+                                <asp:Button Text="Ver Detalles" Style="margin-top: 5px" ID="btnVerDetalles" CssClass="btn btn-info" runat="server" CommandArgument='' CommandName="" OnClick="btnVerDetalles_Click" />
                             </div>
                             <div class="d-grid mx-auto">
-                                <asp:Button Text="Editar" style="margin-top: 5px" ID="btnEditar" CssClass="btn btn-secondary" runat="server" CommandArgument='<%#Eval("ID")%>' CommandName="IDLibro" OnClick="btnEditar_Click" />
+                                <asp:Button Text="Editar" Style="margin-top: 5px" ID="btnEditar" CssClass="btn btn-secondary" runat="server" CommandArgument='<%#Eval("ID")%>' CommandName="IDLibro" OnClick="btnEditar_Click" />
                             </div>
                         </div>
                     </div>
                 </div>
             </ItemTemplate>
-       </asp:Repeater> 
+        </asp:Repeater>
     </div>
 </asp:Content>

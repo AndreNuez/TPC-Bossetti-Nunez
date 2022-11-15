@@ -15,7 +15,8 @@ namespace TPC_Bossetti_Nuñez
         protected void Page_Load(object sender, EventArgs e)
         {
             LibroNegocio negocio = new LibroNegocio();
-            ListaLibro = negocio.listarConSP();
+            Session.Add("ListaLibro", negocio.listarConSP());
+            ListaLibro = (List<Libro>)Session["ListaLibro"];
             
             if (!IsPostBack)
             {
@@ -42,6 +43,29 @@ namespace TPC_Bossetti_Nuñez
         protected void btnVerDetalles_Click(object sender, EventArgs e)
         {
             Response.Redirect("Detalle.aspx", false);
+        }
+
+        protected void txtFiltroRapido_TextChanged(object sender, EventArgs e)
+        {
+            List<Libro> Lista = (List<Libro>)Session["ListaLibro"];
+            List<Libro> ListaFiltrada = Lista.FindAll(x => x.Titulo.ToUpper().Contains(txtFiltroRapido.Text.ToUpper()));
+            repRepetidor.DataSource = ListaFiltrada;
+            repRepetidor.DataBind();
+        }
+
+        protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
