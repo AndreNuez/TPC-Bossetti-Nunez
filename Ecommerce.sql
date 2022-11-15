@@ -120,7 +120,7 @@ create procedure sp_altaCliente
 	@localidad varchar (100),
 	@provincia varchar (100)
 as 
-insert into Clientes values (@mail,	@contraseña, @nombres, @apellidos, @DNI, @telefono, @celular, @calle, @numero, @piso, @departamento, @CP, @localidad, @provincia)
+insert into Clientes values (@mail,	@contraseña, @nombres, @apellidos, @DNI, @telefono, @celular, @calle, @numero, @piso, @departamento, @CP, @localidad, @provincia, 1)
 go
 
 
@@ -128,26 +128,6 @@ alter table Clientes
 add Estado bit not null default(1);
 go
 
-create procedure sp_listarClientes as
-select 
-	c.IdCliente, 
-	c.mail, 
-	c.Contraseña, 
-	c.Nombres, 
-	c.Apellidos, 
-	c.Dni, 
-	c.Telefono, 
-	c.Celular, 
-	c.Calle, 
-	c.Numero, 
-	c.Piso, 
-	c.Departamento, 
-	c.CP, 
-	c.Localidad, 
-	c.Provincia, 
-	c.estado
-from clientes c
-go
 
 CREATE PROCEDURE SP_EliminarFisico
 	@Id smallint 
@@ -176,6 +156,27 @@ ALTER PROCEDURE SP_EliminarLogico
 @Estado bit
 AS 
 UPDATE Libros SET Estado= @Estado WHERE Id = @Id
+go
+
+create procedure sp_listarClientes as
+select 
+	c.IdCliente, 
+	c.mail, 
+	c.Contraseña, 
+	c.Nombres, 
+	c.Apellidos, 
+	c.Dni, 
+	c.Telefono, 
+	c.Celular, 
+	c.Calle, 
+	c.Numero, 
+	c.Piso, 
+	c.Departamento, 
+	c.CP, 
+	c.Localidad, 
+	c.Provincia, 
+	c.estado
+from clientes c
 go
 
 create procedure sp_modificarCliente
