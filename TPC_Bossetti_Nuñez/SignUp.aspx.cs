@@ -23,7 +23,8 @@ namespace TPC_Bossetti_Nuñez
                 ClienteNegocio negocio = new ClienteNegocio();
                 Cliente modificar = (negocio.listar(idCliente))[0];
 
-                txtidCliente.Text = modificar.IDCliente.ToString();
+                txtidCliente.Text = idCliente;
+                //txtidCliente.Text = modificar.IDCliente.ToString();
                 txtApellido.Text = modificar.Apellidos;
                 txtNombre.Text = modificar.Nombres;
                 txtMail.Text = modificar.Mail;
@@ -47,7 +48,6 @@ namespace TPC_Bossetti_Nuñez
             Cliente nuevo = new Cliente();
             ClienteNegocio negocio = new ClienteNegocio();
 
-            nuevo.IDCliente = int.Parse(txtidCliente.Text);
             nuevo.Mail = txtMail.Text;
             nuevo.Contraseña = txtPass.Text;
             nuevo.Nombres = txtNombre.Text;
@@ -66,7 +66,10 @@ namespace TPC_Bossetti_Nuñez
             nuevo.Direccion.CodPostal = txtCopPostal.Text;
 
             if (Request.QueryString["idCliente"] != null)
+            {
+                nuevo.IDCliente = int.Parse(txtidCliente.Text);
                 negocio.modificarConSP(nuevo);
+            }
             else
                 negocio.Agregar(nuevo);
 
