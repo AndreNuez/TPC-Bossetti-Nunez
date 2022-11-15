@@ -78,7 +78,7 @@
     <Content Include="EditarPedido.aspx" />
     <Content Include="Global.asax" />
     <Content Include="ListadoLibros.aspx" />
-    <Content Include="Loguin.aspx" />
+    <Content Include="LogIn.aspx" />
     <Content Include="ModificarContraseña.aspx" />
     <Content Include="ModificarDatos.aspx" />
     <Content Include="Pedido.aspx" />
@@ -175,12 +175,12 @@
     <Compile Include="ListadoLibros.aspx.designer.cs">
       <DependentUpon>ListadoLibros.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Loguin.aspx.cs">
-      <DependentUpon>Loguin.aspx</DependentUpon>
+    <Compile Include="LogIn.aspx.cs">
+      <DependentUpon>LogIn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Loguin.aspx.designer.cs">
-      <DependentUpon>Loguin.aspx</DependentUpon>
+    <Compile Include="LogIn.aspx.designer.cs">
+      <DependentUpon>LogIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>

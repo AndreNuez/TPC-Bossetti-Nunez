@@ -17,7 +17,7 @@ namespace TPC_Bossetti_Nuñez
             LibroNegocio negocio = new LibroNegocio();
             Session.Add("ListaLibro", negocio.listarConSP());
             ListaLibro = (List<Libro>)Session["ListaLibro"];
-            
+
             if (!IsPostBack)
             {
                 repRepetidor.DataSource = ListaLibro;
@@ -53,19 +53,36 @@ namespace TPC_Bossetti_Nuñez
             repRepetidor.DataBind();
         }
 
-        protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void ddlCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ddlCriterio.Items.Clear();
+            if (ddlCampo.SelectedItem.ToString() == "Precio")
+            {
+                ddlCriterio.Items.Add("Igual a");
+                ddlCriterio.Items.Add("Menor a");
+                ddlCriterio.Items.Add("Mayor a");
+            }
+            else
+            {
+                ddlCriterio.Items.Add("Contiene");
+                ddlCriterio.Items.Add("Comienza con");
+                ddlCriterio.Items.Add("Termina con");
+            }
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                LibroNegocio negocio = new LibroNegocio();
+                repRepetidor.DataSource = negocio.Filtrar(ddlCampo.SelectedItem.ToString(),
+                    ddlCriterio.SelectedItem.ToString(), txtFiltroAvanzado.Text);
+                repRepetidor.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
         }
     }
 }
