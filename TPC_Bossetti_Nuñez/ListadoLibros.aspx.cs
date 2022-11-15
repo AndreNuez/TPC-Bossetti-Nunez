@@ -14,7 +14,8 @@ namespace TPC_Bossetti_Nuñez
         protected void Page_Load(object sender, EventArgs e)
         {
             LibroNegocio negocio = new LibroNegocio();
-            dgvListaLibros.DataSource = negocio.ListarSPInactivos();
+            Session.Add("ListadoLibros", negocio.ListarSPInactivos());
+            dgvListaLibros.DataSource = Session["ListadoLibros"];
             dgvListaLibros.DataBind();
 
         }
@@ -24,6 +25,14 @@ namespace TPC_Bossetti_Nuñez
             var IDLibro = dgvListaLibros.SelectedDataKey.Value;
             Session.Add("IDLibro", IDLibro);
             Response.Redirect("AltaLibro.aspx", false);
+        }
+
+        protected void txtFiltrar_TextChanged(object sender, EventArgs e)
+        {
+            List<Libro> Lista = (List<Libro>)Session["ListadoLibros"];
+            List<Libro> ListaFiltrada = Lista.FindAll(x => x.Titulo.ToUpper().Contains(txtFiltrar.Text.ToUpper()));
+            dgvListaLibros.DataSource = ListaFiltrada;
+            dgvListaLibros.DataBind();
         }
     }
 }
