@@ -13,7 +13,7 @@
                 <div class="col-4">
                     <div class="mb-3">
                         <asp:Label Text="Filtrar:" ID="lblFiltrar" runat="server" />
-                        <asp:TextBox ID="txtFiltrar" AutoPostBack="true" CssClass="form-control" runat="server" OnTextChanged="txtFiltrar_TextChanged" />
+                        <asp:TextBox ID="txtFiltrar" AutoPostBack="true" CssClass="form-control" PlaceHolder="(Título)" runat="server" OnTextChanged="txtFiltrar_TextChanged" />
                     </div>
                 </div>
             </div>

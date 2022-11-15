@@ -73,13 +73,14 @@
         <div class="invalid-feedback">
         Ingrese una ciudad válida.
     </div>
-
+    </div>
 
     <div class="col-md-6">
         <label for="validationNum" class="form-label">Numero</label>
         <asp:TextBox ID="txtNum" CssClass="form-control" runat="server" />
         <div class="invalid-feedback">
         Ingrese una ciudad válida.
+    </div>
     </div>
 
     <div class="col-md-6">
@@ -88,12 +89,14 @@
         <div class="invalid-feedback">
         Ingrese una ciudad válida.
     </div>
+    </div>
 
     <div class="col-md-6">
         <label for="validationDepto" class="form-label">Departamento</label>
         <asp:TextBox ID="txtDepto" CssClass="form-control" runat="server" />
         <div class="invalid-feedback">
             Ingrese una ciudad válida.
+        </div>
         </div>
 
     <div class="col-md-6">
@@ -131,6 +134,6 @@
     </div>
     <div class="col-12">
         <asp:Button CssClass="btn btn-primary" runat="server" Text="Enviar" ID="btnAceptar" OnClick="btnAceptar_Click" />
-        <a href="Default.aspx">Cancelar</a>
+        <a class="btn btn-danger" href="Default.aspx">Cancelar</a>
     </div>
 </asp:Content>
