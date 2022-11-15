@@ -65,8 +65,8 @@ namespace TPC_Bossetti_Nuñez
             else
             {
                 ddlCriterio.Items.Add("Contiene");
-                ddlCriterio.Items.Add("Comienza con");
                 ddlCriterio.Items.Add("Termina con");
+                ddlCriterio.Items.Add("Comienza con");
             }
         }
 
@@ -83,6 +83,11 @@ namespace TPC_Bossetti_Nuñez
             {
                 Session.Add("error", ex);
             }
+        }
+
+        protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+            txtFiltroRapido.Enabled = !chkAvanzado.Checked;
         }
     }
 }

@@ -44,7 +44,7 @@
                     <div class="mb-3">
                         <asp:CheckBox Text="Filtro Avanzado"
                             CssClass="" ID="chkAvanzado" runat="server"
-                            AutoPostBack="true"/>
+                            AutoPostBack="true" OnCheckedChanged="chkAvanzado_CheckedChanged"/>
                     </div>
                 </div>
 
@@ -55,7 +55,6 @@
                         <div class="mb-3">
                             <asp:Label Text="Campo" ID="lblCampo" runat="server" />
                             <asp:DropDownList runat="server" AutoPostBack="true" CssClass="form-control" ID="ddlCampo" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged">
-                                <asp:ListItem Text="Título" />
                                 <asp:ListItem Text="Autor" />
                                 <asp:ListItem Text="Editorial" />
                                 <asp:ListItem Text="Precio" />

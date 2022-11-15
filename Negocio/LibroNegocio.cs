@@ -106,21 +106,7 @@ namespace Negocio
                             break;
                     }
                 }
-                else if (Campo == "Titulo")
-                {
-                    switch (Criterio)
-                    {
-                        case "Comienza con":
-                            consulta += "Titulo like '" + Filtro + "%' ";
-                            break;
-                        case "Termina con":
-                            consulta += "Titulo like '%" + Filtro + "'";
-                            break;
-                        default:
-                            consulta += "Titulo like '%" + Filtro + "%'";
-                            break;
-                    }
-                }
+                
                 else if (Campo == "Autor")
                 {
                     switch (Criterio)
