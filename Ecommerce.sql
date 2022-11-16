@@ -208,3 +208,27 @@ as
 delete from clientes 
 where idCliente = @idCliente
 go
+
+alter table clientes
+add TipoUser int default (1)
+go
+
+alter table administradores
+add TipoUser int default (2)
+go
+
+
+create procedure sp_login
+	@mail varchar (500),
+	@pass varchar (500)
+as
+select c.IdCliente as ID, c.TipoUser 
+from clientes c 
+where c.mail = @mail 
+and c.Contraseña = @pass 
+union 
+select a.IdAdministrador as ID, a.TipoUser 
+from Administradores a 
+where a.mail = @mail 
+and a.Contraseña = @pass
+go

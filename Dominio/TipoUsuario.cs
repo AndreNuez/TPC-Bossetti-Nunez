@@ -5,10 +5,9 @@ using System.Web;
 
 namespace Dominio
 {
-    public class Administrador : Usuario 
+    public enum TipoUsuario
     {
-        public int IDAdministrador { get; set; }
-
+        CLIENTE = 1,
+        ADMIN = 2
     }
-
 }
