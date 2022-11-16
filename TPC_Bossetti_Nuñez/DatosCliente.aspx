@@ -3,6 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <asp:ScriptManager ID="ScriptManager1" runat="server" />    
     <div class="row">
         <div class="row">
             <div class="col-6">
@@ -43,11 +45,28 @@
                 <div class="mb-3">
                     <asp:Label Text="Celular" ID="lblCelular" runat="server" />
                 </div>
-                <div class="mb-3">
-                    <a href="AdminClientes.aspx" class="btn btn-secondary">Regresar</a>
-                    <asp:Button ID="btnActivar" CssClass="btn btn-warning" runat="server" Text="Inactivar" OnClick="btnActivar_Click" />
-                </div>
+                <asp:UpdatePanel ID="UpdatePanel" runat="server">
+                    <ContentTemplate>
+                        <div class="mb-3">
+                            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-secondary" OnClick="btnEliminar_Click"/>
+                            <asp:Button ID="btnActivar" CssClass="btn btn-warning" runat="server" Text="Inactivar" OnClick="btnActivar_Click" />
+                        </div>
+
+                        <%if (ConfirmaEliminacion)
+                            { %>
+                            <div class="mb-3">
+                                <asp:CheckBox ID="chkConfirmaEliminacion" runat="server" Text="Confirmar Eliminación"/>
+                                <asp:Button runat="server" Text="Button" ID="btnConfirmaEliminar" CssClass="btn btn-danger" OnClick="btnConfirmaEliminar_Click"/>
+                            </div>
+                        <%} %>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
             </div>
+            <div>
+                <a href="AdminClientes.aspx">Cancelar</a>
+            </div>
+
             <%--<div class="col-6">
                 <br />
                 <div class="mb-3">

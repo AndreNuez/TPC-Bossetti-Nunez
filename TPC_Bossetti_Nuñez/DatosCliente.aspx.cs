@@ -11,8 +11,12 @@ namespace TPC_Bossetti_Nuñez
 {
     public partial class DatosCliente : System.Web.UI.Page
     {
+        public bool ConfirmaEliminacion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!IsPostBack)
+                ConfirmaEliminacion = false;
+
             string idCliente = Request.QueryString["idCliente"] != null ? Request.QueryString["idCliente"].ToString() : "";
             if (idCliente != "")
             {
@@ -46,6 +50,32 @@ namespace TPC_Bossetti_Nuñez
 
                 negocio.eliminarLogico(seleccionado.IDCliente, !seleccionado.Estado);
                 Response.Redirect("AdminClientes.aspx");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (!ConfirmaEliminacion)
+                ConfirmaEliminacion = true;
+            else
+                ConfirmaEliminacion = false;
+        }
+
+        protected void btnConfirmaEliminar_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (chkConfirmaEliminacion.Checked)
+                {
+                    ClienteNegocio negocio = new ClienteNegocio();
+                    negocio.eliminarFisicoConSP(short.Parse(Request.QueryString["idCliente"]));
+                    Response.Redirect("AdminClientes.aspx");
+                }
             }
             catch (Exception ex)
             {

@@ -200,3 +200,11 @@ update Clientes set Contraseña = @contraseña, Nombres = @nombres, Apellidos = 
 Celular = @celular, Calle = @calle, Numero = @numero, Piso = @piso, Departamento = @departamento, CP = @cp, Localidad = @localidad, Provincia = @provincia, Estado = @estado
 where IdCliente = @idCliente
 go
+
+
+create procedure sp_ClienteEliminarFisico
+	@idCliente smallint
+as
+delete from clientes 
+where idCliente = @idCliente
+go
