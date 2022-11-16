@@ -4,10 +4,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="col-md-4">
+    <h1>Usuario</h1>
+    <%--<div class="col-md-4">
         <label class="form-label">Id Cliente</label>
         <asp:TextBox runat="server" CssClass="form-control" ID="txtidCliente"/>
-    </div>
+    </div>--%>
 
     <div class="col-md-4">
         <label for="validationCustom01" class="form-label">Nombre</label>
@@ -37,6 +38,10 @@
         <label for="validationPassqord" class="form-label">Password</label>
         <div class="input-group has-validation">
             <asp:TextBox ID="txtPass" CssClass="form-control" runat="server" type="password" />
+            <% if (!txtPass.Enabled)
+                { %>
+            <asp:Button Text="Modificar contraseña" runat="server" ID="btnModificarPass" OnClick="btnModificarPass_Click"/>
+            <%} %>
             <div class="invalid-feedback">
                 Por favor, elija una constraseña válida.
             </div>
@@ -51,6 +56,7 @@
         </div>
     </div>
 
+    <h1>Contacto</h1>
     <div class="col-md-6">
         <label for="validationCel" class="form-label">Celular</label>
         <asp:TextBox ID="txtCel" CssClass="form-control" runat="server" />
@@ -67,6 +73,7 @@
         </div>
     </div>
 
+    <h1>Domicilio</h1>
     <div class="col-md-6">
         <label for="validationCalle" class="form-label">Calle</label>
         <asp:TextBox ID="txtCalle" CssClass="form-control" runat="server" />
@@ -106,7 +113,7 @@
             Ingrese una ciudad válida.
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-6">
         <label for="validationCustom04" class="form-label">Provincia</label>
         <%--<asp:DropDownList ID="txtProvincia" CssClass="form-label" runat="server" />--%>
         <asp:TextBox ID="txtProvincia" CssClass="form-control" runat="server" />
@@ -114,14 +121,14 @@
             Seleccione una Provincia válida.
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-6">
         <label for="validationCustom05" class="form-label">Código Postal</label>
         <asp:TextBox CssClass="form-control" ID="txtCopPostal" runat="server"></asp:TextBox>
         <div class="invalid-feedback">
             Por favor use un código postal válido.
         </div>
     </div>
-    <div class="col-12">
+    <%--<div class="col-12">
         <div class="form-check">
             <asp:CheckBox CssClass="form-check-label" ID="chkTerminosCondiciones" runat="server" />
             <label class="form-check-label" for="invalidCheck">
@@ -131,7 +138,7 @@
                 Debe aceptar antes de continuar.
             </div>
         </div>
-    </div>
+    </div>--%>
     <div class="col-12">
         <asp:Button CssClass="btn btn-primary" runat="server" Text="Enviar" ID="btnAceptar" OnClick="btnAceptar_Click" />
         <a class="btn btn-danger" href="Default.aspx">Cancelar</a>
