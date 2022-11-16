@@ -28,7 +28,7 @@
                             <a class="btn btn-info" href="Carrito.aspx">Carrito( )</a>
                         </div>
                         <div class="text-end">
-                            <a class="btn btn-primary" style="margin: 5px" href="Loguin.aspx">Loguin</a>
+                            <a class="btn btn-primary" style="margin: 5px" href="LogIn.aspx">LogIn</a>
                         </div>
                         <div class="text-end">
                             <a class="btn btn-secondary" href="SignUp.aspx">Registrarse</a>

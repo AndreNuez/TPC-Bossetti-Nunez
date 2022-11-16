@@ -128,7 +128,7 @@ namespace Negocio
             }
         }
 
-        public void eliminarLogico (int idCliente, bool activo =  false)
+        public void eliminarLogico (int idCliente, bool activo = false)
         {
             try
             {
@@ -137,6 +137,22 @@ namespace Negocio
                 datos.setearParametro("@idCliente", idCliente);
                 datos.setearParametro("@activo", activo);
                 datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void eliminarFisicoConSP(short idCliente)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearProcedimiento("sp_ClienteEliminarFisico");
+                datos.setearParametro("@idCliente", idCliente);
+                datos.ejecutarAccion();
+
             }
             catch (Exception ex)
             {

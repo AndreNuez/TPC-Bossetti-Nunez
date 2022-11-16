@@ -83,6 +83,90 @@ namespace Negocio
             }
         }
 
+        public List<Libro> Filtrar(string Campo, string Criterio, string Filtro)
+        {
+            List<Libro> lista = new List<Libro>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "Select l.id, l.Titulo, l.Descripcion, l.Autor, l.Editorial, l.Precio, l.Stock, g.IdGenero as Genero_ID, g.Descripcion as Genero_Desc, l.Portada, l.estado from Libros l inner join Generos g on l.IdGenero = g.IdGenero where l.Estado = 1 And ";
+
+                if (Campo == "Precio")
+                {
+                    switch (Criterio)
+                    {
+                        case "Mayor a":
+                            consulta += "Precio > " + Filtro;
+                            break;
+                        case "Menor a":
+                            consulta += "Precio < " + Filtro;
+                            break;
+                        default:
+                            consulta += "Precio = " + Filtro;
+                            break;
+                    }
+                }
+                
+                else if (Campo == "Autor")
+                {
+                    switch (Criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "Autor like '" + Filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += "Autor like '%" + Filtro + "'";
+                            break;
+                        default:
+                            consulta += "Autor like '%" + Filtro + "%'";
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (Criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "Editorial like '" + Filtro + "%' ";
+                            break;
+                        case "Termina con":
+                            consulta += "Editorial like '%" + Filtro + "'";
+                            break;
+                        default:
+                            consulta += "Editorial like '%" + Filtro + "%'";
+                            break;
+                    }
+                }
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Libro aux = new Libro();
+                    aux.ID = (short)datos.Lector["id"];
+                    aux.Titulo = (string)datos.Lector["Titulo"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Autor = (string)datos.Lector["Autor"];
+                    aux.Editorial = (string)datos.Lector["Editorial"];
+                    aux.Precio = decimal.Parse(datos.Lector["Precio"].ToString());
+                    aux.Stock = (int)datos.Lector["Stock"];
+                    aux.Genero = new Generos();
+                    aux.Genero.IdGenero = (short)datos.Lector["Genero_ID"];
+                    aux.Genero.Descripcion = (string)datos.Lector["Genero_Desc"];
+                    aux.PortadaURL = (string)datos.Lector["Portada"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<Libro> ListarSPInactivos()
         {
             List<Libro> lista = new List<Libro>();

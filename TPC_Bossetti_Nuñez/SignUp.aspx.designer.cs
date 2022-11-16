@@ -15,15 +15,6 @@ namespace TPC_Bossetti_Nuñez
     {
 
         /// <summary>
-        /// txtidCliente control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtidCliente;
-
-        /// <summary>
         /// txtNombre control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace TPC_Bossetti_Nuñez
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPass;
+
+        /// <summary>
+        /// btnModificarPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificarPass;
 
         /// <summary>
         /// txtDNI control.
@@ -148,15 +148,6 @@ namespace TPC_Bossetti_Nuñez
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCopPostal;
-
-        /// <summary>
-        /// chkTerminosCondiciones control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkTerminosCondiciones;
 
         /// <summary>
         /// btnAceptar control.

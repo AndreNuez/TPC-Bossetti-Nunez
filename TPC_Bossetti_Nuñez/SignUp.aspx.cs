@@ -14,16 +14,21 @@ namespace TPC_Bossetti_Nuñez
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            txtidCliente.Enabled = false;
+            //txtidCliente.Enabled = false;
 
             //configuración si estamos modificando
             string idCliente = Request.QueryString["idCliente"] != null ? Request.QueryString["idCliente"].ToString() : "";
             if (idCliente != "" && !IsPostBack)
             {
+
+                txtDNI.Enabled = false;
+                txtMail.Enabled = false;
+                txtPass.Enabled = false;
+
                 ClienteNegocio negocio = new ClienteNegocio();
                 Cliente modificar = (negocio.listar(idCliente))[0];
 
-                txtidCliente.Text = idCliente;
+                //txtidCliente.Text = idCliente;
                 //txtidCliente.Text = modificar.IDCliente.ToString();
                 txtApellido.Text = modificar.Apellidos;
                 txtNombre.Text = modificar.Nombres;
@@ -67,7 +72,8 @@ namespace TPC_Bossetti_Nuñez
 
             if (Request.QueryString["idCliente"] != null)
             {
-                nuevo.IDCliente = int.Parse(txtidCliente.Text);
+                //nuevo.IDCliente = int.Parse(txtidCliente.Text);
+                nuevo.IDCliente = int.Parse(Request.QueryString["idCliente"]);
                 negocio.modificarConSP(nuevo);
             }
             else
@@ -76,6 +82,11 @@ namespace TPC_Bossetti_Nuñez
 
             Response.Redirect("Default.aspx", false);
 
+        }
+
+        protected void btnModificarPass_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ModificarContraseña.aspx?idCliente=" + Request.QueryString["idCliente"]);
         }
     }
 }

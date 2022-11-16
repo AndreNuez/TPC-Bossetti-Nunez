@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
+using Dominio;
 
 namespace TPC_Bossetti_Nuñez
 {
@@ -13,7 +14,8 @@ namespace TPC_Bossetti_Nuñez
         protected void Page_Load(object sender, EventArgs e)
         {
             ClienteNegocio cliente = new ClienteNegocio();
-            dgvClientesAdmin.DataSource = cliente.listarConSP();
+            Session.Add("ListaClientes", cliente.listarConSP());
+            dgvClientesAdmin.DataSource = Session["ListaClientes"];
             dgvClientesAdmin.DataBind();
         }
 
@@ -26,6 +28,14 @@ namespace TPC_Bossetti_Nuñez
         protected void dgvClientesAdmin_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvClientesAdmin.PageIndex = e.NewPageIndex;
+            dgvClientesAdmin.DataBind();
+        }
+
+        protected void txtFiltrarClientes_TextChanged(object sender, EventArgs e)
+        {
+            List<Cliente> Lista = (List<Cliente>)Session["ListaClientes"];
+            List<Cliente> ListaFiltrada = Lista.FindAll(x => x.Apellidos.ToUpper().Contains(txtFiltrarClientes.Text.ToUpper()) || x.Mail.ToUpper().Contains(txtFiltrarClientes.Text.ToUpper()));
+            dgvClientesAdmin.DataSource = ListaFiltrada;
             dgvClientesAdmin.DataBind();
         }
     }
