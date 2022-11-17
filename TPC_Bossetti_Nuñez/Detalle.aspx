@@ -4,19 +4,43 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="..." class="img-fluid rounded-start" alt="img_libro" onerror="this.src='https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=';">
+    <div class="row">
+        <div class="col-6">
+            <div class="mb-3">
+                <asp:Label Text="" CssClass="fs-1 fw-bolder" ID="lblTitulo" runat="server" />
             </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Tu libro</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                    <p class="card-text"><small class="text-muted">Última actualización realizada hace 3 días</small></p>
-                </div>
+            <div class="mb-3">
+                <asp:Label Text="" CssClass="fs-3" ID="lblDescripcion" runat="server" />
+            </div>
+            <div class="mb-3">
+                <asp:Label Text="" CssClass="fs-4" ID="lblAutor" runat="server" />
+            </div>
+            <div class="mb-3">
+                <asp:Label Text="" CssClass="fs-4" ID="lblEditorial" runat="server" />
+            </div>
+            <div class="mb-3">
+                <asp:Label Text="" CssClass="fs-3 fw-bolder" ID="lblPrecio" runat="server" />
+            </div>
+            <div class="mb-3">
+                <asp:Label Text="" CssClass="fs-4" ID="lblStock" runat="server" />
+            </div>
+            <br />
+            <br />
+            <div class="mb-3">
+                <asp:Button Text="Agregar al Carrito" ID="btnAgregarCarrito" CssClass="btn btn-primary" runat="server" Onclick="btnAgregarCarrito_Click" />
+            </div>
+            <br />
+            <br />
+            <br />
+            <div class="mb-3">
+                <a href="Default.aspx"> Regresar al Catálogo</a>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div>
+                <asp:Image ImageUrl="<%seleccionado.PortadaURL.ToString()%>" runat="server" onerror="this.src='https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=';" />  
             </div>
         </div>
     </div>
-
 </asp:Content>

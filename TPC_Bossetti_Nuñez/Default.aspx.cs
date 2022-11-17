@@ -42,6 +42,9 @@ namespace TPC_Bossetti_Nuñez
 
         protected void btnVerDetalles_Click(object sender, EventArgs e)
         {
+            string IDLibro = ((Button)sender).CommandArgument;
+            Session.Add("IDLibro", IDLibro);
+
             Response.Redirect("Detalle.aspx", false);
         }
 

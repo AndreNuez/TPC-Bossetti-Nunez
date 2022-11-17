@@ -98,7 +98,7 @@
                                         <asp:Button Text="Agregar al Carrito" ID="btnAgregarCarrito" CssClass="btn btn-success" runat="server" CommandArgument='' CommandName="" OnClick="btnAgregarCarrito_Click" />
                                     </div>
                                     <div class="d-grid mx-auto">
-                                        <asp:Button Text="Ver Detalles" Style="margin-top: 5px" ID="btnVerDetalles" CssClass="btn btn-info" runat="server" CommandArgument='' CommandName="" OnClick="btnVerDetalles_Click" />
+                                        <asp:Button Text="Ver Detalles" Style="margin-top: 5px" ID="btnVerDetalles" CssClass="btn btn-info" runat="server" CommandArgument='<%#Eval("ID")%>' CommandName="IDLibro" OnClick="btnVerDetalles_Click" />
                                     </div>
                                     <div class="d-grid mx-auto">
                                         <asp:Button Text="Editar" Style="margin-top: 5px" ID="btnEditar" CssClass="btn btn-secondary" runat="server" CommandArgument='<%#Eval("ID")%>' CommandName="IDLibro" OnClick="btnEditar_Click" />

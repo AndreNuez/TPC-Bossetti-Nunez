@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
+using Negocio;
 
 namespace TPC_Bossetti_Nuñez
 {
@@ -11,7 +13,27 @@ namespace TPC_Bossetti_Nuñez
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //string id = Request.QueryString["Id"].ToString();
+            string IDLibro = Session["IDLibro"] != null ? Session["IDLibro"].ToString() : "";
+            string imgPortada;
+
+            if (IDLibro != "" && !IsPostBack)
+            {
+                LibroNegocio negocio = new LibroNegocio();
+                Libro seleccionado = (negocio.listar(IDLibro))[0];
+
+                lblTitulo.Text = seleccionado.Titulo;
+                lblDescripcion.Text = seleccionado.Descripcion;
+                lblAutor.Text = seleccionado.Autor;
+                lblEditorial.Text = "Editorial " + seleccionado.Editorial;
+                lblPrecio.Text = "Precio $ " + seleccionado.Precio.ToString();
+                lblStock.Text = "Stock disponible: " + seleccionado.Stock.ToString() + " unidades";
+                imgPortada = seleccionado.PortadaURL.ToString();
+            }
+        }
+
+        protected void btnAgregarCarrito_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Carrito.aspx", false);
         }
     }
 }
