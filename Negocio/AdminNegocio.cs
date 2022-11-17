@@ -31,10 +31,13 @@ namespace Negocio
                         aux.Contraseña = (string)datos.Lector["Contraseña"];
                         aux.Nombres = (string)datos.Lector["Nombres"];
                         aux.Apellidos = (string)datos.Lector["Apellidos"];
-                        aux.TipoUsuario = TipoUsuario.ADMIN;
+                        //aux.TipoUsuario = TipoUsuario.ADMIN;
+                        aux.TipoUsuario = (int)(datos.Lector["TipoUser"]) == 2 ? TipoUsuario.ADMIN : TipoUsuario.CLIENTE;
 
+                        lista.Add(aux);
                     }
                 }
+                return lista;
             
                     
             }
