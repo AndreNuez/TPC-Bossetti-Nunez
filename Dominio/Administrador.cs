@@ -9,6 +9,10 @@ namespace Dominio
     {
         public int IDAdministrador { get; set; }
 
+        public Administrador (string mail, string pass):base(mail, pass)
+        {
+
+        }
     }
 
 }

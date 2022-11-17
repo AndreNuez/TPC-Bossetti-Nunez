@@ -13,6 +13,7 @@ namespace Dominio
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public TipoUsuario TipoUsuario { get; set; }
+        public Cliente cliente { get; set; }
 
         public Usuario (string mail, string pass)
         {
