@@ -14,7 +14,6 @@ namespace TPC_Bossetti_Nuñez
         protected void Page_Load(object sender, EventArgs e)
         {
             string IDLibro = Session["IDLibro"] != null ? Session["IDLibro"].ToString() : "";
-            string imgPortada;
 
             if (IDLibro != "" && !IsPostBack)
             {
@@ -27,7 +26,8 @@ namespace TPC_Bossetti_Nuñez
                 lblEditorial.Text = "Editorial " + seleccionado.Editorial;
                 lblPrecio.Text = "Precio $ " + seleccionado.Precio.ToString();
                 lblStock.Text = "Stock disponible: " + seleccionado.Stock.ToString() + " unidades";
-                imgPortada = seleccionado.PortadaURL.ToString();
+                img.ImageUrl = seleccionado.PortadaURL.ToString();
+
             }
         }
 
