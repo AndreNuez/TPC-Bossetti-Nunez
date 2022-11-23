@@ -232,3 +232,30 @@ from Administradores a
 where a.mail = @mail 
 and a.Contraseña = @pass
 go
+
+
+create table usuarios (
+	IdUsuario smallint primary key identity (1,1),
+	Mail varchar(500) unique, 
+	Contraseña varchar (500) Not Null,
+	Nombres varchar (100) Not Null,
+	Apellidos varchar (100) Not Null,
+	Estado bit not null,
+	TipoUsuario smallint not null
+)
+go
+
+create table datos_usuario (
+	IdUsuario smallint primary key foreign key references usuarios(IdUsuario), 
+	DNI varchar (50) not null unique,
+	Telefono varchar (100), 
+	Celular varchar (100),
+	Calle varchar (100),
+	Numero varchar (10),
+	Piso varchar (10),
+	Departamento varchar (10),
+	CP varchar (10),
+	Localidad varchar (100),
+	Provincia varchar (100)
+)
+go
