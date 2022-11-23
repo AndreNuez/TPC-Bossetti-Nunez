@@ -208,3 +208,54 @@ as
 delete from clientes 
 where idCliente = @idCliente
 go
+
+alter table clientes
+add TipoUser int default (1)
+go
+
+alter table administradores
+add TipoUser int default (2)
+go
+
+
+create procedure sp_login
+	@mail varchar (500),
+	@pass varchar (500)
+as
+select c.IdCliente as ID, c.TipoUser 
+from clientes c 
+where c.mail = @mail 
+and c.Contraseña = @pass 
+union 
+select a.IdAdministrador as ID, a.TipoUser 
+from Administradores a 
+where a.mail = @mail 
+and a.Contraseña = @pass
+go
+
+
+create table usuarios (
+	IdUsuario smallint primary key identity (1,1),
+	Mail varchar(500) unique, 
+	Contraseña varchar (500) Not Null,
+	Nombres varchar (100) Not Null,
+	Apellidos varchar (100) Not Null,
+	Estado bit not null,
+	TipoUsuario smallint not null
+)
+go
+
+create table datos_usuario (
+	IdUsuario smallint primary key foreign key references usuarios(IdUsuario), 
+	DNI varchar (50) not null unique,
+	Telefono varchar (100), 
+	Celular varchar (100),
+	Calle varchar (100),
+	Numero varchar (10),
+	Piso varchar (10),
+	Departamento varchar (10),
+	CP varchar (10),
+	Localidad varchar (100),
+	Provincia varchar (100)
+)
+go
