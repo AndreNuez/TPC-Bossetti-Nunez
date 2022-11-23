@@ -39,7 +39,7 @@
             </div>
             <div class="mb-3">
                 <asp:Button Text="Aceptar" runat="server" ID="btnAceptarAlta" CssClass="btn btn-primary" OnClick="btnAceptarAlta_Click" />
-                <a href="PrincipalAdmin.aspx" class="btn btn-danger" style="margin-left: 5px">Cancelar</a>
+                <asp:Button Text="Cancelar" ID="btnCancelar" CssClass="btn btn-danger" style="margin-left: 5px" runat="server" Onclick="btnCancelar_Click" />
             </div>
             <div class="mb-3">
                 <asp:UpdatePanel runat="server">

@@ -86,6 +86,7 @@ namespace TPC_Bossetti_Nuñez
                 {
                     nuevo.ID = short.Parse(txtID.Text);
                     negocio.Modificar(nuevo);
+                    Session.Remove("IDLibro");
                 }
                 else
                     negocio.Agregar(nuevo);
@@ -145,6 +146,12 @@ namespace TPC_Bossetti_Nuñez
             {
                 Session.Add("error", ex);
             }
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Session.Remove("IDLibro");
+            Response.Redirect("PrincipalAdmin.aspx", false);
         }
     }
 }
