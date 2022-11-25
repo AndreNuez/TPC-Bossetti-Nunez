@@ -218,21 +218,25 @@ add TipoUser int default (2)
 go
 
 
-create procedure sp_login
-	@mail varchar (500),
+create procedure sp_login(
+	@mail varchar (500), 
 	@pass varchar (500)
+)
 as
-select c.IdCliente as ID, c.TipoUser 
-from clientes c 
-where c.mail = @mail 
-and c.Contraseña = @pass 
-union 
-select a.IdAdministrador as ID, a.TipoUser 
-from Administradores a 
-where a.mail = @mail 
-and a.Contraseña = @pass
+select 
+	u.IdUsuario
+from usuarios u
+where u.Mail = @mail 
+and u.Contraseña = @pass
 go
 
+
+/*create procedure sp_signIn(
+	declare @mail varchar (500), @pass varchar (500), @nombres varchar (500), apellidos varchar (500)
+)
+as
+insert
+*/
 
 create table usuarios (
 	IdUsuario smallint primary key identity (1,1),
@@ -258,4 +262,19 @@ create table datos_usuario (
 	Localidad varchar (100),
 	Provincia varchar (100)
 )
+go
+
+
+create procedure pr_insertarNuevo(
+	@Apellidos varchar (100),
+	@Nombres varchar (100),
+	@Mail varchar (500),
+	@Contraseña varchar(500)
+)
+as
+begin
+	insert into usuarios (Apellidos, Nombres, Mail, Contraseña, TipoUsuario)
+	output inserted.IdUsuario
+	values (@Apellidos, @Nombres, @Mail, @Contraseña, 1)
+end
 go
