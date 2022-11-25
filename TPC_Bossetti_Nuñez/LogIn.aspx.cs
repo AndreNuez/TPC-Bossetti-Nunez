@@ -19,33 +19,24 @@ namespace TPC_Bossetti_Nuñez
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             Usuario usuario;
-            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+            UsuarioNegocio negocio = new UsuarioNegocio();
 
             try
             {
                 usuario = new Usuario(txtEmail.Text, txtPassword.Text);
-                if (usuarioNegocio.Loguear(usuario))
+                if (negocio.Loguear(usuario))
                 {
-                    if (usuario.TipoUsuario == TipoUsuario.ADMIN)
-                    {
-                        AdminNegocio adminNegocio = new AdminNegocio();
-                        Administrador admin = (adminNegocio.listar(usuario.IDUsuario.ToString()))[0];
-                        Session.Add("usuario", admin);
-                        Response.Redirect("Default.aspx");
-                    }
-                    else if (usuario.TipoUsuario == TipoUsuario.CLIENTE)
-                    {
-                        ClienteNegocio clienteNegocio = new ClienteNegocio();
-                        Cliente cliente = (clienteNegocio.listar(usuario.IDUsuario.ToString()))[0];
-                        Session.Add("usuario", cliente);
-                        Response.Redirect("Default.aspx");
-                    }
+                    //COMPLETAR
+                }
+                else
+                {
+                    Session.Add("error", "user o pass incorrectos");
+                    Response.Redirect("Error.aspx", false);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Session.Add("error", ex.ToString());
             }
         }
     }

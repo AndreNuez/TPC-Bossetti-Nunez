@@ -27,6 +27,7 @@ namespace TPC_Bossetti_Nuñez
                 user.Nombres = txtNombre.Text;
                 user.Mail = txtMail.Text;
                 user.Contraseña = txtPass.Text;
+                user.TipoUsuario = (int)(Session["TipoUsuario"]) == 1 ? TipoUsuario.CLIENTE : TipoUsuario.ADMIN;
                 int id = usuarionegocio.insertarNuevo(user);
             }
             catch (Exception ex)

@@ -79,9 +79,9 @@ namespace Negocio
                 datos.setearParametro("@Nombres", nuevo.Nombres);
                 datos.setearParametro("@Mail", nuevo.Mail);
                 datos.setearParametro("@Contraseña", nuevo.Contraseña);
+                datos.setearParametro("@TipoUsuario", nuevo.TipoUsuario);
                 return datos.ejecutarAccionScalar();
 
-                return 1;
             }
             catch (Exception ex)
             {
