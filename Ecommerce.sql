@@ -265,16 +265,16 @@ create table datos_usuario (
 go
 
 
-create procedure pr_insertarNuevo(
+create procedure sp_insertarNuevo(
 	@Apellidos varchar (100),
 	@Nombres varchar (100),
 	@Mail varchar (500),
-	@Contraseña varchar(500)
+	@Contraseña varchar(500),
+	@TipoUsuario smallint
 )
 as
 begin
-	insert into usuarios (Apellidos, Nombres, Mail, Contraseña, TipoUsuario)
+	insert into usuarios (Apellidos, Nombres, Mail, Contraseña, TipoUsuario, Estado)
 	output inserted.IdUsuario
-	values (@Apellidos, @Nombres, @Mail, @Contraseña, 1)
+	values (@Apellidos, @Nombres, @Mail, @Contraseña, @TipoUsuario, 1)
 end
-go
