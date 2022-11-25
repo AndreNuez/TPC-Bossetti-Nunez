@@ -19,8 +19,8 @@ namespace Negocio
 
         public AccesoDatos()
         {
-            //conexion = new SqlConnection("server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security=True");
-            conexion = new SqlConnection("server=localhost; database=ECOMMERCE; integrated security=true");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security=True");
+            //conexion = new SqlConnection("server=localhost; database=ECOMMERCE; integrated security=true");
             comando = new SqlCommand();
         }
 
@@ -58,6 +58,20 @@ namespace Negocio
             {
                 conexion.Open();
                 comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int ejecutarAccionScalar()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                return int.Parse(comando.ExecuteScalar().ToString());
             }
             catch (Exception ex)
             {
