@@ -14,6 +14,7 @@ namespace Dominio
         public string Apellidos { get; set; }
         public TipoUsuario TipoUsuario { get; set; }
         public Cliente Cliente { get; set; }
+        public bool Estado { get; set; }
         public Usuario (string mail, string pass)
         {
             Mail = mail;

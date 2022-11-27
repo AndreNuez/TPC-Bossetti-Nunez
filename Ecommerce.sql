@@ -158,7 +158,7 @@ AS
 UPDATE Libros SET Estado= @Estado WHERE Id = @Id
 go
 
-create procedure sp_listarClientes as
+/*create procedure sp_listarClientes as
 select 
 	c.IdCliente, 
 	c.mail, 
@@ -177,9 +177,9 @@ select
 	c.Provincia, 
 	c.estado
 from clientes c
-go
+go*/
 
-create procedure sp_modificarCliente
+/*create procedure sp_modificarCliente
 @idCliente smallint, 
 @contraseña varchar(500),
 @nombres varchar(100),
@@ -199,15 +199,15 @@ as
 update Clientes set Contraseña = @contraseña, Nombres = @nombres, Apellidos = @apellidos, DNI = @dni, Telefono = @telefono, 
 Celular = @celular, Calle = @calle, Numero = @numero, Piso = @piso, Departamento = @departamento, CP = @cp, Localidad = @localidad, Provincia = @provincia, Estado = @estado
 where IdCliente = @idCliente
-go
+go*/
 
 
-create procedure sp_ClienteEliminarFisico
+/*create procedure sp_ClienteEliminarFisico
 	@idCliente smallint
 as
 delete from clientes 
 where idCliente = @idCliente
-go
+go*/
 
 alter table clientes
 add TipoUser int default (1)
@@ -224,7 +224,10 @@ create procedure sp_login(
 )
 as
 select 
-	u.IdUsuario
+	u.IdUsuario,
+	u.TipoUsuario,
+	u.Apellidos,
+	u.Nombres
 from usuarios u
 where u.Mail = @mail 
 and u.Contraseña = @pass
@@ -278,3 +281,73 @@ begin
 	output inserted.IdUsuario
 	values (@Apellidos, @Nombres, @Mail, @Contraseña, @TipoUsuario, 1)
 end
+
+create procedure sp_listarClientes
+as
+select 
+	u.IdUsuario,
+	u.Mail,
+	u.Nombres,
+	u.Apellidos,
+	u.Estado,
+	du.DNI,
+	du.Telefono,
+	du.Celular,
+	du.Calle,
+	du.Numero,
+	du.Piso,
+	du.Departamento,
+	du.CP,
+	du.Localidad,
+	du.Provincia
+from usuarios u
+inner join datos_usuario du on u.IdUsuario = du.IdUsuario
+go
+
+create procedure sp_ClienteEliminarFisico (
+	@idUsuario smallint
+)
+as
+delete from usuarios 
+where IdUsuario = @idUsuario
+go
+
+
+create procedure sp_modificarCliente(
+	@idUsuario smallint, 
+	@contraseña varchar(500),
+	@nombres varchar(100),
+	@apellidos varchar(100),
+	@dni varchar (50),
+	@telefono varchar (100),
+	@celular varchar (100),
+	@calle varchar (100),
+	@numero varchar (10),
+	@piso varchar (10),
+	@departamento varchar (10),
+	@cp varchar (10),
+	@localidad varchar (100),
+	@provincia varchar (100),
+	@estado bit
+)
+as
+	update usuarios 
+	set 
+		Contraseña = @contraseña, 
+		Nombres = @nombres, 
+		Apellidos = @apellidos,
+		Estado = @estado
+	where IdUsuario = @idUsuario
+	update datos_usuario 
+	set 
+		DNI = @dni, 
+		Telefono = @telefono, 
+		Celular = @celular, 
+		Calle = @calle, 
+		Numero = @numero, 
+		Piso = @piso, 
+		Departamento = @departamento, 
+		CP = @cp, 
+		Localidad = @localidad, 
+		Provincia = @provincia 
+	where IdUsuario = @idUsuario

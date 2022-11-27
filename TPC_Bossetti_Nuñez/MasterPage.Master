@@ -28,7 +28,8 @@
                             <a class="btn btn-info" href="Carrito.aspx">Carrito( )</a>
                         </div>
                         <div class="text-end">
-                            <a class="btn btn-primary" style="margin: 5px" href="LogIn.aspx">LogIn</a>
+                            <asp:Button CssClass="btn btn-info" ID="btnLogin" onclick="btnLogin_Click"  runat="server" />
+                            <!--<a class="btn btn-primary" style="margin: 5px" href="LogIn.aspx">LogIn</a>-->
                         </div>
                         <div class="text-end">
                             <a class="btn btn-secondary" href="SignUp.aspx">Registrarse</a>

@@ -16,7 +16,11 @@ namespace TPC_Bossetti_Nuñez
         private string pass2 { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Qué onda pillín, tenés que loguearte primero");
+                Response.Redirect("Error.aspx", false);
+            }
         }
 
         protected void btnGuardarPass_Click(object sender, EventArgs e)

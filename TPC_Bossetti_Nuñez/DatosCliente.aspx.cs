@@ -17,11 +17,11 @@ namespace TPC_Bossetti_Nuñez
             if(!IsPostBack)
                 ConfirmaEliminacion = false;
 
-            string idCliente = Request.QueryString["idCliente"] != null ? Request.QueryString["idCliente"].ToString() : "";
-            if (idCliente != "")
+            string idUsuario = Request.QueryString["idUsuario"] != null ? Request.QueryString["idUsuario"].ToString() : "";
+            if (idUsuario != "")
             {
-                ClienteNegocio negocio = new ClienteNegocio();
-                Cliente seleccionado = (negocio.listar(idCliente))[0];
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                Usuario seleccionado = (negocio.listar(idUsuario))[0];
 
                 lblNombre.Text = seleccionado.Nombres;
                 lblApellido.Text = seleccionado.Apellidos;

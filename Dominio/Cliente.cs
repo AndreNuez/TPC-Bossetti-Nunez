@@ -12,8 +12,6 @@ namespace Dominio
         public string Telefono { get; set; }
         public string Celular { get; set; }
         public DateTime FNac { get; set; }
-        public bool Estado { get; set; }
-
     }
 
 
