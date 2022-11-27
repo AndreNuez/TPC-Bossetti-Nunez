@@ -23,6 +23,8 @@ namespace Negocio
                 {
                     usuario.IDUsuario = (int)datos.Lector["IdUsuario"];
                     usuario.TipoUsuario = (int)(datos.Lector["TipoUsuario"]) == 1 ? TipoUsuario.CLIENTE : TipoUsuario.ADMIN;
+                    usuario.Apellidos = (string)datos.Lector["Apellidos"];
+                    usuario.Nombres = (string)datos.Lector["Nombres"];
                     return true;
                 }
                 return false;
@@ -107,15 +109,15 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Usuario aux = new Usuario();
-                    aux.IDUsuario = (short)datos.Lector["IdCliente"];
+                    aux.IDUsuario = (short)datos.Lector["IdUsuario"];
                     aux.Mail = (string)datos.Lector["Mail"];
-                    aux.Contraseña = (string)datos.Lector["Contraseña"];
                     aux.Nombres = (string)datos.Lector["Nombres"];
                     aux.Apellidos = (string)datos.Lector["Apellidos"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
+                    aux.Cliente.Direccion = new Direccion();
                     aux.Cliente.DNI = (string)datos.Lector["DNI"];
                     aux.Cliente.Telefono = (string)datos.Lector["Telefono"];
                     aux.Cliente.Celular = (string)datos.Lector["Celular"];
-                    aux.Cliente.Direccion = new Direccion();
                     aux.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
                     aux.Cliente.Direccion.Numero = (string)datos.Lector["Numero"];
                     aux.Cliente.Direccion.Piso = (string)datos.Lector["Piso"];
@@ -123,7 +125,6 @@ namespace Negocio
                     aux.Cliente.Direccion.CodPostal = (string)datos.Lector["CP"];
                     aux.Cliente.Direccion.Localidad = (string)datos.Lector["Localidad"];
                     aux.Cliente.Direccion.Provincia = (string)datos.Lector["Provincia"];
-                    aux.Cliente.Estado = (bool)datos.Lector["Estado"];
 
                     lista.Add(aux);
                 }
@@ -141,25 +142,25 @@ namespace Negocio
 
             try
             {
-                string consulta = "select c.IdCliente,c.mail,c.Contraseña,c.Nombres,c.Apellidos,c.Dni,c.Telefono,c.Celular,c.Calle,c.Numero,c.Piso,c.Departamento,c.CP,c.Localidad,c.Provincia,c.estado from clientes c ";
+                string consulta = "select u.IdUsuario, u.Mail, u.Nombres, u.Apellidos, u.Estado, du.DNI, du.Telefono, du.Celular, du.Calle, du.Numero, du.Piso, du.Departamento, du.CP, du.Localidad, du.Provincia from usuarios u inner join datos_usuario du on u.IdUsuario = du.IdUsuario ";
 
                 if (idUsuario != "")
-                    consulta = consulta += "where c.IdCliente =" + idUsuario;
+                    consulta = consulta += "where c.IdUsuario =" + idUsuario;
 
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Usuario aux = new Usuario();
-                    aux.IDUsuario = (short)datos.Lector["IdCliente"];
+                    aux.IDUsuario = (short)datos.Lector["IdUsuario"];
                     aux.Mail = (string)datos.Lector["Mail"];
-                    aux.Contraseña = (string)datos.Lector["Contraseña"];
                     aux.Nombres = (string)datos.Lector["Nombres"];
                     aux.Apellidos = (string)datos.Lector["Apellidos"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
+                    aux.Cliente.Direccion = new Direccion();
                     aux.Cliente.DNI = (string)datos.Lector["DNI"];
                     aux.Cliente.Telefono = (string)datos.Lector["Telefono"];
                     aux.Cliente.Celular = (string)datos.Lector["Celular"];
-                    aux.Cliente.Direccion = new Direccion();
                     aux.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
                     aux.Cliente.Direccion.Numero = (string)datos.Lector["Numero"];
                     aux.Cliente.Direccion.Piso = (string)datos.Lector["Piso"];
@@ -167,7 +168,6 @@ namespace Negocio
                     aux.Cliente.Direccion.CodPostal = (string)datos.Lector["CP"];
                     aux.Cliente.Direccion.Localidad = (string)datos.Lector["Localidad"];
                     aux.Cliente.Direccion.Provincia = (string)datos.Lector["Provincia"];
-                    aux.Cliente.Estado = (bool)datos.Lector["Estado"];
 
                     lista.Add(aux);
                 }
@@ -185,7 +185,7 @@ namespace Negocio
             try
             {
                 AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("update Clientes set Estado = @activo where IdCliente = @idCliente");
+                datos.setearConsulta("update Usuarios set Estado = @activo where IdUsuario = @idCliente");
                 datos.setearParametro("@idCliente", idUsuario);
                 datos.setearParametro("@activo", activo);
                 datos.ejecutarAccion();
@@ -201,7 +201,7 @@ namespace Negocio
             {
                 AccesoDatos datos = new AccesoDatos();
                 datos.setearProcedimiento("sp_ClienteEliminarFisico");
-                datos.setearParametro("@idCliente", idUsuario);
+                datos.setearParametro("@idUsuario", idUsuario);
                 datos.ejecutarAccion();
 
             }

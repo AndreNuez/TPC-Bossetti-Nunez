@@ -26,7 +26,8 @@ namespace TPC_Bossetti_Nuñez
                 usuario = new Usuario(txtEmail.Text, txtPassword.Text);
                 if (negocio.Loguear(usuario))
                 {
-                    //COMPLETAR
+                    Session.Add("usuario", usuario);
+                    Response.Redirect("Default.aspx", false);
                 }
                 else
                 {

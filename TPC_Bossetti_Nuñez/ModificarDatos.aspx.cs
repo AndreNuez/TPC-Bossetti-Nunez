@@ -13,6 +13,13 @@ namespace TPC_Bossetti_Nuñez
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Qué onda pillín, tenés que loguearte primero");
+                Response.Redirect("Error.aspx", false);
+            }
+
+
             //txtidCliente.Enabled = false;
 
             //configuración si estamos modificando
