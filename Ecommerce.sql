@@ -234,13 +234,6 @@ and u.Contraseña = @pass
 go
 
 
-/*create procedure sp_signIn(
-	declare @mail varchar (500), @pass varchar (500), @nombres varchar (500), apellidos varchar (500)
-)
-as
-insert
-*/
-
 create table usuarios (
 	IdUsuario smallint primary key identity (1,1),
 	Mail varchar(500) unique, 
@@ -304,13 +297,6 @@ from usuarios u
 inner join datos_usuario du on u.IdUsuario = du.IdUsuario
 go
 
-create procedure sp_ClienteEliminarFisico (
-	@idUsuario smallint
-)
-as
-delete from usuarios 
-where IdUsuario = @idUsuario
-go
 
 
 create procedure sp_modificarCliente(
@@ -331,6 +317,7 @@ create procedure sp_modificarCliente(
 	@estado bit
 )
 as
+begin
 	update usuarios 
 	set 
 		Contraseña = @contraseña, 
@@ -351,3 +338,35 @@ as
 		Localidad = @localidad, 
 		Provincia = @provincia 
 	where IdUsuario = @idUsuario
+end
+go
+
+create procedure sp_usuarioEliminarLogico (
+	@IdUsuario smallint, 
+	@activo bit
+)
+as 
+begin
+	update usuarios 
+	set Estado= @activo 
+	where IdUsuario = @IdUsuario
+end
+go
+
+create procedure sp_UsuarioEliminarFisico (
+	@idUsuario smallint
+)
+as
+begin
+	declare @estado bit
+	select @estado = estado from usuarios
+	if @estado = 0 begin
+		delete from usuarios 
+		where IdUsuario = @idUsuario
+	end
+	else begin
+		raiserror('El usuario se encuentra Activo', 16, 1)
+	end
+end
+go
+

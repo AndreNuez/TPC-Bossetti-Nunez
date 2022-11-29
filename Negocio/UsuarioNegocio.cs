@@ -21,8 +21,8 @@ namespace Negocio
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
-                    usuario.IDUsuario = (int)datos.Lector["IdUsuario"];
-                    usuario.TipoUsuario = (int)(datos.Lector["TipoUsuario"]) == 1 ? TipoUsuario.CLIENTE : TipoUsuario.ADMIN;
+                    usuario.IDUsuario = (short)datos.Lector["IdUsuario"];
+                    usuario.TipoUsuario = (short)(datos.Lector["TipoUsuario"]) == 1 ? TipoUsuario.CLIENTE : TipoUsuario.ADMIN;
                     usuario.Apellidos = (string)datos.Lector["Apellidos"];
                     usuario.Nombres = (string)datos.Lector["Nombres"];
                     return true;
@@ -76,7 +76,7 @@ namespace Negocio
 
             try
             {
-                datos.setearProcedimiento("insertarNuevo");
+                datos.setearProcedimiento("sp_insertarNuevo");
                 datos.setearParametro("@Apellidos", nuevo.Apellidos);
                 datos.setearParametro("@Nombres", nuevo.Nombres);
                 datos.setearParametro("@Mail", nuevo.Mail);
@@ -142,10 +142,10 @@ namespace Negocio
 
             try
             {
-                string consulta = "select u.IdUsuario, u.Mail, u.Nombres, u.Apellidos, u.Estado, du.DNI, du.Telefono, du.Celular, du.Calle, du.Numero, du.Piso, du.Departamento, du.CP, du.Localidad, du.Provincia from usuarios u inner join datos_usuario du on u.IdUsuario = du.IdUsuario ";
+                string consulta = "select u.IdUsuario, u.Mail, u.Nombres, u.Apellidos, u.Estado, du.DNI, du.Telefono, du.Celular, du.Calle, du.Numero, du.Piso, du.Departamento, du.CP, du.Localidad, du.Provincia from usuarios u left join datos_usuario du on u.IdUsuario = du.IdUsuario ";
 
                 if (idUsuario != "")
-                    consulta = consulta += "where c.IdUsuario =" + idUsuario;
+                    consulta = consulta += "where u.IdUsuario =" + idUsuario;
 
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
@@ -157,10 +157,11 @@ namespace Negocio
                     aux.Nombres = (string)datos.Lector["Nombres"];
                     aux.Apellidos = (string)datos.Lector["Apellidos"];
                     aux.Estado = (bool)datos.Lector["Estado"];
-                    aux.Cliente.Direccion = new Direccion();
+                    aux.Cliente = new Cliente();
                     aux.Cliente.DNI = (string)datos.Lector["DNI"];
                     aux.Cliente.Telefono = (string)datos.Lector["Telefono"];
                     aux.Cliente.Celular = (string)datos.Lector["Celular"];
+                    aux.Cliente.Direccion = new Direccion();
                     aux.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
                     aux.Cliente.Direccion.Numero = (string)datos.Lector["Numero"];
                     aux.Cliente.Direccion.Piso = (string)datos.Lector["Piso"];
@@ -185,8 +186,8 @@ namespace Negocio
             try
             {
                 AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("update Usuarios set Estado = @activo where IdUsuario = @idCliente");
-                datos.setearParametro("@idCliente", idUsuario);
+                datos.setearConsulta("update Usuarios set Estado = @activo where IdUsuario = @idUsuario");
+                datos.setearParametro("@idUsuario", idUsuario);
                 datos.setearParametro("@activo", activo);
                 datos.ejecutarAccion();
             }
@@ -194,6 +195,23 @@ namespace Negocio
             {
                 throw ex;
             }
+        }
+        public void eliminarLogicoConSP(int idUsuario, bool activo = false)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("sp_UsuarioEliminarLogico");
+                datos.setearParametro("@IdUsuario", idUsuario);
+                datos.setearParametro("@activo", activo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+            
         }
         public void eliminarFisicoConSP(short idUsuario)
         {
@@ -203,7 +221,6 @@ namespace Negocio
                 datos.setearProcedimiento("sp_ClienteEliminarFisico");
                 datos.setearParametro("@idUsuario", idUsuario);
                 datos.ejecutarAccion();
-
             }
             catch (Exception ex)
             {
@@ -216,7 +233,7 @@ namespace Negocio
             try
             {
                 datos.setearProcedimiento("sp_modificarCliente");
-                datos.setearParametro("@idCliente", aux.IDUsuario);
+                datos.setearParametro("@idUsuario", aux.IDUsuario);
                 datos.setearParametro("@contraseña", aux.Contraseña);
                 datos.setearParametro("@nombres", aux.Nombres);
                 datos.setearParametro("@apellidos", aux.Apellidos);
@@ -230,7 +247,7 @@ namespace Negocio
                 datos.setearParametro("@cp", aux.Cliente.Direccion.CodPostal);
                 datos.setearParametro("@localidad", aux.Cliente.Direccion.Localidad);
                 datos.setearParametro("@provincia", aux.Cliente.Direccion.Provincia);
-                datos.setearParametro("@estado", aux.Cliente.Estado);
+                datos.setearParametro("@estado", aux.Estado);
 
                 datos.ejecutarAccion();
             }

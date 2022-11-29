@@ -23,18 +23,23 @@ namespace TPC_Bossetti_Nuñez
             {
                 Usuario user = new Usuario();
                 UsuarioNegocio usuarionegocio = new UsuarioNegocio();
+                
                 user.Apellidos = txtApellido.Text;
                 user.Nombres = txtNombre.Text;
                 user.Mail = txtMail.Text;
                 user.Contraseña = txtPass.Text;
-                user.TipoUsuario = (int)(Session["TipoUsuario"]) == 1 ? TipoUsuario.CLIENTE : TipoUsuario.ADMIN;
-                int id = usuarionegocio.insertarNuevo(user);
+                user.TipoUsuario = TipoUsuario.CLIENTE;
+                user.IDUsuario = usuarionegocio.insertarNuevo(user);
+                Session.Add("usuario", user);
+                
+                Response.Redirect("Default.aspx", false);
+                
             }
             catch (Exception ex)
             {
 
                 Session.Add("error", ex.ToString());
             }
-        }
+            }
     }
 }

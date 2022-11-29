@@ -26,12 +26,12 @@ namespace TPC_Bossetti_Nuñez
                 lblNombre.Text = seleccionado.Nombres;
                 lblApellido.Text = seleccionado.Apellidos;
                 lblMail.Text = seleccionado.Mail;
-                lblDireccion1.Text = seleccionado.Direccion.Calle + ", " +seleccionado.Direccion.Numero + ", " + seleccionado.Direccion.Piso + ", " + seleccionado.Direccion.Depto;
-                lblDireccion2.Text = "(" + seleccionado.Direccion.CodPostal + ") " + seleccionado.Direccion.Localidad;
-                lblProvincia.Text = seleccionado.Direccion.Provincia;
-                lblCelular.Text = seleccionado.Celular;
+                lblDireccion1.Text = seleccionado.Cliente.Direccion.Calle + ", " +seleccionado.Cliente.Direccion.Numero + ", " + seleccionado.Cliente.Direccion.Piso + ", " + seleccionado.Cliente.Direccion.Depto;
+                lblDireccion2.Text = "(" + seleccionado.Cliente.Direccion.CodPostal + ") " + seleccionado.Cliente.Direccion.Localidad;
+                lblProvincia.Text = seleccionado.Cliente.Direccion.Provincia;
+                lblCelular.Text = seleccionado.Cliente.Celular;
 
-                Session.Add("clienteSeleccionado", seleccionado);
+                Session.Add("usuarioSeleccionado", seleccionado);
 
                 if (!seleccionado.Estado)
                 {
@@ -45,10 +45,10 @@ namespace TPC_Bossetti_Nuñez
         {
             try
             {
-                ClienteNegocio negocio = new ClienteNegocio();
-                Cliente seleccionado = (Cliente)Session["clienteSeleccionado"];
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                Usuario seleccionado = (Usuario)Session["usuarioSeleccionado"];
 
-                negocio.eliminarLogico(seleccionado.IDCliente, !seleccionado.Estado);
+                negocio.eliminarLogico(seleccionado.IDUsuario, !seleccionado.Estado);
                 Response.Redirect("AdminClientes.aspx");
             }
             catch (Exception ex)
@@ -72,8 +72,8 @@ namespace TPC_Bossetti_Nuñez
             {
                 if (chkConfirmaEliminacion.Checked)
                 {
-                    ClienteNegocio negocio = new ClienteNegocio();
-                    negocio.eliminarFisicoConSP(short.Parse(Request.QueryString["idCliente"]));
+                    UsuarioNegocio negocio = new UsuarioNegocio();
+                    negocio.eliminarFisicoConSP(short.Parse(Request.QueryString["idUsuario"]));
                     Response.Redirect("AdminClientes.aspx");
                 }
             }

@@ -5,7 +5,7 @@
     <h1>Usuario</h1>
     <%--<div class="col-md-4">
         <label class="form-label">Id Cliente</label>
-        <asp:TextBox runat="server" CssClass="form-control" ID="txtidCliente"/>
+        <asp:TextBox runat="server" CssClass="form-control" ID="txtidUsuario"/>
     </div>--%>
 
     <div class="col-md-4">
@@ -48,7 +48,7 @@
 
     <div class="col-md-6">
         <label for="validationDNI" class="form-label">DNI</label>
-        <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server" />
+        <asp:TextBox ID="txtDNI" CssClass="form-control" runat="server" />
         <div class="invalid-feedback">
             Ingrese un DNI válido.
         </div>
