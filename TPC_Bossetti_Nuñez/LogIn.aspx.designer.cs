@@ -11,7 +11,7 @@ namespace TPC_Bossetti_Nuñez
 {
 
 
-    public partial class Loguin
+    public partial class LogIn
     {
 
         /// <summary>
