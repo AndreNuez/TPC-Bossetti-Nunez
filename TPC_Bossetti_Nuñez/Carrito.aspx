@@ -12,9 +12,9 @@
         <asp:GridView ID="dgvCarrito" runat="server" CssClass="table table-light" DataKeyNames="IDItem" AutoGenerateColumns="false">
             <Columns>
                 <asp:CommandField ShowSelectButton="true" SelectText="Quitar" HeaderText=" " />
-                <asp:BoundField HeaderText="Nombre" DataField="" />
-                <asp:BoundField HeaderText="Cantidad" DataField="" />
-                <asp:BoundField HeaderText="Precio" DataField="" />   
+                <asp:BoundField HeaderText="Nombre" DataField="NombreItem" />
+                <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
+                <asp:BoundField HeaderText="Precio" DataField="Precio" />   
             </Columns>
         </asp:GridView>
           <% }

@@ -12,7 +12,7 @@ namespace TPC_Bossetti_Nuñez
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!(Page is LogIn || Page is SignUp))
+            if(!(Page is LogIn || Page is SignUp || Page is Default || Page is Error || Page is Carrito || Page is PrincipalAdmin || Page is AltaLibro || Page is Detalle))
             {
                 if (!Seguridad.sesionActiva(Session["usuario"]))
                     Response.Redirect("LogIn.aspx", false);
