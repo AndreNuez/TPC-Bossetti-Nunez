@@ -9,7 +9,7 @@ using Negocio;
 
 namespace TPC_Bossetti_Nuñez
 {
-    public partial class Loguin : System.Web.UI.Page
+    public partial class LogIn : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,15 +27,10 @@ namespace TPC_Bossetti_Nuñez
                 if (negocio.Loguear(usuario))
                 {
                     Session.Add("usuario", usuario);
-                    //Agrego solo el id en vez del object entero
-                    Session.Add("idUsuario", usuario.IDUsuario);
                     Response.Redirect("Default.aspx", false);
                 }
-                else
-                {
-                    Session.Add("error", "user o pass incorrectos");
-                    Response.Redirect("Error.aspx", false);
-                }
+                Session.Add("error", "user o pass incorrectos");
+                Response.Redirect("Error.aspx", false);
             }
             catch (Exception ex)
             {

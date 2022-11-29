@@ -19,7 +19,7 @@ namespace Negocio
                 datos.setearParametro("@pass", usuario.Contraseña);
 
                 datos.ejecutarLectura();
-                while (datos.Lector.Read())
+                if (datos.Lector.Read())
                 {
                     usuario.IDUsuario = (short)datos.Lector["IdUsuario"];
                     usuario.TipoUsuario = (short)(datos.Lector["TipoUsuario"]) == 1 ? TipoUsuario.CLIENTE : TipoUsuario.ADMIN;
