@@ -13,7 +13,7 @@ namespace TPC_Bossetti_Nuñez
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] == null)
+            if (Session["idUsuario"] == null)
             {
                 Session.Add("error", "Qué onda pillín, tenés que loguearte primero");
                 Response.Redirect("Error.aspx", false);
@@ -23,16 +23,17 @@ namespace TPC_Bossetti_Nuñez
             //txtidCliente.Enabled = false;
 
             //configuración si estamos modificando
-            string idCliente = Request.QueryString["idCliente"] != null ? Request.QueryString["idCliente"].ToString() : "";
-            if (idCliente != "" && !IsPostBack)
+            //string idUsuario = Request.QueryString["idUsuario"] != null ? Request.QueryString["idUsuario"].ToString() : "";
+            string idUsuario = Session["idUsuario"] != null ? Session["idUsuario"].ToString() : "";
+            if (idUsuario != "" && !IsPostBack)
             {
 
                 txtDNI.Enabled = false;
                 txtMail.Enabled = false;
                 txtPass.Enabled = false;
 
-                ClienteNegocio negocio = new ClienteNegocio();
-                Cliente modificar = (negocio.listar(idCliente))[0];
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                Usuario modificar = (negocio.listar(idUsuario))[0];
 
                 //txtidCliente.Text = idCliente;
                 //txtidCliente.Text = modificar.IDCliente.ToString();
@@ -40,54 +41,46 @@ namespace TPC_Bossetti_Nuñez
                 txtNombre.Text = modificar.Nombres;
                 txtMail.Text = modificar.Mail;
                 txtPass.Text = modificar.Contraseña;
-                txtDNI.Text = modificar.DNI;
-                txtCel.Text = modificar.Celular;
-                txtTel.Text = modificar.Telefono;
-                txtCalle.Text = modificar.Direccion.Calle;
-                txtNum.Text = modificar.Direccion.Numero;
-                txtPiso.Text = modificar.Direccion.Piso;
-                txtDepto.Text = modificar.Direccion.Depto;
-                txtCity.Text = modificar.Direccion.Localidad;
-                txtProvincia.Text = modificar.Direccion.Provincia;
-                txtCopPostal.Text = modificar.Direccion.CodPostal;
+                txtDNI.Text = modificar.Cliente.DNI;
+                txtCel.Text = modificar.Cliente.Celular;
+                txtTel.Text = modificar.Cliente.Telefono;
+                txtCalle.Text = modificar.Cliente.Direccion.Calle;
+                txtNum.Text = modificar.Cliente.Direccion.Numero;
+                txtPiso.Text = modificar.Cliente.Direccion.Piso;
+                txtDepto.Text = modificar.Cliente.Direccion.Depto;
+                txtCity.Text = modificar.Cliente.Direccion.Localidad;
+                txtProvincia.Text = modificar.Cliente.Direccion.Provincia;
+                txtCopPostal.Text = modificar.Cliente.Direccion.CodPostal;
 
             }
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            Cliente nuevo = new Cliente();
-            ClienteNegocio negocio = new ClienteNegocio();
+            Usuario nuevo = new Usuario();
+            UsuarioNegocio negocio = new UsuarioNegocio();
 
             nuevo.Mail = txtMail.Text;
             nuevo.Contraseña = txtPass.Text;
             nuevo.Nombres = txtNombre.Text;
             nuevo.Apellidos = txtApellido.Text;
-            nuevo.DNI = txtDNI.Text;
-            nuevo.Telefono = txtTel.Text;
-            nuevo.Celular = txtCel.Text;
+            nuevo.Cliente.DNI = txtDNI.Text;
+            nuevo.Cliente.Telefono = txtTel.Text;
+            nuevo.Cliente.Celular = txtCel.Text;
 
-            nuevo.Direccion = new Direccion();
-            nuevo.Direccion.Calle = txtCalle.Text;
-            nuevo.Direccion.Numero = txtNum.Text;
-            nuevo.Direccion.Piso = txtPiso.Text;
-            nuevo.Direccion.Depto = txtDepto.Text;
-            nuevo.Direccion.Localidad = txtCity.Text;
-            nuevo.Direccion.Provincia = txtProvincia.Text;
-            nuevo.Direccion.CodPostal = txtCopPostal.Text;
-
-            if (Request.QueryString["idCliente"] != null)
-            {
-                //nuevo.IDCliente = int.Parse(txtidCliente.Text);
-                nuevo.IDCliente = int.Parse(Request.QueryString["idCliente"]);
-                negocio.modificarConSP(nuevo);
-            }
-            else
-                negocio.Agregar(nuevo);
-
-
+            nuevo.Cliente.Direccion = new Direccion();
+            nuevo.Cliente.Direccion.Calle = txtCalle.Text;
+            nuevo.Cliente.Direccion.Numero = txtNum.Text;
+            nuevo.Cliente.Direccion.Piso = txtPiso.Text;
+            nuevo.Cliente.Direccion.Depto = txtDepto.Text;
+            nuevo.Cliente.Direccion.Localidad = txtCity.Text;
+            nuevo.Cliente.Direccion.Provincia = txtProvincia.Text;
+            nuevo.Cliente.Direccion.CodPostal = txtCopPostal.Text;
+            //nuevo.IDCliente = int.Parse(txtidUsuario.Text);
+            nuevo.IDUsuario = int.Parse(Request.QueryString["idUsuario"]);
+            negocio.modificarConSP(nuevo);
+            
             Response.Redirect("Default.aspx", false);
-
         }
 
         protected void btnModificarPass_Click(object sender, EventArgs e)

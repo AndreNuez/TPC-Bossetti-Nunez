@@ -13,7 +13,7 @@ namespace TPC_Bossetti_Nuñez
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ClienteNegocio cliente = new ClienteNegocio();
+            UsuarioNegocio cliente = new UsuarioNegocio();
             Session.Add("ListaClientes", cliente.listarConSP());
             dgvClientesAdmin.DataSource = Session["ListaClientes"];
             dgvClientesAdmin.DataBind();
@@ -33,8 +33,8 @@ namespace TPC_Bossetti_Nuñez
 
         protected void txtFiltrarClientes_TextChanged(object sender, EventArgs e)
         {
-            List<Cliente> Lista = (List<Cliente>)Session["ListaClientes"];
-            List<Cliente> ListaFiltrada = Lista.FindAll(x => x.Apellidos.ToUpper().Contains(txtFiltrarClientes.Text.ToUpper()) || x.Mail.ToUpper().Contains(txtFiltrarClientes.Text.ToUpper()));
+            List<Usuario> Lista = (List<Usuario>)Session["ListaClientes"];
+            List<Usuario> ListaFiltrada = Lista.FindAll(x => x.Apellidos.ToUpper().Contains(txtFiltrarClientes.Text.ToUpper()) || x.Mail.ToUpper().Contains(txtFiltrarClientes.Text.ToUpper()));
             dgvClientesAdmin.DataSource = ListaFiltrada;
             dgvClientesAdmin.DataBind();
         }

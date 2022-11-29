@@ -27,6 +27,8 @@ namespace TPC_Bossetti_Nuñez
                 if (negocio.Loguear(usuario))
                 {
                     Session.Add("usuario", usuario);
+                    //Agrego solo el id en vez del object entero
+                    Session.Add("idUsuario", usuario.IDUsuario);
                     Response.Redirect("Default.aspx", false);
                 }
                 else

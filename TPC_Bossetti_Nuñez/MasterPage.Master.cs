@@ -14,19 +14,5 @@ namespace TPC_Bossetti_Nuñez
 
         }
 
-        protected void btnLogin_Click(object sender, EventArgs e)
-        {
-            if (Session["usuario"] == null)
-            {
-                btnLogin.Text = "LogIn";
-                Response.Redirect("LogIn.aspx", false);
-            }
-            else
-            {
-                btnLogin.Text = "LogOut";
-                Session.Remove("usuario");
-            }
-
-        }
     }
 }

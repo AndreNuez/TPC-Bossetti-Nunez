@@ -32,14 +32,14 @@ namespace TPC_Bossetti_Nuñez
 
                 if (pass1 == pass2)
                 {
-                    string idCliente = Request.QueryString["idCliente"].ToString();
+                    string idUsuario = Request.QueryString["idUsuario"].ToString();
                     
-                    ClienteNegocio negocio = new ClienteNegocio();
-                    Cliente usuario = (negocio.listar(idCliente))[0];
+                    UsuarioNegocio negocio = new UsuarioNegocio();
+                    Usuario usuario = (negocio.listar(idUsuario))[0];
 
                     usuario.Contraseña = txtConfirmarPass.Text;
                     negocio.modificarConSP(usuario);
-                    Response.Redirect("SignUp.aspx?idCliente=" + idCliente);
+                    Response.Redirect("SignUp.aspx?idUsuario=" + idUsuario);
                 }
                 else
                 {
