@@ -20,6 +20,7 @@ namespace TPC_Bossetti_Nuñez
             }
 
             CantidadCarrito = Session["CantidadCarrito"] != null ? (int)Session["CantidadCarrito"] : 0;
+            cant.InnerHtml = "Carrito (" +CantidadCarrito.ToString() + ")";
         }
     }
 }
