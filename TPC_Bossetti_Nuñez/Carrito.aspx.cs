@@ -18,6 +18,8 @@ namespace TPC_Bossetti_Nuñez
             List<ItemCarrito> ListaCarrito = (List<ItemCarrito>)Session["ListaCarrito"] != null ?
                 (List<ItemCarrito>)Session["ListaCarrito"] : ListaCarrito = new List<ItemCarrito>();
 
+            CantidadCarrito = CalcularCantidad(ListaCarrito);
+            Session.Add("CantidadCarrito", CantidadCarrito);
             Session.Add("ListaCarrito", ListaCarrito);
             lblTotalCarrito.Text = "Total Carrito $" + CalcularTotal(ListaCarrito).ToString();
 
@@ -47,7 +49,11 @@ namespace TPC_Bossetti_Nuñez
                 Temporal.Remove(Eliminado);
             }
 
+            CantidadCarrito = CalcularCantidad(Temporal);
+            
+            Session.Add("CantidadCarrito", CantidadCarrito);
             Session.Add("ListaCarrito", Temporal);
+            
             Response.Redirect("Carrito.aspx", false);
 
         }

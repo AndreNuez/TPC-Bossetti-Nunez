@@ -7,7 +7,7 @@
         <br />
     </div>
     <div class="col text-center">
-        <%if (Session["ListaCarrito"] != null)
+        <%if ((int)Session["CantidadCarrito"] != 0)
             {%>
         <asp:GridView ID="dgvCarrito" runat="server" CssClass="table table-light" DataKeyNames="IDItem" OnSelectedIndexChanged="dgvCarrito_SelectedIndexChanged" AutoGenerateColumns="false">
             <Columns>
