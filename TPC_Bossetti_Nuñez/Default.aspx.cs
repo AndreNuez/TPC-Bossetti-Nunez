@@ -28,7 +28,57 @@ namespace TPC_Bossetti_Nuñez
 
         protected void btnAgregarCarrito_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Carrito.aspx");
+            short IDLibro = short.Parse(((Button)sender).CommandArgument);
+
+            List<ItemCarrito> ListaCarrito = (List<ItemCarrito>)Session["ListaCarrito"] != null ?
+                (List<ItemCarrito>)Session["ListaCarrito"] : ListaCarrito = new List<ItemCarrito>();
+
+            Libro ItemAgregado = new Libro();
+            ItemAgregado = ListaLibro.Find(x => x.ID == IDLibro);
+
+            ItemCarrito NuevoItem = new ItemCarrito();
+            NuevoItem.IDItem = ItemAgregado.ID;
+            NuevoItem.NombreItem = ItemAgregado.Titulo;
+            NuevoItem.Cantidad = 1;
+            NuevoItem.Precio = ItemAgregado.Precio;
+
+            if ((List<ItemCarrito>)Session["ListaCarrito"] != null)
+            {
+                int posItem = BuscarItem(ListaCarrito, NuevoItem);
+
+                if (posItem != -1)
+                {
+                    ListaCarrito[posItem].Cantidad++;
+                    ListaCarrito[posItem].Precio += NuevoItem.Precio;
+                }
+                else
+                {
+                    ListaCarrito.Add(NuevoItem);
+                }
+            }
+            else
+            {
+                ListaCarrito.Add(NuevoItem);
+            }
+
+            Session.Add("ListaCarrito", ListaCarrito);
+            Response.Redirect("Carrito.aspx", false);
+        }
+
+        protected int BuscarItem(List<ItemCarrito> ListaCarrito, ItemCarrito NuevoItem)
+        {
+            int pos;
+
+            foreach (ItemCarrito item in ListaCarrito)
+            {
+                if (item.IDItem == NuevoItem.IDItem)
+                {
+                    pos = ListaCarrito.IndexOf(item);
+                    return pos;
+                }
+            }
+
+            return -1;
         }
 
         protected void btnEditar_Click(object sender, EventArgs e)

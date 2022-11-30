@@ -7,14 +7,14 @@
         <br />
     </div>
     <div class="col text-center">
-        <%if (Session["ListaCarrito"] != null)
+        <%if ((int)Session["CantidadCarrito"] != 0)
             {%>
-        <asp:GridView ID="dgvCarrito" runat="server" CssClass="table table-light" DataKeyNames="IDItem" AutoGenerateColumns="false">
+        <asp:GridView ID="dgvCarrito" runat="server" CssClass="table table-light" DataKeyNames="IDItem" OnSelectedIndexChanged="dgvCarrito_SelectedIndexChanged" AutoGenerateColumns="false">
             <Columns>
                 <asp:CommandField ShowSelectButton="true" SelectText="Quitar" HeaderText=" " />
-                <asp:BoundField HeaderText="Nombre" DataField="" />
-                <asp:BoundField HeaderText="Cantidad" DataField="" />
-                <asp:BoundField HeaderText="Precio" DataField="" />   
+                <asp:BoundField HeaderText="Nombre" DataField="NombreItem" />
+                <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
+                <asp:BoundField HeaderText="Precio" DataField="Precio" />   
             </Columns>
         </asp:GridView>
           <% }
