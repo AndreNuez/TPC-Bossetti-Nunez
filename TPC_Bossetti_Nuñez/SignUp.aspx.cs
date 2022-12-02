@@ -23,6 +23,7 @@ namespace TPC_Bossetti_Nuñez
             {
                 Usuario user = new Usuario();
                 UsuarioNegocio usuarionegocio = new UsuarioNegocio();
+                EmailService emailService = new EmailService();
                 
                 user.Apellidos = txtApellido.Text;
                 user.Nombres = txtNombre.Text;
@@ -31,7 +32,10 @@ namespace TPC_Bossetti_Nuñez
                 user.TipoUsuario = TipoUsuario.CLIENTE;
                 user.IDUsuario = usuarionegocio.insertarNuevo(user);
                 Session.Add("usuario", user);
-                
+
+                emailService.ArmarCorreo(txtMail.Text, "Registración Exitosa","Te has registrado correctamente en TuLibro.com");
+                emailService.EnviarEmail();
+
                 Response.Redirect("Default.aspx", false);
                 
             }
