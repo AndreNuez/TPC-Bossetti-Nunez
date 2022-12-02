@@ -27,10 +27,21 @@ namespace TPC_Bossetti_Nuñez
                 if (negocio.Loguear(usuario))
                 {
                     Session.Add("usuario", usuario);
-                    Response.Redirect("Default.aspx", false);
+
+                    if (usuario.TipoUsuario == TipoUsuario.ADMIN)
+                    {
+                        Response.Redirect("PrincipalAdmin.aspx", false);
+                    }
+                    else
+                    {
+                        Response.Redirect("Default.aspx", false);
+                    }
                 }
-                Session.Add("error", "user o pass incorrectos");
-                Response.Redirect("Error.aspx", false);
+                else
+                {
+                    Session.Add("error", "user o pass incorrectos");
+                    Response.Redirect("Error.aspx", false);
+                }
             }
             catch (Exception ex)
             {

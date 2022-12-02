@@ -24,6 +24,9 @@
             <div class="d-grid mx-auto">
                 <a href="Pedido.aspx" class="btn btn-primary" style="margin-top: 20px">Listado Pedidos</a>
             </div>
+            <div class="d-grid mx-auto">
+                <a href="AdminClientes.aspx" class="btn btn-primary" style="margin-top: 20px">Administrar Clientes</a>
+            </div>
             <br />
             <br />
             <div class="col-2"></div>
