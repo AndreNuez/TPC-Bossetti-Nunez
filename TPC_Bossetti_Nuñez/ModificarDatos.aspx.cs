@@ -13,7 +13,7 @@ namespace TPC_Bossetti_Nuñez
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["idUsuario"] == null)
+            if (Session["usuario"] == null)
             {
                 Session.Add("error", "Qué onda pillín, tenés que loguearte primero");
                 Response.Redirect("Error.aspx", false);
@@ -24,16 +24,20 @@ namespace TPC_Bossetti_Nuñez
 
             //configuración si estamos modificando
             //string idUsuario = Request.QueryString["idUsuario"] != null ? Request.QueryString["idUsuario"].ToString() : "";
-            string idUsuario = Session["idUsuario"] != null ? Session["idUsuario"].ToString() : "";
-            if (idUsuario != "" && !IsPostBack)
+            //string idUsuario = Session["usuario"] != null ? Session["usuario"].ToString() : "";
+
+            //if (idUsuario != "" && !IsPostBack)
+
+            Usuario modificar = (Usuario)Session["usuario"];
+            
             {
 
-                txtDNI.Enabled = false;
+                //txtDNI.Enabled = false;
                 txtMail.Enabled = false;
                 txtPass.Enabled = false;
 
                 UsuarioNegocio negocio = new UsuarioNegocio();
-                Usuario modificar = (negocio.listar(idUsuario))[0];
+                //Usuario modificar = (negocio.listar(idUsuario))[0];
 
                 //txtidCliente.Text = idCliente;
                 //txtidCliente.Text = modificar.IDCliente.ToString();
@@ -51,6 +55,18 @@ namespace TPC_Bossetti_Nuñez
                 txtCity.Text = modificar.Cliente.Direccion.Localidad;
                 txtProvincia.Text = modificar.Cliente.Direccion.Provincia;
                 txtCopPostal.Text = modificar.Cliente.Direccion.CodPostal;
+
+                //txtDNI.Text = modificar.Cliente.DNI != null ? modificar.Cliente.DNI : "";
+                //txtCel.Text = modificar.Cliente.Celular != null ? modificar.Cliente.Celular : "";
+                //txtTel.Text = modificar.Cliente.Telefono != null ? modificar.Cliente.Telefono : "";
+                //txtCalle.Text = modificar.Cliente.Direccion.Calle != null ? modificar.Cliente.Direccion.Calle : "";
+                //txtNum.Text = modificar.Cliente.Direccion.Numero;
+                //txtPiso.Text = modificar.Cliente.Direccion.Piso;
+                //txtDepto.Text = modificar.Cliente.Direccion.Depto;
+                //txtCity.Text = modificar.Cliente.Direccion.Localidad;
+                //txtProvincia.Text = modificar.Cliente.Direccion.Provincia;
+                //txtCopPostal.Text = modificar.Cliente.Direccion.CodPostal;
+
 
             }
         }
