@@ -23,16 +23,29 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Default.aspx">TuLibro.com</a>
                             </li>
+                            <%if (Negocio.Seguridad.esAdmin(Session["usuario"])==Dominio.TipoUsuario.ADMIN) 
+                              { %>
+                                    <li class="nav-item">
+                                        <a href="PrincipAladmin.aspx">Menú Admin</a>
+                                    </li>
+                            <%} %>
                         </ul>
                         <div>
                             <a class="btn btn-info" href="Carrito.aspx" runat="server" id="cant"></a>
                         </div>
-                        <div class="text-end">
-                            <a class="btn btn-primary" style="margin: 5px" href="LogIn.aspx">LogIn</a>
-                        </div>
-                        <div class="text-end">
-                            <a class="btn btn-secondary" href="SignUp.aspx">Registrarse</a>
-                        </div>
+                        <%if (!Negocio.Seguridad.sesionActiva(Session["usuario"]))
+                            { %>
+                                <div class="text-end">
+                                    <a class="btn btn-primary" style="margin: 5px" href="LogIn.aspx">LogIn</a>
+                                </div>
+                                <div class="text-end">
+                                    <a class="btn btn-secondary" href="SignUp.aspx">Registrarse</a>
+                                </div>
+                        <%}
+                            else
+                            {%>
+                        <asp:Button Text="Salir" runat="server" ID="btnSalir" OnClick="btnSalir_Click"/>
+                        <%} %>
                     </div>
                 </div>
             </nav>

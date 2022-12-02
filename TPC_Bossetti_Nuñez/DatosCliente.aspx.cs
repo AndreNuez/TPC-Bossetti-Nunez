@@ -14,6 +14,12 @@ namespace TPC_Bossetti_Nuñez
         public bool ConfirmaEliminacion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Seguridad.esAdmin(Session["usuario"]) != TipoUsuario.ADMIN)
+            {
+                Session.Add("error", "Se requieren permisos de Administrador para acceder a esta pantalla");
+                Response.Redirect("Error.aspx");
+            }
+
             if(!IsPostBack)
                 ConfirmaEliminacion = false;
 

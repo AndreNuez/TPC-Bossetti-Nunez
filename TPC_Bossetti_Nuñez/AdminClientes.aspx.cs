@@ -13,6 +13,11 @@ namespace TPC_Bossetti_Nuñez
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Seguridad.esAdmin(Session["usuario"]) != TipoUsuario.ADMIN)
+            {
+                Session.Add("error", "Se requieren permisos de Administrador para acceder a esta pantalla");
+                Response.Redirect("Error.aspx");
+            }
             UsuarioNegocio cliente = new UsuarioNegocio();
             Session.Add("ListaClientes", cliente.listarConSP());
             dgvClientesAdmin.DataSource = Session["ListaClientes"];

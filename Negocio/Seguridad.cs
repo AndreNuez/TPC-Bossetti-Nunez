@@ -16,5 +16,11 @@ namespace Negocio
             else
                 return false;
         }
+
+        public static TipoUsuario esAdmin(object user)
+        {
+            Usuario usuario = user != null ? (Usuario)user : null;
+            return usuario != null ? usuario.TipoUsuario : 0;
+        }
     }
 }
