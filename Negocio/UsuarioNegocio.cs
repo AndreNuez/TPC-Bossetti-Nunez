@@ -38,6 +38,45 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public bool seleccionarClienteConSP(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_buscarPorID");
+                datos.setearParametro("@idUsuario", usuario.IDUsuario);
+
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    usuario.Estado = (bool)datos.Lector["Estado"];
+                    usuario.Cliente.Direccion = new Direccion();
+                    usuario.Cliente.DNI = (string)datos.Lector["DNI"];
+                    usuario.Cliente.Telefono = (string)datos.Lector["Telefono"];
+                    usuario.Cliente.Celular = (string)datos.Lector["Celular"];
+                    usuario.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
+                    usuario.Cliente.Direccion.Numero = (string)datos.Lector["Numero"];
+                    usuario.Cliente.Direccion.Piso = (string)datos.Lector["Piso"];
+                    usuario.Cliente.Direccion.Depto = (string)datos.Lector["Departamento"];
+                    usuario.Cliente.Direccion.CodPostal = (string)datos.Lector["CP"];
+                    usuario.Cliente.Direccion.Localidad = (string)datos.Lector["Localidad"];
+                    usuario.Cliente.Direccion.Provincia = (string)datos.Lector["Provincia"];
+
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         /*public void Agregar(Usuario nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
