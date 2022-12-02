@@ -55,6 +55,39 @@ namespace TPC_Bossetti_Nuñez
             }
             */
 
+            //1 BIS
+            Usuario sesion = (Usuario)Session["usuario"];
+            string idUsuario = sesion.IDUsuario.ToString();
+
+            if (idUsuario != "" && !IsPostBack)
+
+            {
+                //txtDNI.Enabled = false;
+                txtMail.Enabled = false;
+                txtPass.Enabled = false;
+
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                Usuario modificar = (negocio.listar(idUsuario))[0];
+
+                //txtidCliente.Text = idCliente;
+                //txtidCliente.Text = modificar.IDCliente.ToString();
+                txtApellido.Text = modificar.Apellidos;
+                txtNombre.Text = modificar.Nombres;
+                txtMail.Text = modificar.Mail;
+                txtPass.Text = modificar.Contraseña;
+                txtDNI.Text = modificar.Cliente.DNI;
+                txtCel.Text = modificar.Cliente.Celular;
+                txtTel.Text = modificar.Cliente.Telefono;
+                txtCalle.Text = modificar.Cliente.Direccion.Calle;
+                txtNum.Text = modificar.Cliente.Direccion.Numero;
+                txtPiso.Text = modificar.Cliente.Direccion.Piso;
+                txtDepto.Text = modificar.Cliente.Direccion.Depto;
+                txtCity.Text = modificar.Cliente.Direccion.Localidad;
+                txtProvincia.Text = modificar.Cliente.Direccion.Provincia;
+                txtCopPostal.Text = modificar.Cliente.Direccion.CodPostal;
+            }
+            
+
             //2da PRUEBA 
             /**
             Usuario modificar = (Usuario)Session["usuario"];
@@ -72,7 +105,8 @@ namespace TPC_Bossetti_Nuñez
             txtCopPostal.Text = modificar.Cliente.Direccion.CodPostal;
             **/
 
-            //3ERA PRUEBA
+            //3era PRUEBA
+            /***
             Usuario modificar = (Usuario)Session["usuario"];
             UsuarioNegocio negocio = new UsuarioNegocio();
 
@@ -93,8 +127,8 @@ namespace TPC_Bossetti_Nuñez
                 txtProvincia.Text = modificar.Cliente.Direccion.Provincia;
                 txtCopPostal.Text = modificar.Cliente.Direccion.CodPostal;
             }
-            
-           
+            ***/
+
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
@@ -106,6 +140,7 @@ namespace TPC_Bossetti_Nuñez
             nuevo.Contraseña = txtPass.Text;
             nuevo.Nombres = txtNombre.Text;
             nuevo.Apellidos = txtApellido.Text;
+            nuevo.Cliente = new Cliente();
             nuevo.Cliente.DNI = txtDNI.Text;
             nuevo.Cliente.Telefono = txtTel.Text;
             nuevo.Cliente.Celular = txtCel.Text;
@@ -119,7 +154,10 @@ namespace TPC_Bossetti_Nuñez
             nuevo.Cliente.Direccion.Provincia = txtProvincia.Text;
             nuevo.Cliente.Direccion.CodPostal = txtCopPostal.Text;
             //nuevo.IDCliente = int.Parse(txtidUsuario.Text);
-            nuevo.IDUsuario = int.Parse(Request.QueryString["idUsuario"]);
+            //nuevo.IDUsuario = int.Parse(Request.QueryString["idUsuario"]);
+
+            Usuario sesion = (Usuario)Session["usuario"];
+            nuevo.IDUsuario = sesion.IDUsuario;
             negocio.modificarConSP(nuevo);
             
             Response.Redirect("Default.aspx", false);

@@ -52,10 +52,11 @@ namespace Negocio
                 if (datos.Lector.Read())
                 {
                     usuario.Estado = (bool)datos.Lector["Estado"];
-                    usuario.Cliente.Direccion = new Direccion();
+                    usuario.Cliente = new Cliente();
                     usuario.Cliente.DNI = (string)datos.Lector["DNI"];
                     usuario.Cliente.Telefono = (string)datos.Lector["Telefono"];
                     usuario.Cliente.Celular = (string)datos.Lector["Celular"];
+                    usuario.Cliente.Direccion = new Direccion();
                     usuario.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
                     usuario.Cliente.Direccion.Numero = (string)datos.Lector["Numero"];
                     usuario.Cliente.Direccion.Piso = (string)datos.Lector["Piso"];
@@ -153,10 +154,11 @@ namespace Negocio
                     aux.Nombres = (string)datos.Lector["Nombres"];
                     aux.Apellidos = (string)datos.Lector["Apellidos"];
                     aux.Estado = (bool)datos.Lector["Estado"];
-                    aux.Cliente.Direccion = new Direccion();
+                    aux.Cliente = new Cliente();
                     aux.Cliente.DNI = (string)datos.Lector["DNI"];
                     aux.Cliente.Telefono = (string)datos.Lector["Telefono"];
                     aux.Cliente.Celular = (string)datos.Lector["Celular"];
+                    aux.Cliente.Direccion = new Direccion();
                     aux.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
                     aux.Cliente.Direccion.Numero = (string)datos.Lector["Numero"];
                     aux.Cliente.Direccion.Piso = (string)datos.Lector["Piso"];
@@ -257,7 +259,7 @@ namespace Negocio
             try
             {
                 AccesoDatos datos = new AccesoDatos();
-                datos.setearProcedimiento("sp_ClienteEliminarFisico");
+                datos.setearProcedimiento("sp_UsuarioEliminarFisico");
                 datos.setearParametro("@idUsuario", idUsuario);
                 datos.ejecutarAccion();
             }

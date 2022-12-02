@@ -17,13 +17,13 @@
                     </div>
                 </div>
             </div>
-            <asp:GridView ID="dgvClientesAdmin" runat="server" DataKeyNames="IdCliente"
+            <asp:GridView ID="dgvClientesAdmin" runat="server" DataKeyNames="IdUsuario"
                CssClass="table table-hover" AutoGenerateColumns="false"
                 OnSelectedIndexChanged="dgvClientesAdmin_SelectedIndexChanged"
                 OnPageIndexChanging="dgvClientesAdmin_PageIndexChanging"
                 AllowPaging="true" PageSize="4">
                 <Columns>
-                    <asp:BoundField HeaderText="Id Clientes" DataField="IdCliente" />
+                    <asp:BoundField HeaderText="Id Clientes" DataField="IdUsuario" />
                     <asp:BoundField HeaderText="Mail" DataField="Mail" />
                     <asp:BoundField HeaderText="Nombres" DataField="Nombres" />
                     <asp:BoundField HeaderText="Apellidos" DataField="Apellidos" />

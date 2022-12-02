@@ -361,6 +361,10 @@ begin
 	declare @estado bit
 	select @estado = estado from usuarios
 	if @estado = 0 begin
+		
+		delete from datos_usuario
+		where IdUsuario = @idUsuario
+
 		delete from usuarios 
 		where IdUsuario = @idUsuario
 	end
