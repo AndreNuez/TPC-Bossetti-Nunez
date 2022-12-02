@@ -18,8 +18,8 @@ namespace TPC_Bossetti_Nuñez
                 Session.Add("error", "Se requieren permisos de Administrador para acceder a esta pantalla");
                 Response.Redirect("Error.aspx");
             }
-            UsuarioNegocio cliente = new UsuarioNegocio();
-            Session.Add("ListaClientes", cliente.listarConSP());
+            UsuarioNegocio usuario = new UsuarioNegocio();
+            Session.Add("ListaClientes", usuario.listarConSP());
             dgvClientesAdmin.DataSource = Session["ListaClientes"];
             dgvClientesAdmin.DataBind();
         }
