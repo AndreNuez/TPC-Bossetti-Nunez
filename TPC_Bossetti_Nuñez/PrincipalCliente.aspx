@@ -15,7 +15,7 @@
             <div class="col-2"></div>
             <br />
             <div class="d-grid mx-auto">
-                <a href="DatosCliente.aspx" class="btn btn-primary" style="margin-top: 20px">Ver Mis Datos</a>
+                <a href="ModificarDatos.aspx" class="btn btn-primary" style="margin-top: 20px">Ver Mis Datos</a>
             </div>
             <div class="d-grid mx-auto">
                 <a href="#" class="btn btn-primary" style="margin-top: 20px">Ver Mis Pedidos</a>

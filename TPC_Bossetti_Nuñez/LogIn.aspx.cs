@@ -34,7 +34,7 @@ namespace TPC_Bossetti_Nuñez
                     }
                     else
                     {
-                        Response.Redirect("Default.aspx", false);
+                        Response.Redirect("PrincipalCliente.aspx", false);
                     }
                 }
                 else

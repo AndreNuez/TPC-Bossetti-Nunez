@@ -25,6 +25,38 @@ namespace Negocio
                     usuario.TipoUsuario = (short)(datos.Lector["TipoUsuario"]) == 1 ? TipoUsuario.CLIENTE : TipoUsuario.ADMIN;
                     usuario.Apellidos = (string)datos.Lector["Apellidos"];
                     usuario.Nombres = (string)datos.Lector["Nombres"];
+
+                    if (!(datos.Lector["DNI"] is DBNull))
+                        usuario.Cliente.DNI = (string)datos.Lector["DNI"];
+
+                    if (!(datos.Lector["Telefono"] is DBNull))
+                        usuario.Cliente.Telefono = (string)datos.Lector["Telefono"];
+
+                    if (!(datos.Lector["Celular"] is DBNull))
+                        usuario.Cliente.Celular = (string)datos.Lector["Celular"];
+
+                    if (!(datos.Lector["Calle"] is DBNull))
+                        usuario.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
+
+                    if (!(datos.Lector["Numero"] is DBNull))
+                        usuario.Cliente.Direccion.Numero = (string)datos.Lector["Numero"];
+
+                    if (!(datos.Lector["Piso"] is DBNull))
+                        usuario.Cliente.Direccion.Piso = (string)datos.Lector["Piso"];
+
+                    if (!(datos.Lector["Departamento"] is DBNull))
+                        usuario.Cliente.Direccion.Depto = (string)datos.Lector["Departamento"];
+
+                    if (!(datos.Lector["CP"] is DBNull))
+                        usuario.Cliente.Direccion.CodPostal = (string)datos.Lector["CP"];
+
+                    if (!(datos.Lector["Localidad"] is DBNull))
+                        usuario.Cliente.Direccion.Localidad = (string)datos.Lector["Localidad"];
+
+                    if (!(datos.Lector["Provincia"] is DBNull))
+                        usuario.Cliente.Direccion.Provincia = (string)datos.Lector["Provincia"];
+
+
                     return true;
                 }
                 return false;
@@ -132,7 +164,7 @@ namespace Negocio
             }
             finally
             {
-                
+
             }
         }
 
@@ -155,16 +187,44 @@ namespace Negocio
                     aux.Apellidos = (string)datos.Lector["Apellidos"];
                     aux.Estado = (bool)datos.Lector["Estado"];
                     aux.Cliente = new Cliente();
+                    if (!(datos.Lector["DNI"] is DBNull))
+                        aux.Cliente.DNI = (string)datos.Lector["DNI"];
                     aux.Cliente.DNI = (string)datos.Lector["DNI"];
+
+                    if (!(datos.Lector["Telefono"] is DBNull))
+                        aux.Cliente.Telefono = (string)datos.Lector["Telefono"];
                     aux.Cliente.Telefono = (string)datos.Lector["Telefono"];
+                    if (!(datos.Lector["Celular"] is DBNull))
+                        aux.Cliente.Celular = (string)datos.Lector["Celular"];
                     aux.Cliente.Celular = (string)datos.Lector["Celular"];
+
                     aux.Cliente.Direccion = new Direccion();
+                    if (!(datos.Lector["Calle"] is DBNull))
+                        aux.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
                     aux.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
+
+                    if (!(datos.Lector["Numero"] is DBNull))
+                        aux.Cliente.Direccion.Numero = (string)datos.Lector["Numero"];
                     aux.Cliente.Direccion.Numero = (string)datos.Lector["Numero"];
+
+                    if (!(datos.Lector["Piso"] is DBNull))
+                        aux.Cliente.Direccion.Piso = (string)datos.Lector["Piso"];
                     aux.Cliente.Direccion.Piso = (string)datos.Lector["Piso"];
+
+                    if (!(datos.Lector["Departamento"] is DBNull))
+                        aux.Cliente.Direccion.Depto = (string)datos.Lector["Departamento"];
                     aux.Cliente.Direccion.Depto = (string)datos.Lector["Departamento"];
+
+                    if (!(datos.Lector["CP"] is DBNull))
+                        aux.Cliente.Direccion.CodPostal = (string)datos.Lector["CP"];
                     aux.Cliente.Direccion.CodPostal = (string)datos.Lector["CP"];
+
+                    if (!(datos.Lector["Localidad"] is DBNull))
+                        aux.Cliente.Direccion.Localidad = (string)datos.Lector["Localidad"];
                     aux.Cliente.Direccion.Localidad = (string)datos.Lector["Localidad"];
+
+                    if (!(datos.Lector["Provincia"] is DBNull))
+                        aux.Cliente.Direccion.Provincia = (string)datos.Lector["Provincia"];
                     aux.Cliente.Direccion.Provincia = (string)datos.Lector["Provincia"];
 
                     lista.Add(aux);
@@ -199,17 +259,45 @@ namespace Negocio
                     aux.Apellidos = (string)datos.Lector["Apellidos"];
                     aux.Estado = (bool)datos.Lector["Estado"];
                     aux.Cliente = new Cliente();
-                    aux.Cliente.DNI = (string)datos.Lector["DNI"];
-                    aux.Cliente.Telefono = (string)datos.Lector["Telefono"];
-                    aux.Cliente.Celular = (string)datos.Lector["Celular"];
+                    
+                    if (!(datos.Lector["DNI"] is DBNull))
+                        aux.Cliente.DNI = (string)datos.Lector["DNI"];
+
+                    if (!(datos.Lector["Telefono"] is DBNull))
+                        aux.Cliente.Telefono = (string)datos.Lector["Telefono"];
+
+                    if (!(datos.Lector["Celular"] is DBNull))
+                        aux.Cliente.Celular = (string)datos.Lector["Celular"];
+
+
                     aux.Cliente.Direccion = new Direccion();
-                    aux.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
-                    aux.Cliente.Direccion.Numero = (string)datos.Lector["Numero"];
-                    aux.Cliente.Direccion.Piso = (string)datos.Lector["Piso"];
-                    aux.Cliente.Direccion.Depto = (string)datos.Lector["Departamento"];
-                    aux.Cliente.Direccion.CodPostal = (string)datos.Lector["CP"];
-                    aux.Cliente.Direccion.Localidad = (string)datos.Lector["Localidad"];
-                    aux.Cliente.Direccion.Provincia = (string)datos.Lector["Provincia"];
+                    if (!(datos.Lector["Calle"] is DBNull))
+                        aux.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
+
+
+                    if (!(datos.Lector["Numero"] is DBNull))
+                        aux.Cliente.Direccion.Numero = (string)datos.Lector["Numero"];
+
+
+                    if (!(datos.Lector["Piso"] is DBNull))
+                        aux.Cliente.Direccion.Piso = (string)datos.Lector["Piso"];
+
+
+                    if (!(datos.Lector["Departamento"] is DBNull))
+                        aux.Cliente.Direccion.Depto = (string)datos.Lector["Departamento"];
+
+
+                    if (!(datos.Lector["CP"] is DBNull))
+                        aux.Cliente.Direccion.CodPostal = (string)datos.Lector["CP"];
+
+
+                    if (!(datos.Lector["Localidad"] is DBNull))
+                        aux.Cliente.Direccion.Localidad = (string)datos.Lector["Localidad"];
+  
+
+                    if (!(datos.Lector["Provincia"] is DBNull))
+                        aux.Cliente.Direccion.Provincia = (string)datos.Lector["Provincia"];
+
 
                     lista.Add(aux);
                 }
@@ -251,8 +339,8 @@ namespace Negocio
             {
                 throw ex;
             }
-            
-            
+
+
         }
         public void eliminarFisicoConSP(short idUsuario)
         {
