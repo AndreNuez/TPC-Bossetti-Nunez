@@ -23,7 +23,9 @@ namespace TPC_Bossetti_Nuñez
             if(!IsPostBack)
                 ConfirmaEliminacion = false;
 
-            string idUsuario = Request.QueryString["idUsuario"] != null ? Request.QueryString["idUsuario"].ToString() : "";
+            //string idUsuario = Request.QueryString["idUsuario"] != null ? Request.QueryString["idUsuario"].ToString() : "";
+            string idUsuario = (string)Session["idUsuario"];
+
             if (idUsuario != "")
             {
                 UsuarioNegocio negocio = new UsuarioNegocio();
@@ -79,13 +81,16 @@ namespace TPC_Bossetti_Nuñez
                 if (chkConfirmaEliminacion.Checked)
                 {
                     UsuarioNegocio negocio = new UsuarioNegocio();
-                    negocio.eliminarFisicoConSP(short.Parse(Request.QueryString["idUsuario"]));
-                    Response.Redirect("AdminClientes.aspx");
+                    //negocio.eliminarFisicoConSP(short.Parse(Request.QueryString["idUsuario"]));
+                    Usuario seleccionado = (Usuario)Session["usuarioSeleccionado"];
+                    negocio.eliminarFisicoConSP(short.Parse(seleccionado.IDUsuario.ToString()));
+                    Response.Redirect("AdminClientes.aspx", false);
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
     }

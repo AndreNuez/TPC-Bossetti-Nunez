@@ -294,7 +294,7 @@ select
 	du.Localidad,
 	du.Provincia
 from usuarios u
-inner join datos_usuario du on u.IdUsuario = du.IdUsuario
+left join datos_usuario du on u.IdUsuario = du.IdUsuario
 go
 
 
@@ -361,6 +361,10 @@ begin
 	declare @estado bit
 	select @estado = estado from usuarios
 	if @estado = 0 begin
+		
+		delete from datos_usuario
+		where IdUsuario = @idUsuario
+
 		delete from usuarios 
 		where IdUsuario = @idUsuario
 	end
@@ -370,3 +374,31 @@ begin
 end
 go
 
+
+create procedure sp_buscarPorID(
+	@idUsuario smallint
+)
+as 
+begin
+select 
+	u.IdUsuario,
+	u.Mail,
+	u.Nombres,
+	u.Apellidos,
+	u.Estado,
+	u.TipoUsuario,
+	du.DNI,
+	du.Telefono,
+	du.Celular,
+	du.Calle,
+	du.Numero,
+	du.Piso,
+	du.Departamento,
+	du.CP,
+	du.Localidad,
+	du.Provincia
+from usuarios u
+left join datos_usuario du on u.IdUsuario = du.IdUsuario
+where u.IdUsuario = @idUsuario
+end
+go
