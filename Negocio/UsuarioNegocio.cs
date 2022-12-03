@@ -25,6 +25,8 @@ namespace Negocio
                     usuario.TipoUsuario = (short)(datos.Lector["TipoUsuario"]) == 1 ? TipoUsuario.CLIENTE : TipoUsuario.ADMIN;
                     usuario.Apellidos = (string)datos.Lector["Apellidos"];
                     usuario.Nombres = (string)datos.Lector["Nombres"];
+                    usuario.Cliente = new Cliente();
+                    usuario.Cliente.Direccion = new Direccion();
 
                     if (!(datos.Lector["DNI"] is DBNull))
                         usuario.Cliente.DNI = (string)datos.Lector["DNI"];
@@ -168,7 +170,7 @@ namespace Negocio
             }
         }
 
-        public List<Usuario> listarConSP()
+        public List<Usuario> listarClientesConSP()
         {
             List<Usuario> lista = new List<Usuario>();
             AccesoDatos datos = new AccesoDatos();
@@ -187,45 +189,38 @@ namespace Negocio
                     aux.Apellidos = (string)datos.Lector["Apellidos"];
                     aux.Estado = (bool)datos.Lector["Estado"];
                     aux.Cliente = new Cliente();
+                    aux.Cliente.Direccion = new Direccion();
+
                     if (!(datos.Lector["DNI"] is DBNull))
                         aux.Cliente.DNI = (string)datos.Lector["DNI"];
-                    aux.Cliente.DNI = (string)datos.Lector["DNI"];
 
                     if (!(datos.Lector["Telefono"] is DBNull))
                         aux.Cliente.Telefono = (string)datos.Lector["Telefono"];
-                    aux.Cliente.Telefono = (string)datos.Lector["Telefono"];
+                    
                     if (!(datos.Lector["Celular"] is DBNull))
                         aux.Cliente.Celular = (string)datos.Lector["Celular"];
-                    aux.Cliente.Celular = (string)datos.Lector["Celular"];
 
                     aux.Cliente.Direccion = new Direccion();
                     if (!(datos.Lector["Calle"] is DBNull))
                         aux.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
-                    aux.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
 
                     if (!(datos.Lector["Numero"] is DBNull))
                         aux.Cliente.Direccion.Numero = (string)datos.Lector["Numero"];
-                    aux.Cliente.Direccion.Numero = (string)datos.Lector["Numero"];
 
                     if (!(datos.Lector["Piso"] is DBNull))
                         aux.Cliente.Direccion.Piso = (string)datos.Lector["Piso"];
-                    aux.Cliente.Direccion.Piso = (string)datos.Lector["Piso"];
 
                     if (!(datos.Lector["Departamento"] is DBNull))
                         aux.Cliente.Direccion.Depto = (string)datos.Lector["Departamento"];
-                    aux.Cliente.Direccion.Depto = (string)datos.Lector["Departamento"];
 
                     if (!(datos.Lector["CP"] is DBNull))
                         aux.Cliente.Direccion.CodPostal = (string)datos.Lector["CP"];
-                    aux.Cliente.Direccion.CodPostal = (string)datos.Lector["CP"];
 
                     if (!(datos.Lector["Localidad"] is DBNull))
                         aux.Cliente.Direccion.Localidad = (string)datos.Lector["Localidad"];
-                    aux.Cliente.Direccion.Localidad = (string)datos.Lector["Localidad"];
 
                     if (!(datos.Lector["Provincia"] is DBNull))
                         aux.Cliente.Direccion.Provincia = (string)datos.Lector["Provincia"];
-                    aux.Cliente.Direccion.Provincia = (string)datos.Lector["Provincia"];
 
                     lista.Add(aux);
                 }
@@ -269,35 +264,27 @@ namespace Negocio
                     if (!(datos.Lector["Celular"] is DBNull))
                         aux.Cliente.Celular = (string)datos.Lector["Celular"];
 
-
                     aux.Cliente.Direccion = new Direccion();
                     if (!(datos.Lector["Calle"] is DBNull))
                         aux.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
 
-
                     if (!(datos.Lector["Numero"] is DBNull))
                         aux.Cliente.Direccion.Numero = (string)datos.Lector["Numero"];
-
 
                     if (!(datos.Lector["Piso"] is DBNull))
                         aux.Cliente.Direccion.Piso = (string)datos.Lector["Piso"];
 
-
                     if (!(datos.Lector["Departamento"] is DBNull))
                         aux.Cliente.Direccion.Depto = (string)datos.Lector["Departamento"];
-
 
                     if (!(datos.Lector["CP"] is DBNull))
                         aux.Cliente.Direccion.CodPostal = (string)datos.Lector["CP"];
 
-
                     if (!(datos.Lector["Localidad"] is DBNull))
                         aux.Cliente.Direccion.Localidad = (string)datos.Lector["Localidad"];
-  
 
                     if (!(datos.Lector["Provincia"] is DBNull))
                         aux.Cliente.Direccion.Provincia = (string)datos.Lector["Provincia"];
-
 
                     lista.Add(aux);
                 }
@@ -368,16 +355,28 @@ namespace Negocio
                 datos.setearParametro("@apellidos", aux.Apellidos);
                 datos.setearParametro("@estado", aux.Estado);
                 //datos.setearParametro("@dni", aux.Cliente.DNI != null ? aux.Cliente.DNI : (object)DBNull.Value);
-                datos.setearParametro("@dni", (object)aux.Cliente.DNI ?? DBNull.Value);
-                datos.setearParametro("@telefono", (object)aux.Cliente.Telefono ?? DBNull.Value);
-                datos.setearParametro("@celular", (object)aux.Cliente.Celular ?? DBNull.Value);
-                datos.setearParametro("@calle", (object)aux.Cliente.Direccion.Calle ?? DBNull.Value);
-                datos.setearParametro("@numero", (object)aux.Cliente.Direccion.Numero ?? DBNull.Value);
-                datos.setearParametro("@piso", (object)aux.Cliente.Direccion.Piso ?? DBNull.Value);
-                datos.setearParametro("@departamento", (object)aux.Cliente.Direccion.Depto ?? DBNull.Value);
-                datos.setearParametro("@cp", (object)aux.Cliente.Direccion.CodPostal ?? DBNull.Value);
-                datos.setearParametro("@localidad", (object)aux.Cliente.Direccion.Localidad ?? DBNull.Value);
-                datos.setearParametro("@provincia", (object)aux.Cliente.Direccion.Provincia ?? DBNull.Value);
+                //datos.setearParametro("@dni", (object)aux.Cliente.DNI ?? DBNull.Value);
+                //datos.setearParametro("@telefono", (object)aux.Cliente.Telefono ?? DBNull.Value);
+                //datos.setearParametro("@celular", (object)aux.Cliente.Celular ?? DBNull.Value);
+                //datos.setearParametro("@calle", (object)aux.Cliente.Direccion.Calle ?? DBNull.Value);
+                //datos.setearParametro("@numero", (object)aux.Cliente.Direccion.Numero ?? DBNull.Value);
+                //datos.setearParametro("@piso", (object)aux.Cliente.Direccion.Piso ?? DBNull.Value);
+                //datos.setearParametro("@departamento", (object)aux.Cliente.Direccion.Depto ?? DBNull.Value);
+                //datos.setearParametro("@cp", (object)aux.Cliente.Direccion.CodPostal ?? DBNull.Value);
+                //datos.setearParametro("@localidad", (object)aux.Cliente.Direccion.Localidad ?? DBNull.Value);
+                //datos.setearParametro("@provincia", (object)aux.Cliente.Direccion.Provincia ?? DBNull.Value);
+
+                //datos.setearParametro("@dni", aux.Cliente.DNI != null ? aux.Cliente.DNI : (object)DBNull.Value);
+                datos.setearParametro("@dni", aux.Cliente.DNI);
+                datos.setearParametro("@telefono", aux.Cliente.Telefono);
+                datos.setearParametro("@celular", aux.Cliente.Celular);
+                datos.setearParametro("@calle", aux.Cliente.Direccion.Calle);
+                datos.setearParametro("@numero", aux.Cliente.Direccion.Numero);
+                datos.setearParametro("@piso", aux.Cliente.Direccion.Piso);
+                datos.setearParametro("@departamento", aux.Cliente.Direccion.Depto);
+                datos.setearParametro("@cp", aux.Cliente.Direccion.CodPostal);
+                datos.setearParametro("@localidad", aux.Cliente.Direccion.Localidad);
+                datos.setearParametro("@provincia", aux.Cliente.Direccion.Provincia);
 
                 datos.ejecutarAccion();
             }

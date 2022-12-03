@@ -20,5 +20,11 @@ namespace TPC_Bossetti_Nuñez
             }
 
         }
+
+        protected void btnAgregarLibro_Click(object sender, EventArgs e)
+        {
+            Session.Remove("IDLibro");
+            Response.Redirect("AltaLibro.aspx", false);
+        }
     }
 }

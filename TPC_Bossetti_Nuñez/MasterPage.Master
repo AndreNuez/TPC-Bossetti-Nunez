@@ -23,18 +23,24 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="Default.aspx">TuLibro.com</a>
                             </li>
-                            <%if (Negocio.Seguridad.esAdmin(Session["usuario"]) == Dominio.TipoUsuario.ADMIN)
-                                { %>
-                                    <li class="nav-item">
-                                        <a href="PrincipAladmin.aspx">Menú Admin</a>
-                                    </li>
-                            <%}
-                                else
-                                {%>
-                                    <li class="nav-item">
-                                        <a href="ModificarDatos.aspx">Modificar Datos</a>
-                                    </li>
-                            <% } %>
+
+                            <%if (Negocio.Seguridad.sesionActiva(Session["usuario"]))
+                              { %>
+
+                                <%if (Negocio.Seguridad.esAdmin(Session["usuario"]) == Dominio.TipoUsuario.ADMIN)
+                                  { %>
+                                        <li class="nav-item">
+                                            <a href="PrincipAladmin.aspx">Menú Admin</a>
+                                        </li>
+                                <%}
+                                  else
+                                  {%>
+                                        <li class="nav-item">
+                                            <a href="ModificarDatos.aspx">Modificar Datos</a>
+                                        </li>
+                               <% } %>
+
+                            <%} %>
                         </ul>
                         <div>
                             <a class="btn btn-info" href="Carrito.aspx" runat="server" id="cant"></a>

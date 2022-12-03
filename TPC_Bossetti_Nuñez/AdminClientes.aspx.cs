@@ -19,8 +19,9 @@ namespace TPC_Bossetti_Nuñez
                 Response.Redirect("Error.aspx");
             }
             UsuarioNegocio usuario = new UsuarioNegocio();
-            Session.Add("ListaClientes", usuario.listarConSP());
-            dgvClientesAdmin.DataSource = Session["ListaClientes"];
+            //Session.Add("ListaClientes", usuario.listarClientesConSP());
+            //dgvClientesAdmin.DataSource = Session["ListaClientes"];
+            dgvClientesAdmin.DataSource = usuario.listarClientesConSP();
             dgvClientesAdmin.DataBind();
         }
 
