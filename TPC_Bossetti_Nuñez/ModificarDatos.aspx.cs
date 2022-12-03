@@ -13,51 +13,22 @@ namespace TPC_Bossetti_Nuñez
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Usuario prueba = (Usuario)Session["usuario"];
             if (Session["usuario"] == null)
+            //if (!Seguridad.sesionActiva(Session["usuario"]))
             {
                 Session.Add("error", "Qué onda pillín, tenés que loguearte primero");
-                Response.Redirect("Error.aspx", false);
+                Response.Redirect("Error.aspx");
             }
 
-            /*
-            //txtidCliente.Enabled = false;
-
-            //configuración si estamos modificando
-            //string idUsuario = Request.QueryString["idUsuario"] != null ? Request.QueryString["idUsuario"].ToString() : "";
-            string idUsuario = Session["usuario"] != null ? Session["usuario"].ToString() : "";
-
-            if (idUsuario != "" && !IsPostBack)
-
-            {
-                //txtDNI.Enabled = false;
-                txtMail.Enabled = false;
-                txtPass.Enabled = false;
-
-                UsuarioNegocio negocio = new UsuarioNegocio();
-                Usuario modificar = (negocio.listar(idUsuario))[0];
-
-                //txtidCliente.Text = idCliente;
-                //txtidCliente.Text = modificar.IDCliente.ToString();
-                txtApellido.Text = modificar.Apellidos;
-                txtNombre.Text = modificar.Nombres;
-                txtMail.Text = modificar.Mail;
-                txtPass.Text = modificar.Contraseña;
-                txtDNI.Text = modificar.Cliente.DNI;
-                txtCel.Text = modificar.Cliente.Celular;
-                txtTel.Text = modificar.Cliente.Telefono;
-                txtCalle.Text = modificar.Cliente.Direccion.Calle;
-                txtNum.Text = modificar.Cliente.Direccion.Numero;
-                txtPiso.Text = modificar.Cliente.Direccion.Piso;
-                txtDepto.Text = modificar.Cliente.Direccion.Depto;
-                txtCity.Text = modificar.Cliente.Direccion.Localidad;
-                txtProvincia.Text = modificar.Cliente.Direccion.Provincia;
-                txtCopPostal.Text = modificar.Cliente.Direccion.CodPostal;
-            }
-            */
+            
 
             //1 BIS
+
             Usuario sesion = (Usuario)Session["usuario"];
             string idUsuario = sesion.IDUsuario.ToString();
+
+            //string idUsuario = sesion.IDUsuario.ToString() != null ? sesion.IDUsuario.ToString() : "";
 
             if (idUsuario != "" && !IsPostBack)
 
