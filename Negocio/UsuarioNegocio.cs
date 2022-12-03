@@ -355,28 +355,28 @@ namespace Negocio
                 datos.setearParametro("@apellidos", aux.Apellidos);
                 datos.setearParametro("@estado", aux.Estado);
                 //datos.setearParametro("@dni", aux.Cliente.DNI != null ? aux.Cliente.DNI : (object)DBNull.Value);
-                //datos.setearParametro("@dni", (object)aux.Cliente.DNI ?? DBNull.Value);
-                //datos.setearParametro("@telefono", (object)aux.Cliente.Telefono ?? DBNull.Value);
-                //datos.setearParametro("@celular", (object)aux.Cliente.Celular ?? DBNull.Value);
-                //datos.setearParametro("@calle", (object)aux.Cliente.Direccion.Calle ?? DBNull.Value);
-                //datos.setearParametro("@numero", (object)aux.Cliente.Direccion.Numero ?? DBNull.Value);
-                //datos.setearParametro("@piso", (object)aux.Cliente.Direccion.Piso ?? DBNull.Value);
-                //datos.setearParametro("@departamento", (object)aux.Cliente.Direccion.Depto ?? DBNull.Value);
-                //datos.setearParametro("@cp", (object)aux.Cliente.Direccion.CodPostal ?? DBNull.Value);
-                //datos.setearParametro("@localidad", (object)aux.Cliente.Direccion.Localidad ?? DBNull.Value);
-                //datos.setearParametro("@provincia", (object)aux.Cliente.Direccion.Provincia ?? DBNull.Value);
+                datos.setearParametro("@dni", (object)aux.Cliente.DNI ?? DBNull.Value);
+                datos.setearParametro("@telefono", (object)aux.Cliente.Telefono ?? DBNull.Value);
+                datos.setearParametro("@celular", (object)aux.Cliente.Celular ?? DBNull.Value);
+                datos.setearParametro("@calle", (object)aux.Cliente.Direccion.Calle ?? DBNull.Value);
+                datos.setearParametro("@numero", (object)aux.Cliente.Direccion.Numero ?? DBNull.Value);
+                datos.setearParametro("@piso", (object)aux.Cliente.Direccion.Piso ?? DBNull.Value);
+                datos.setearParametro("@departamento", (object)aux.Cliente.Direccion.Depto ?? DBNull.Value);
+                datos.setearParametro("@cp", (object)aux.Cliente.Direccion.CodPostal ?? DBNull.Value);
+                datos.setearParametro("@localidad", (object)aux.Cliente.Direccion.Localidad ?? DBNull.Value);
+                datos.setearParametro("@provincia", (object)aux.Cliente.Direccion.Provincia ?? DBNull.Value);
 
                 //datos.setearParametro("@dni", aux.Cliente.DNI != null ? aux.Cliente.DNI : (object)DBNull.Value);
-                datos.setearParametro("@dni", aux.Cliente.DNI);
-                datos.setearParametro("@telefono", aux.Cliente.Telefono);
-                datos.setearParametro("@celular", aux.Cliente.Celular);
-                datos.setearParametro("@calle", aux.Cliente.Direccion.Calle);
-                datos.setearParametro("@numero", aux.Cliente.Direccion.Numero);
-                datos.setearParametro("@piso", aux.Cliente.Direccion.Piso);
-                datos.setearParametro("@departamento", aux.Cliente.Direccion.Depto);
-                datos.setearParametro("@cp", aux.Cliente.Direccion.CodPostal);
-                datos.setearParametro("@localidad", aux.Cliente.Direccion.Localidad);
-                datos.setearParametro("@provincia", aux.Cliente.Direccion.Provincia);
+                //datos.setearParametro("@dni", aux.Cliente.DNI);
+                //datos.setearParametro("@telefono", aux.Cliente.Telefono);
+                //datos.setearParametro("@celular", aux.Cliente.Celular);
+                //datos.setearParametro("@calle", aux.Cliente.Direccion.Calle);
+                //datos.setearParametro("@numero", aux.Cliente.Direccion.Numero);
+                //datos.setearParametro("@piso", aux.Cliente.Direccion.Piso);
+                //datos.setearParametro("@departamento", aux.Cliente.Direccion.Depto);
+                //datos.setearParametro("@cp", aux.Cliente.Direccion.CodPostal);
+                //datos.setearParametro("@localidad", aux.Cliente.Direccion.Localidad);
+                //datos.setearParametro("@provincia", aux.Cliente.Direccion.Provincia);
 
                 datos.ejecutarAccion();
             }
