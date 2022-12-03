@@ -22,9 +22,6 @@ namespace TPC_Bossetti_Nuñez
             }
 
             
-
-            //1 BIS
-
             Usuario sesion = (Usuario)Session["usuario"];
             string idUsuario = sesion.IDUsuario.ToString();
 
@@ -74,10 +71,10 @@ namespace TPC_Bossetti_Nuñez
             txtCity.Text = modificar.Cliente.Direccion.Localidad;
             txtProvincia.Text = modificar.Cliente.Direccion.Provincia;
             txtCopPostal.Text = modificar.Cliente.Direccion.CodPostal;
-            **/
+            
 
             //3era PRUEBA
-            /***
+            
             Usuario modificar = (Usuario)Session["usuario"];
             UsuarioNegocio negocio = new UsuarioNegocio();
 
@@ -98,7 +95,7 @@ namespace TPC_Bossetti_Nuñez
                 txtProvincia.Text = modificar.Cliente.Direccion.Provincia;
                 txtCopPostal.Text = modificar.Cliente.Direccion.CodPostal;
             }
-            ***/
+            */
 
         }
 
