@@ -31,14 +31,14 @@ namespace Negocio
             lista[0].IDVenta = 1;
             lista[0].IDUsuario = 112233;
             lista[0].FormaPago = 'E';
-            lista[0].MetodoEnvio = 'M';
+            lista[0].Envio = true;
             lista[0].PrecioTot = 9999;
             lista[0].CantTot = 12;
             lista[0].DomicilioEntrega = new Direccion();
             lista[0].DomicilioEntrega.Calle = "Calle Falsa";
             lista[0].DomicilioEntrega.Numero = "123";
             lista[0].Fecha = new DateTime(2022, 10, 31);
-            lista[0].Estado = "Enviado";
+            lista[0].Estado = 'E';
 
 
             return lista;
@@ -54,7 +54,7 @@ namespace Negocio
 
                 datos.setearParametro("@IDUsuario", nueva.IDUsuario);
                 datos.setearParametro("@FormaPago", nueva.FormaPago);
-                datos.setearParametro("@MetodoEnvio", nueva.MetodoEnvio);
+                datos.setearParametro("@MetodoEnvio", nueva.Envio);
                 datos.setearParametro("@PrecioTot", nueva.PrecioTot);
                 datos.setearParametro("@CantTot", nueva.CantTot);
                 datos.setearParametro("@Calle", nueva.DomicilioEntrega.Calle);
@@ -65,7 +65,7 @@ namespace Negocio
                 datos.setearParametro("@Localidad", nueva.DomicilioEntrega.Localidad);
                 datos.setearParametro("@Provincia", nueva.DomicilioEntrega.Provincia);
                 //datos.setearParametro("@Fecha", nueva.Fecha); -- fecha y hora de sistema
-                //datos.setearParametro("@Estado", nueva.Estado); -- siempre la seteamos en "Pendiente"
+                //datos.setearParametro("@Estado", nueva.Estado); -- siempre la seteamos en 'R' de Recepcionada
 
                 datos.ejecutarAccion(); 
 

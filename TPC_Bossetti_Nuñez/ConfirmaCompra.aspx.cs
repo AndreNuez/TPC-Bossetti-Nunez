@@ -40,9 +40,9 @@ namespace TPC_Bossetti_Nuñez
                 nueva.FormaPago = 'T';
 
             if (rdbRetiro.Checked)
-                nueva.MetodoEnvio = 'R';
+                nueva.Envio = false;
             else
-                nueva.MetodoEnvio = 'E';
+                nueva.Envio = true;
 
             nueva.PrecioTot = (decimal)Session["TotalCarrito"];
             nueva.CantTot = (int)Session["CantidadCarrito"];
