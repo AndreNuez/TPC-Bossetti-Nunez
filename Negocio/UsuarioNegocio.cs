@@ -25,6 +25,7 @@ namespace Negocio
                     usuario.TipoUsuario = (short)(datos.Lector["TipoUsuario"]) == 1 ? TipoUsuario.CLIENTE : TipoUsuario.ADMIN;
                     usuario.Apellidos = (string)datos.Lector["Apellidos"];
                     usuario.Nombres = (string)datos.Lector["Nombres"];
+                    usuario.Estado = (bool)datos.Lector["Estado"];
                     usuario.Cliente = new Cliente();
                     usuario.Cliente.Direccion = new Direccion();
 
@@ -250,6 +251,7 @@ namespace Negocio
                     Usuario aux = new Usuario();
                     aux.IDUsuario = (short)datos.Lector["IdUsuario"];
                     aux.Mail = (string)datos.Lector["Mail"];
+                    aux.Contraseña = (string)datos.Lector["Contraseña"];
                     aux.Nombres = (string)datos.Lector["Nombres"];
                     aux.Apellidos = (string)datos.Lector["Apellidos"];
                     aux.Estado = (bool)datos.Lector["Estado"];
@@ -356,7 +358,7 @@ namespace Negocio
                 datos.setearParametro("@nombres", aux.Nombres);
                 datos.setearParametro("@apellidos", aux.Apellidos);
                 datos.setearParametro("@estado", aux.Estado);
-                //datos.setearParametro("@dni", aux.Cliente.DNI != null ? aux.Cliente.DNI : (object)DBNull.Value);
+                // //datos.setearParametro("@dni", aux.Cliente.DNI != null ? aux.Cliente.DNI : (object)DBNull.Value);
                 datos.setearParametro("@dni", (object)aux.Cliente.DNI ?? DBNull.Value);
                 datos.setearParametro("@telefono", (object)aux.Cliente.Telefono ?? DBNull.Value);
                 datos.setearParametro("@celular", (object)aux.Cliente.Celular ?? DBNull.Value);
@@ -368,7 +370,7 @@ namespace Negocio
                 datos.setearParametro("@localidad", (object)aux.Cliente.Direccion.Localidad ?? DBNull.Value);
                 datos.setearParametro("@provincia", (object)aux.Cliente.Direccion.Provincia ?? DBNull.Value);
 
-                //datos.setearParametro("@dni", aux.Cliente.DNI != null ? aux.Cliente.DNI : (object)DBNull.Value);
+                // //datos.setearParametro("@dni", aux.Cliente.DNI != null ? aux.Cliente.DNI : (object)DBNull.Value);
                 //datos.setearParametro("@dni", aux.Cliente.DNI);
                 //datos.setearParametro("@telefono", aux.Cliente.Telefono);
                 //datos.setearParametro("@celular", aux.Cliente.Celular);
