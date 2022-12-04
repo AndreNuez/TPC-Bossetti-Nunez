@@ -37,10 +37,10 @@ namespace TPC_Bossetti_Nuñez
             ItemAgregado = ListaLibro.Find(x => x.ID == IDLibro);
 
             ItemCarrito NuevoItem = new ItemCarrito();
-            NuevoItem.Libro.ID = ItemAgregado.ID;
-            NuevoItem.Libro.Titulo = ItemAgregado.Titulo;
+            NuevoItem.IDItem = ItemAgregado.ID;
+            NuevoItem.NombreItem = ItemAgregado.Titulo;
             NuevoItem.Cantidad = 1;
-            NuevoItem.Libro.Precio = ItemAgregado.Precio;
+            NuevoItem.Precio = ItemAgregado.Precio;
 
             if ((List<ItemCarrito>)Session["ListaCarrito"] != null)
             {
@@ -49,7 +49,7 @@ namespace TPC_Bossetti_Nuñez
                 if (posItem != -1)
                 {
                     ListaCarrito[posItem].Cantidad++;
-                    ListaCarrito[posItem].Libro.Precio += NuevoItem.Libro.Precio;
+                    ListaCarrito[posItem].Precio += NuevoItem.Precio;
                 }
                 else
                 {
@@ -71,7 +71,7 @@ namespace TPC_Bossetti_Nuñez
 
             foreach (ItemCarrito item in ListaCarrito)
             {
-                if (item.Libro.ID == NuevoItem.Libro.ID)
+                if (item.IDItem == NuevoItem.IDItem)
                 {
                     pos = ListaCarrito.IndexOf(item);
                     return pos;

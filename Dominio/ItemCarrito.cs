@@ -7,10 +7,9 @@ namespace Dominio
 {
     public class ItemCarrito
     {
-        //public short IDItem { get; set; }
-        //public string NombreItem { get; set; }
-        public Libro Libro { get; set; }
+        public short IDItem { get; set; }
+        public string NombreItem { get; set; }
         public int Cantidad { get; set; }
-        //public decimal Precio { get; set; }
+        public decimal Precio { get; set; }
     }
 }
