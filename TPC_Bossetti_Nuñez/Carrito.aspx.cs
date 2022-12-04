@@ -40,12 +40,12 @@ namespace TPC_Bossetti_Nuñez
 
             if (Temporal[posItem].Cantidad > 1)
             {
-                Temporal[posItem].Precio -= Temporal[posItem].Precio / Temporal[posItem].Cantidad;
+                Temporal[posItem].Libro.Precio -= Temporal[posItem].Libro.Precio / Temporal[posItem].Cantidad;
                 Temporal[posItem].Cantidad--;
             }
             else
             {
-                ItemCarrito Eliminado = Temporal.Find(x => x.IDItem == IDItem);
+                ItemCarrito Eliminado = Temporal.Find(x => x.Libro.ID == IDItem);
                 Temporal.Remove(Eliminado);
             }
 
@@ -64,7 +64,7 @@ namespace TPC_Bossetti_Nuñez
 
             foreach (ItemCarrito item in ListaCarrito)
             {
-                if (item.IDItem == IDItem)
+                if (item.Libro.ID == IDItem)
                 {
                     pos = ListaCarrito.IndexOf(item);
                     return pos;
@@ -78,7 +78,7 @@ namespace TPC_Bossetti_Nuñez
         {
             foreach (ItemCarrito item in ListaCarrito)
             {
-                TotalCarrito += item.Precio;
+                TotalCarrito += item.Libro.Precio;
             }
 
             return TotalCarrito;
