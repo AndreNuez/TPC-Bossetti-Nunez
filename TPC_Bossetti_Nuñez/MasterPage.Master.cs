@@ -13,7 +13,7 @@ namespace TPC_Bossetti_Nuñez
         public int CantidadCarrito { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!(Page is LogIn || Page is SignUp || Page is Default || Page is Error || Page is Carrito || Page is PrincipalAdmin || Page is AltaLibro || Page is Detalle || Page is ModificarDatos))
+            if(!(Page is LogIn || Page is SignUp || Page is Default || Page is Error || Page is Carrito || Page is PrincipalAdmin || Page is AltaLibro || Page is Detalle || Page is ModificarDatos || Page is ConfirmaCompra))
             {
                 if (!Seguridad.sesionActiva(Session["usuario"]))
                     Response.Redirect("LogIn.aspx", false);

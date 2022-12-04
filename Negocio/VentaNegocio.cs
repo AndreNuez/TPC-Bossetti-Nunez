@@ -37,11 +37,47 @@ namespace Negocio
             lista[0].DomicilioEntrega = new Direccion();
             lista[0].DomicilioEntrega.Calle = "Calle Falsa";
             lista[0].DomicilioEntrega.Numero = "123";
-            lista[0].Fecha = new DateTime (2022,10,31);
+            lista[0].Fecha = new DateTime(2022, 10, 31);
             lista[0].Estado = "Enviado";
 
-            
+
             return lista;
+        }
+
+        public void Agregar(Venta nueva)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("");
+
+                datos.setearParametro("@IDUsuario", nueva.IDUsuario);
+                datos.setearParametro("@FormaPago", nueva.FormaPago);
+                datos.setearParametro("@MetodoEnvio", nueva.MetodoEnvio);
+                datos.setearParametro("@PrecioTot", nueva.PrecioTot);
+                datos.setearParametro("@CantTot", nueva.CantTot);
+                datos.setearParametro("@Calle", nueva.DomicilioEntrega.Calle);
+                datos.setearParametro("@Numero", nueva.DomicilioEntrega.Numero);
+                datos.setearParametro("@Piso", nueva.DomicilioEntrega.Piso);
+                datos.setearParametro("@Depto", nueva.DomicilioEntrega.Depto);
+                datos.setearParametro("@CodPostal", nueva.DomicilioEntrega.CodPostal);
+                datos.setearParametro("@Localidad", nueva.DomicilioEntrega.Localidad);
+                datos.setearParametro("@Provincia", nueva.DomicilioEntrega.Provincia);
+                //datos.setearParametro("@Fecha", nueva.Fecha); -- fecha y hora de sistema
+                //datos.setearParametro("@Estado", nueva.Estado); -- siempre la seteamos en "Pendiente"
+
+                datos.ejecutarAccion(); 
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
     }
 }
