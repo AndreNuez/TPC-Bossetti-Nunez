@@ -238,7 +238,7 @@ namespace Negocio
 
             try
             {
-                string consulta = "select u.IdUsuario, u.Mail, u.Nombres, u.Apellidos, u.Estado, du.DNI, du.Telefono, du.Celular, du.Calle, du.Numero, du.Piso, du.Departamento, du.CP, du.Localidad, du.Provincia from usuarios u left join datos_usuario du on u.IdUsuario = du.IdUsuario ";
+                string consulta = "select u.IdUsuario, u.Mail, u.Contraseña, u.Nombres, u.Apellidos, u.Estado, du.DNI, du.Telefono, du.Celular, du.Calle, du.Numero, du.Piso, du.Departamento, du.CP, du.Localidad, du.Provincia from usuarios u left join datos_usuario du on u.IdUsuario = du.IdUsuario ";
 
                 if (idUsuario != "")
                     consulta = consulta += "where u.IdUsuario =" + idUsuario;
@@ -253,6 +253,7 @@ namespace Negocio
                     aux.Nombres = (string)datos.Lector["Nombres"];
                     aux.Apellidos = (string)datos.Lector["Apellidos"];
                     aux.Estado = (bool)datos.Lector["Estado"];
+                   
                     aux.Cliente = new Cliente();
                     
                     if (!(datos.Lector["DNI"] is DBNull))
@@ -265,6 +266,7 @@ namespace Negocio
                         aux.Cliente.Celular = (string)datos.Lector["Celular"];
 
                     aux.Cliente.Direccion = new Direccion();
+                    
                     if (!(datos.Lector["Calle"] is DBNull))
                         aux.Cliente.Direccion.Calle = (string)datos.Lector["Calle"];
 
