@@ -30,13 +30,13 @@
                                 <%if (Negocio.Seguridad.esAdmin(Session["usuario"]) == Dominio.TipoUsuario.ADMIN)
                                   { %>
                                         <li class="nav-item">
-                                            <a href="PrincipAladmin.aspx">Menú Admin</a>
+                                            <a href="PrincipAladmin.aspx">Menú</a>
                                         </li>
                                 <%}
                                   else
                                   {%>
                                         <li class="nav-item">
-                                            <a href="ModificarDatos.aspx">Modificar Datos</a>
+                                            <a href="PrincipalCliente.aspx">Menú</a>
                                         </li>
                                <% } %>
 

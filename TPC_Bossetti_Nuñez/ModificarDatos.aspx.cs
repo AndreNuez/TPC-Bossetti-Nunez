@@ -42,7 +42,7 @@ namespace TPC_Bossetti_Nuñez
                 txtApellido.Text = precargar.Apellidos;
                 txtNombre.Text = precargar.Nombres;
                 txtMail.Text = precargar.Mail;
-                //txtPass.Text = precargar.Contraseña;
+                txtPass.Text = precargar.Contraseña;
                 txtDNI.Text = precargar.Cliente.DNI;
                 txtCel.Text = precargar.Cliente.Celular;
                 txtTel.Text = precargar.Cliente.Telefono;
@@ -138,7 +138,7 @@ namespace TPC_Bossetti_Nuñez
             UsuarioNegocio negocio = new UsuarioNegocio();
 
             modificar.Mail = txtMail.Text;
-            modificar.Contraseña = txtPass.Text;
+            //modificar.Contraseña = txtPass.Text;
             modificar.Nombres = txtNombre.Text;
             modificar.Apellidos = txtApellido.Text;
             modificar.Cliente = new Cliente();
@@ -159,6 +159,8 @@ namespace TPC_Bossetti_Nuñez
 
             Usuario sesion = (Usuario)Session["usuario"];
             modificar.IDUsuario = sesion.IDUsuario;
+            modificar.Contraseña = sesion.Contraseña;
+            modificar.Estado = sesion.Estado;
             negocio.modificarConSP(modificar);
 
             Response.Redirect("Default.aspx", false);

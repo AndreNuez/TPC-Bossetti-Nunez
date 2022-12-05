@@ -1,7 +1,7 @@
 /*drop database ECOMMERCE
 go*/
 
-create database ECOMMERCE
+/*create database ECOMMERCE
 go
 
 create table Generos (
@@ -22,12 +22,12 @@ create table Libros (
 	Portada varchar (1000),
 	Estado bit not null
 	)
-go
+go*/
 
 create table Administradores (
 	IdAdministrador smallint primary key identity (1,1),
 	Mail varchar(500) unique, 
-	Contrase�a varchar (500) Not Null,
+	Contraseña varchar (500) Not Null,
 	Nombres varchar (50) Not Null,
 	Apellidos varchar (50) Not Null
 )
@@ -36,7 +36,7 @@ go
 create table Clientes (
 	IdCliente smallint primary key identity (1,1),
 	Mail varchar(500) unique, 
-	Contrase�a varchar (500) Not Null,
+	Contraseña varchar (500) Not Null,
 	Nombres varchar (100) Not Null,
 	Apellidos varchar (100) Not Null,
 	DNI varchar (50) not null unique,
@@ -53,7 +53,7 @@ create table Clientes (
 go
 
 
-create table Carrito(
+/*create table Carrito(
 	IdCarrito smallint primary key identity (1,1),
 	IdCliente smallint foreign key references Clientes (IdCliente)
 )
@@ -66,9 +66,9 @@ create table Ventas(
 	Fecha date not null,
 	Estado varchar (100) not null
 )
-go
+go*/
 
-alter procedure [dbo].[SP_librosListar] as
+/*create procedure SP_librosListar as
 select l.id, l.Titulo, l.Descripcion, l.Autor, l.Editorial, l.Precio, l.Stock, g.IdGenero as Genero_ID, g.Descripcion as Genero_Desc, l.Portada, l.estado 
 from Libros l 
 inner join Generos g on l.IdGenero = g.IdGenero 
@@ -86,7 +86,6 @@ CREATE PROCEDURE SP_AltaLibro
     @PortadaURL varchar (100)
 AS 
 INSERT INTO Libros VALUES (@Titulo, @Descripcion, @Autor, @Editorial, @Precio, @Stock, @IdGenero, @PortadaURL, 1)
-
 GO 
 
 CREATE PROCEDURE SP_ModificarLibro 
@@ -102,9 +101,9 @@ CREATE PROCEDURE SP_ModificarLibro
 AS 
 UPDATE Libros SET Titulo= @Titulo, Descripcion= @Descripcion, Autor= @Autor, Editorial= @Editorial, Precio= @Precio, Stock= @Stock,
                   IDGenero= @IdGenero, Portada= @PortadaURL WHERE Id= @Id
-GO
+GO*/
 
-create procedure sp_altaCliente
+/*create procedure sp_altaCliente
 	@mail varchar(500), 
 	@contraseña varchar (500),
 	@nombres varchar (100),
@@ -121,7 +120,7 @@ create procedure sp_altaCliente
 	@provincia varchar (100)
 as 
 insert into Clientes values (@mail,	@contraseña, @nombres, @apellidos, @DNI, @telefono, @celular, @calle, @numero, @piso, @departamento, @CP, @localidad, @provincia, 1)
-go
+go*/
 
 
 alter table Clientes
@@ -129,34 +128,34 @@ add Estado bit not null default(1);
 go
 
 
-CREATE PROCEDURE SP_EliminarFisico
+/*CREATE PROCEDURE SP_EliminarFisico
 	@Id smallint 
 AS 
 DELETE FROM Libros WHERE Id = @Id
 
-GO
+GO*/
 
-CREATE PROCEDURE SP_EliminarLogico
+/*CREATE PROCEDURE SP_EliminarLogico
 @Id smallint 
 AS 
 UPDATE Libros SET Estado= 0 WHERE Id = @Id
 
-GO 
+GO*/ 
 
-CREATE PROCEDURE SP_ListarLibrosInactivos
+/*CREATE PROCEDURE SP_ListarLibrosInactivos
 as
 select l.id, l.Titulo, l.Descripcion, l.Autor, l.Editorial, l.Precio, l.Stock, g.IdGenero as Genero_ID, g.Descripcion as Genero_Desc, l.Portada, l.estado 
 from Libros l 
 inner join Generos g on l.IdGenero = g.IdGenero 
 
-GO 
+GO*/ 
 
-ALTER PROCEDURE SP_EliminarLogico
+/*CREATE PROCEDURE SP_EliminarLogico
 @Id smallint, 
 @Estado bit
 AS 
 UPDATE Libros SET Estado= @Estado WHERE Id = @Id
-go
+go*/
 
 /*create procedure sp_listarClientes as
 select 
@@ -218,7 +217,7 @@ add TipoUser int default (2)
 go
 
 
-create procedure sp_login(
+/*create procedure sp_login(
 	@mail varchar (500), 
 	@pass varchar (500)
 )
@@ -231,10 +230,10 @@ select
 from usuarios u
 where u.Mail = @mail 
 and u.Contraseña = @pass
-go
+go*/
 
 
-create table usuarios (
+/*create table usuarios (
 	IdUsuario smallint primary key identity (1,1),
 	Mail varchar(500) unique, 
 	Contraseña varchar (500) Not Null,
@@ -258,10 +257,10 @@ create table datos_usuario (
 	Localidad varchar (100),
 	Provincia varchar (100)
 )
-go
+go*/
 
 
-create procedure sp_insertarNuevo(
+/*create procedure sp_insertarNuevo(
 	@Apellidos varchar (100),
 	@Nombres varchar (100),
 	@Mail varchar (500),
@@ -274,8 +273,9 @@ begin
 	output inserted.IdUsuario
 	values (@Apellidos, @Nombres, @Mail, @Contraseña, @TipoUsuario, 1)
 end
+go*/
 
-create procedure sp_listarClientes
+/*create procedure sp_listarClientes
 as
 select 
 	u.IdUsuario,
@@ -401,4 +401,95 @@ from usuarios u
 left join datos_usuario du on u.IdUsuario = du.IdUsuario
 where u.IdUsuario = @idUsuario
 end
-go
+go*/
+
+ALTER procedure [dbo].[sp_login](
+@mail varchar (500), 
+@pass varchar (500)
+)
+as
+select 
+	u.IdUsuario,
+	u.TipoUsuario,
+	u.Apellidos,
+	u.Nombres,
+	u.Estado,
+	du.DNI,
+	du.Telefono,
+	du.Celular,
+	du.Calle,
+	du.Numero,
+	du.Piso,
+	du.Departamento,
+	du.CP,
+	du.Localidad,
+	du.Provincia
+from usuarios u
+left join datos_usuario du on u.IdUsuario = du.IdUsuario
+where u.Mail = @mail
+and u.Contraseña = @pass
+
+
+ALTER procedure [dbo].[sp_modificarCliente](
+	@idUsuario smallint, 
+	@contraseña varchar(500),
+	@nombres varchar(100),
+	@apellidos varchar(100),
+	@dni varchar (50),
+	@telefono varchar (100),
+	@celular varchar (100),
+	@calle varchar (100),
+	@numero varchar (10),
+	@piso varchar (10),
+	@departamento varchar (10),
+	@cp varchar (10),
+	@localidad varchar (100),
+	@provincia varchar (100),
+	@estado bit
+)
+as
+begin
+	declare @relacionID smallint
+	select @relacionID = IdUsuario from datos_usuario du 
+		where du.IdUsuario = @idUsuario 
+	update usuarios 
+	set 
+		Contraseña = @contraseña, 
+		Nombres = @nombres, 
+		Apellidos = @apellidos,
+		Estado = @estado
+	where IdUsuario = @idUsuario
+	
+	if (@relacionID is null) begin
+		insert into datos_usuario 
+		values
+			(
+			@idUsuario, 
+			@dni, 
+			@telefono, 
+			@celular, 
+			@calle, 
+			@numero, 
+			@piso, 
+			@departamento, 
+			@cp, 
+			@localidad, 
+			@provincia 
+		)
+	end
+	else begin	
+		update datos_usuario 
+		set 
+			DNI = @dni, 
+			Telefono = @telefono, 
+			Celular = @celular, 
+			Calle = @calle, 
+			Numero = @numero, 
+			Piso = @piso, 
+			Departamento = @departamento, 
+			CP = @cp, 
+			Localidad = @localidad, 
+			Provincia = @provincia 
+			where IdUsuario = @idUsuario
+		end
+end

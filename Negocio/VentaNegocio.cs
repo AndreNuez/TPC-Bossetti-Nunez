@@ -31,43 +31,43 @@ namespace Negocio
             lista[0].IDVenta = 1;
             lista[0].IDUsuario = 112233;
             lista[0].FormaPago = 'E';
-            lista[0].MetodoEnvio = 'M';
-            lista[0].PrecioTot = 9999;
-            lista[0].CantTot = 12;
+            lista[0].Envio = true;
+            lista[0].Importe = 9999;
+            lista[0].Cantidad = 12;
             lista[0].DomicilioEntrega = new Direccion();
             lista[0].DomicilioEntrega.Calle = "Calle Falsa";
             lista[0].DomicilioEntrega.Numero = "123";
             lista[0].Fecha = new DateTime(2022, 10, 31);
-            lista[0].Estado = "Enviado";
+            lista[0].Estado = 'E';
 
 
             return lista;
         }
 
-        public void Agregar(Venta nueva)
+        public int Agregar(Venta nueva)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("");
+                datos.setearProcedimiento("SP_AltaVenta");
 
                 datos.setearParametro("@IDUsuario", nueva.IDUsuario);
                 datos.setearParametro("@FormaPago", nueva.FormaPago);
-                datos.setearParametro("@MetodoEnvio", nueva.MetodoEnvio);
-                datos.setearParametro("@PrecioTot", nueva.PrecioTot);
-                datos.setearParametro("@CantTot", nueva.CantTot);
-                datos.setearParametro("@Calle", nueva.DomicilioEntrega.Calle);
-                datos.setearParametro("@Numero", nueva.DomicilioEntrega.Numero);
-                datos.setearParametro("@Piso", nueva.DomicilioEntrega.Piso);
-                datos.setearParametro("@Depto", nueva.DomicilioEntrega.Depto);
-                datos.setearParametro("@CodPostal", nueva.DomicilioEntrega.CodPostal);
-                datos.setearParametro("@Localidad", nueva.DomicilioEntrega.Localidad);
-                datos.setearParametro("@Provincia", nueva.DomicilioEntrega.Provincia);
+                datos.setearParametro("@Envio", nueva.Envio);
+                datos.setearParametro("@Importe", nueva.Importe);
+                datos.setearParametro("@Cantidad", nueva.Cantidad);
+                datos.setearParametro("@Calle", (object)nueva.DomicilioEntrega.Calle ?? DBNull.Value);
+                datos.setearParametro("@Numero", (object)nueva.DomicilioEntrega.Numero ?? DBNull.Value);
+                datos.setearParametro("@Piso", (object)nueva.DomicilioEntrega.Piso ?? DBNull.Value);
+                datos.setearParametro("@Depto", (object)nueva.DomicilioEntrega.Depto ?? DBNull.Value);
+                datos.setearParametro("@CodPostal", (object)nueva.DomicilioEntrega.CodPostal ?? DBNull.Value);
+                datos.setearParametro("@Localidad", (object)nueva.DomicilioEntrega.Localidad ?? DBNull.Value);
+                datos.setearParametro("@Provincia", (object)nueva.DomicilioEntrega.Provincia ?? DBNull.Value);
                 //datos.setearParametro("@Fecha", nueva.Fecha); -- fecha y hora de sistema
-                //datos.setearParametro("@Estado", nueva.Estado); -- siempre la seteamos en "Pendiente"
+                //datos.setearParametro("@Estado", nueva.Estado); -- siempre la seteamos en 'R' de Recepcionada
 
-                datos.ejecutarAccion(); 
+                return datos.ejecutarAccionScalar(); 
 
             }
             catch (Exception ex)

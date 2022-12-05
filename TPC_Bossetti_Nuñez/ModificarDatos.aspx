@@ -36,10 +36,10 @@
         <label for="validationPassqord" class="form-label">Password</label>
         <div class="input-group has-validation">
             <asp:TextBox ID="txtPass" CssClass="form-control" runat="server" type="password" />
-            <% if (!txtPass.Enabled)
-                { %>
+            <%--<% if (!txtPass.Enabled)
+                { %>--%>
             <asp:Button Text="Modificar contraseña" runat="server" ID="btnModificarPass" OnClick="btnModificarPass_Click"/>
-            <%} %>
+<%--            <%} %>--%>
             <div class="invalid-feedback">
                 Por favor, elija una constraseña válida.
             </div>
