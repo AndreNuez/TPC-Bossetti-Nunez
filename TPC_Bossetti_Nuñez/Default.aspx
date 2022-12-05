@@ -44,7 +44,7 @@
                     <div class="mb-3">
                         <asp:CheckBox Text="Filtro Avanzado"
                             CssClass="" ID="chkAvanzado" runat="server"
-                            AutoPostBack="true" OnCheckedChanged="chkAvanzado_CheckedChanged"/>
+                            AutoPostBack="true" OnCheckedChanged="chkAvanzado_CheckedChanged" />
                     </div>
                 </div>
 
@@ -100,9 +100,17 @@
                                     <div class="d-grid mx-auto">
                                         <asp:Button Text="Ver Detalles" Style="margin-top: 5px" ID="btnVerDetalles" CssClass="btn btn-info" runat="server" CommandArgument='<%#Eval("ID")%>' CommandName="IDLibro" OnClick="btnVerDetalles_Click" />
                                     </div>
+                                    <%if (Negocio.Seguridad.sesionActiva(Session["usuario"]))
+                                        { %>
+
+                                    <%if (Negocio.Seguridad.esAdmin(Session["usuario"]) == Dominio.TipoUsuario.ADMIN)
+                                        { %>
                                     <div class="d-grid mx-auto">
                                         <asp:Button Text="Editar" Style="margin-top: 5px" ID="btnEditar" CssClass="btn btn-secondary" runat="server" CommandArgument='<%#Eval("ID")%>' CommandName="IDLibro" OnClick="btnEditar_Click" />
                                     </div>
+                                    <% } %>
+
+                                    <%} %>
                                 </div>
                             </div>
                         </div>

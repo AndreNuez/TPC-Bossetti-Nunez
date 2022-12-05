@@ -16,7 +16,7 @@
             <div class="col-2"></div>
             <br />
             <div class="d-grid mx-auto">
-                <asp:Button Text="Agregar Libro" ID="btnAgregarLibro" OnClick="btnAgregarLibro_Click"    runat="server" />
+                <asp:Button Text="Agregar Libro" ID="btnAgregarLibro" class="btn btn-primary" OnClick="btnAgregarLibro_Click" runat="server" />
             </div>
              <div class="d-grid mx-auto">
                 <a href="ListadoLibros.aspx" class="btn btn-primary" style="margin-top: 20px">Listado Libros</a>

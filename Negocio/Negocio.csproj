@@ -71,6 +71,7 @@
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="ClienteNegocio.cs" />
     <Compile Include="EmailService.cs" />
+    <Compile Include="ItemCarritoNegocio.cs" />
     <Compile Include="Seguridad.cs" />
     <Compile Include="UsuarioNegocio.cs" />
     <Compile Include="GeneroNegocio.cs" />

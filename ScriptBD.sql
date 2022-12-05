@@ -117,19 +117,31 @@ go
 
 --PROCEDIMIENTOS PARA USUARIOS
 create procedure sp_login(
-	@mail varchar (500), 
-	@pass varchar (500)
+@mail varchar (500), 
+@pass varchar (500)
 )
 as
 select 
 	u.IdUsuario,
 	u.TipoUsuario,
 	u.Apellidos,
-	u.Nombres
+	u.Nombres,
+	u.Estado,
+	du.DNI,
+	du.Telefono,
+	du.Celular,
+	du.Calle,
+	du.Numero,
+	du.Piso,
+	du.Departamento,
+	du.CP,
+	du.Localidad,
+	du.Provincia
 from usuarios u
-where u.Mail = @mail 
+left join datos_usuario du on u.IdUsuario = du.IdUsuario
+where u.Mail = @mail
 and u.Contraseña = @pass
-go
+GO
 
 
 create procedure sp_insertarNuevo(
@@ -168,6 +180,7 @@ select
 	du.Provincia
 from usuarios u
 left join datos_usuario du on u.IdUsuario = du.IdUsuario
+where u.TipoUsuario = 1
 go
 
 
@@ -190,28 +203,51 @@ create procedure sp_modificarCliente(
 )
 as
 begin
+	declare @relacionID smallint
+	select @relacionID = IdUsuario from datos_usuario du 
+		where du.IdUsuario = @idUsuario 
 	update usuarios 
 	set 
 		Contraseña = @contraseña, 
 		Nombres = @nombres, 
 		Apellidos = @apellidos,
-		Estado = @estado
+		Estado = 1
 	where IdUsuario = @idUsuario
-	update datos_usuario 
-	set 
-		DNI = @dni, 
-		Telefono = @telefono, 
-		Celular = @celular, 
-		Calle = @calle, 
-		Numero = @numero, 
-		Piso = @piso, 
-		Departamento = @departamento, 
-		CP = @cp, 
-		Localidad = @localidad, 
-		Provincia = @provincia 
-	where IdUsuario = @idUsuario
+	
+	if (@relacionID is null) begin
+		insert into datos_usuario 
+		values
+			(
+			@idUsuario, 
+			@dni, 
+			@telefono, 
+			@celular, 
+			@calle, 
+			@numero, 
+			@piso, 
+			@departamento, 
+			@cp, 
+			@localidad, 
+			@provincia 
+		)
+	end
+	else begin	
+		update datos_usuario 
+		set 
+			DNI = @dni, 
+			Telefono = @telefono, 
+			Celular = @celular, 
+			Calle = @calle, 
+			Numero = @numero, 
+			Piso = @piso, 
+			Departamento = @departamento, 
+			CP = @cp, 
+			Localidad = @localidad, 
+			Provincia = @provincia 
+			where IdUsuario = @idUsuario
+		end
 end
-go
+GO
 
 
 create procedure sp_usuarioEliminarLogico (
@@ -291,6 +327,16 @@ CREATE TABLE Ventas(
 )
 GO
 
+ALTER TABLE Ventas
+ADD Calle varchar (100),
+	Numero varchar (10),
+	Piso varchar (10),
+	Depto varchar (10),
+	CodPostal varchar (10),
+	Localidad varchar (100),
+	Provincia varchar (100)
+
+
 CREATE TABLE ItemCarrito(
     IDItem smallint not null,
     NombreItem varchar (200) not null,
@@ -301,3 +347,26 @@ CREATE TABLE ItemCarrito(
 GO
 
 --PROCEDIMIENTOS PARA VENTAS
+CREATE PROCEDURE SP_AltaVenta (
+	@IDUsuario smallint,
+	@FormaPago char,
+	@Envio bit,
+	@Importe money,
+	@Cantidad int,
+	@Calle varchar (100),
+	@Numero varchar (10),
+	@Piso varchar (10),
+	@Depto varchar (10),
+	@CodPostal varchar (10),
+	@Localidad varchar (100),
+	@Provincia varchar (100)
+)
+AS 
+INSERT INTO Ventas OUTPUT inserted.IDVenta
+VALUES (@IDUsuario,@FormaPago,@Envio,@Importe,@Cantidad,GETDATE(),'R',@Calle,@Numero,@Piso,@Depto,@CodPostal,@Localidad,@Provincia)
+GO 
+
+CREATE PROCEDURE SP_AltaItemCarrito (
+	@IDVenta int
+)
+AS 

@@ -20,43 +20,55 @@ namespace TPC_Bossetti_Nuñez
             lblCP.Text = usuario.Cliente.Direccion.CodPostal.ToString();
             lblLocalidad.Text = usuario.Cliente.Direccion.Localidad.ToString();
             lblProvincia.Text = usuario.Cliente.Direccion.Provincia.ToString();
-
-
                 
         }
 
         protected void btnConfirmaCompra_Click(object sender, EventArgs e)
         {
-            Venta nueva = new Venta();
-            VentaNegocio negocio = new VentaNegocio();
-            Usuario usuario = new Usuario();
-            usuario = (Usuario)Session["usuario"];
+            try
+            {
+                Venta nueva = new Venta();
+                VentaNegocio negocio = new VentaNegocio();
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["usuario"];
 
-            nueva.IDUsuario = usuario.IDUsuario;
-            
-            if (rdbEfectivo.Checked)
-                nueva.FormaPago = 'E';
-            else
-                nueva.FormaPago = 'T';
+                nueva.IDUsuario = usuario.IDUsuario;
 
-            if (rdbRetiro.Checked)
-                nueva.Envio = false;
-            else
-                nueva.Envio = true;
+                if (rdbEfectivo.Checked)
+                    nueva.FormaPago = 'E';
+                else
+                    nueva.FormaPago = 'T';
 
-            nueva.PrecioTot = (decimal)Session["TotalCarrito"];
-            nueva.CantTot = (int)Session["CantidadCarrito"];
-            nueva.DomicilioEntrega.Calle = usuario.Cliente.Direccion.Calle;
-            nueva.DomicilioEntrega.Numero = usuario.Cliente.Direccion.Numero;
-            nueva.DomicilioEntrega.Piso = usuario.Cliente.Direccion.Piso;
-            nueva.DomicilioEntrega.Depto = usuario.Cliente.Direccion.Depto;
-            nueva.DomicilioEntrega.CodPostal = usuario.Cliente.Direccion.CodPostal;
-            nueva.DomicilioEntrega.Localidad = usuario.Cliente.Direccion.Localidad;
-            nueva.DomicilioEntrega.Provincia = usuario.Cliente.Direccion.Provincia;
+                if (rdbRetiro.Checked)
+                    nueva.Envio = false;
+                else
+                    nueva.Envio = true;
 
-            negocio.Agregar(nueva);
+                nueva.Importe = (decimal)Session["TotalCarrito"];
+                nueva.Cantidad = (int)Session["CantidadCarrito"];
 
-            Response.Redirect("CompraRealizada.aspx", false);
+                nueva.DomicilioEntrega = new Direccion();
+                nueva.DomicilioEntrega.Calle = usuario.Cliente.Direccion.Calle;
+                nueva.DomicilioEntrega.Numero = usuario.Cliente.Direccion.Numero;
+                nueva.DomicilioEntrega.Piso = usuario.Cliente.Direccion.Piso;
+                nueva.DomicilioEntrega.Depto = usuario.Cliente.Direccion.Depto;
+                nueva.DomicilioEntrega.CodPostal = usuario.Cliente.Direccion.CodPostal;
+                nueva.DomicilioEntrega.Localidad = usuario.Cliente.Direccion.Localidad;
+                nueva.DomicilioEntrega.Provincia = usuario.Cliente.Direccion.Provincia;
+
+                int IDVenta = negocio.Agregar(nueva);
+
+                ItemCarrito item = new ItemCarrito();
+
+                Response.Redirect("CompraRealizada.aspx", false);
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
+                throw;
+            }
+           
         }
     }
 }
