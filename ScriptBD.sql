@@ -367,6 +367,13 @@ VALUES (@IDUsuario,@FormaPago,@Envio,@Importe,@Cantidad,GETDATE(),'R',@Calle,@Nu
 GO 
 
 CREATE PROCEDURE SP_AltaItemCarrito (
+	@IDItem smallint,
+	@NombreItem varchar(200),
+	@Cantidad int,
+	@Precio money,
 	@IDVenta int
 )
 AS 
+INSERT INTO ItemCarrito 
+VALUES (@IDItem,@NombreItem,@Cantidad,@Precio,@IDVenta)
+GO

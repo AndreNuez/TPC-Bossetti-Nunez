@@ -16,10 +16,14 @@ namespace TPC_Bossetti_Nuñez
             Usuario usuario = new Usuario();
             usuario = (Usuario)Session["usuario"];
 
-            lblCalle.Text = usuario.Cliente.Direccion.Calle.ToString();
-            lblCP.Text = usuario.Cliente.Direccion.CodPostal.ToString();
-            lblLocalidad.Text = usuario.Cliente.Direccion.Localidad.ToString();
-            lblProvincia.Text = usuario.Cliente.Direccion.Provincia.ToString();
+            if (rdbDomicilio.Checked)
+            {
+                lblCalle.Text = usuario.Cliente.Direccion.Calle.ToString();
+                lblCP.Text = usuario.Cliente.Direccion.CodPostal.ToString();
+                lblLocalidad.Text = usuario.Cliente.Direccion.Localidad.ToString();
+                lblProvincia.Text = usuario.Cliente.Direccion.Provincia.ToString();
+
+            }
                 
         }
 
@@ -58,7 +62,23 @@ namespace TPC_Bossetti_Nuñez
 
                 int IDVenta = negocio.Agregar(nueva);
 
-                ItemCarrito item = new ItemCarrito();
+                ItemCarrito itemc = new ItemCarrito();
+                ItemCarritoNegocio nuevoi = new ItemCarritoNegocio();
+                List<ItemCarrito> ListaCarrito = (List<ItemCarrito>)Session["ListaCarrito"];
+
+                foreach (ItemCarrito item in ListaCarrito)
+                {
+                    itemc.IDItem = item.IDItem;
+                    itemc.NombreItem = item.NombreItem;
+                    itemc.Cantidad = item.Cantidad;
+                    itemc.Precio = item.Precio;
+                    itemc.IDVenta = IDVenta;
+
+                    nuevoi.Agregar(itemc);
+                }
+
+                Session.Remove("ListaCarrito");
+                Session.Remove("CantidadCarrito");
 
                 Response.Redirect("CompraRealizada.aspx", false);
 
