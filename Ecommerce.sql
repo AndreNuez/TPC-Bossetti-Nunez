@@ -402,3 +402,94 @@ left join datos_usuario du on u.IdUsuario = du.IdUsuario
 where u.IdUsuario = @idUsuario
 end
 go*/
+
+ALTER procedure [dbo].[sp_login](
+@mail varchar (500), 
+@pass varchar (500)
+)
+as
+select 
+	u.IdUsuario,
+	u.TipoUsuario,
+	u.Apellidos,
+	u.Nombres,
+	u.Estado,
+	du.DNI,
+	du.Telefono,
+	du.Celular,
+	du.Calle,
+	du.Numero,
+	du.Piso,
+	du.Departamento,
+	du.CP,
+	du.Localidad,
+	du.Provincia
+from usuarios u
+left join datos_usuario du on u.IdUsuario = du.IdUsuario
+where u.Mail = @mail
+and u.Contraseña = @pass
+
+
+ALTER procedure [dbo].[sp_modificarCliente](
+	@idUsuario smallint, 
+	@contraseña varchar(500),
+	@nombres varchar(100),
+	@apellidos varchar(100),
+	@dni varchar (50),
+	@telefono varchar (100),
+	@celular varchar (100),
+	@calle varchar (100),
+	@numero varchar (10),
+	@piso varchar (10),
+	@departamento varchar (10),
+	@cp varchar (10),
+	@localidad varchar (100),
+	@provincia varchar (100),
+	@estado bit
+)
+as
+begin
+	declare @relacionID smallint
+	select @relacionID = IdUsuario from datos_usuario du 
+		where du.IdUsuario = @idUsuario 
+	update usuarios 
+	set 
+		Contraseña = @contraseña, 
+		Nombres = @nombres, 
+		Apellidos = @apellidos,
+		Estado = @estado
+	where IdUsuario = @idUsuario
+	
+	if (@relacionID is null) begin
+		insert into datos_usuario 
+		values
+			(
+			@idUsuario, 
+			@dni, 
+			@telefono, 
+			@celular, 
+			@calle, 
+			@numero, 
+			@piso, 
+			@departamento, 
+			@cp, 
+			@localidad, 
+			@provincia 
+		)
+	end
+	else begin	
+		update datos_usuario 
+		set 
+			DNI = @dni, 
+			Telefono = @telefono, 
+			Celular = @celular, 
+			Calle = @calle, 
+			Numero = @numero, 
+			Piso = @piso, 
+			Departamento = @departamento, 
+			CP = @cp, 
+			Localidad = @localidad, 
+			Provincia = @provincia 
+			where IdUsuario = @idUsuario
+		end
+end
