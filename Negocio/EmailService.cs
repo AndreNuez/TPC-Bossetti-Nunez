@@ -15,7 +15,7 @@ namespace Negocio
         public EmailService()
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("correo", "contraseña"); // Configurar luego con SandBox
+            server.Credentials = new NetworkCredential("bbfdbe578943ac", "f3d225caa9b098");
             server.EnableSsl = true;
             server.Port = 2525;
             server.Host = "smtp.mailtrap.io";
@@ -26,6 +26,7 @@ namespace Negocio
             email = new MailMessage();
             email.From = new MailAddress("noresponder@TuLibro.com");
             email.To.Add(emaildestino);
+            email.Subject = asunto;
             //email.IsBodyHtml = true;
             //email.Body = "plantilla html con formato de mail";
             //o
