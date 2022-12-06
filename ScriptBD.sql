@@ -313,6 +313,19 @@ where u.IdUsuario = @idUsuario
 end
 go
 
+create procedure sp_ClienteEliminarFisico (
+	@idUsuario smallint
+)
+as
+begin
+	delete from datos_usuario
+	where IdUsuario = @idUsuario
+
+	delete from usuarios 
+	where IdUsuario = @idUsuario
+end
+go
+
 
 --TABLAS PARA VENTAS
 CREATE TABLE Ventas(

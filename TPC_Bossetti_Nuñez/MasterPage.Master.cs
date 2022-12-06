@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
+using Dominio;
 
 namespace TPC_Bossetti_Nuñez
 {
@@ -17,6 +18,11 @@ namespace TPC_Bossetti_Nuñez
             {
                 if (!Seguridad.sesionActiva(Session["usuario"]))
                     Response.Redirect("LogIn.aspx", false);
+                else
+                {
+                    Usuario user = (Usuario)Session["usuario"];
+                    lblUser.Text = user.Nombres + user.Apellidos;
+                }
             }
 
             CantidadCarrito = Session["CantidadCarrito"] != null ? (int)Session["CantidadCarrito"] : 0;

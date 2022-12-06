@@ -347,6 +347,22 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public void eliminarFisicoClienteConSP(int idusuario)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearProcedimiento("sp_ClienteEliminarFisico");
+                datos.setearParametro("@idUsuario", idusuario);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         public void modificarConSP(Usuario aux)
         {
             AccesoDatos datos = new AccesoDatos();

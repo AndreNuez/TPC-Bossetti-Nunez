@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
+using Dominio;
 
 namespace TPC_Bossetti_Nuñez
 {
@@ -12,14 +13,16 @@ namespace TPC_Bossetti_Nuñez
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Usuario user = (Usuario)Session["usuario"];
             VentaNegocio pedido = new VentaNegocio();
-            dgvPedidos.DataSource = pedido.listar();
+            dgvPedidos.DataSource = pedido.listar(user.IDUsuario);
             dgvPedidos.DataBind();
         }
 
         protected void dgvPedidos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Response.Redirect("EditarPedido.aspx");
+            Session.Add("idCompra", dgvPedidos.SelectedDataKey.Value.ToString());
+            Response.Redirect("DetallePedido.aspx");
         }
     }
 }
