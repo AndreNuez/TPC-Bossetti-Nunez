@@ -77,7 +77,7 @@ namespace TPC_Bossetti_Nuñez
                     nuevoi.Agregar(itemc);
                 }
 
-                Session.Remove("ListaCarrito");
+                Session.Add("IDVenta", IDVenta);
                 Session.Remove("CantidadCarrito");
 
                 Response.Redirect("CompraRealizada.aspx", false);
