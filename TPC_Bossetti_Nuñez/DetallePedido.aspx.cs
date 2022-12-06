@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocio;
+using Dominio;
 
 namespace TPC_Bossetti_Nuñez
 {
@@ -11,7 +13,16 @@ namespace TPC_Bossetti_Nuñez
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Venta venta = new Venta();
+            VentaNegocio ventaNegocio = new VentaNegocio();
+            ItemCarrito items = new ItemCarrito();
+            ItemCarritoNegocio itemNegocio = new ItemCarritoNegocio();
 
+            venta.IDVenta = int.Parse(Session["idVenta"].ToString());
+            ventaNegocio.seleccionaVenta(venta);
+
+
+            
         }
     }
 }

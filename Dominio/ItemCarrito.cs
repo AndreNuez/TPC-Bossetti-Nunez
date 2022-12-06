@@ -7,7 +7,7 @@ namespace Dominio
 {
     public class ItemCarrito
     {
-        public short IDItem { get; set; }
+        public int IDItem { get; set; }
         public string NombreItem { get; set; }
         public int Cantidad { get; set; }
         public decimal Precio { get; set; }

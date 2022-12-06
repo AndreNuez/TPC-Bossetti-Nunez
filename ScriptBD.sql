@@ -313,6 +313,7 @@ where u.IdUsuario = @idUsuario
 end
 go
 
+
 create procedure sp_ClienteEliminarFisico (
 	@idUsuario smallint
 )
@@ -390,3 +391,66 @@ AS
 INSERT INTO ItemCarrito 
 VALUES (@IDItem,@NombreItem,@Cantidad,@Precio,@IDVenta)
 GO
+
+create procedure sp_listarVentas(
+	@idUsuario smallint
+)
+as
+begin
+	select 
+		idventa,
+		FormaPago,
+		envio,
+		importe,
+		cantidad,
+		fecha,
+		estado,
+		calle,
+		numero,
+		piso,
+		depto,
+		codPostal,
+		Localidad,
+		provincia
+	from Ventas
+	where @idUsuario = idUsuario
+end
+
+
+create procedure sp_listarItems(
+	@idVenta int
+)
+as
+begin
+	select
+		IdItem,
+		NombreItem,
+		Cantidad,
+		Precio		
+	from ItemCarrito
+	where @idVenta = IDVenta
+end
+
+
+create procedure sp_seleccionarVenta(
+	@idVenta smallint
+)
+as
+begin
+	select 
+		FormaPago,
+		envio,
+		importe,
+		cantidad,
+		fecha,
+		estado,
+		calle,
+		numero,
+		piso,
+		depto,
+		codPostal,
+		Localidad,
+		provincia
+	from Ventas
+	where @idVenta = IdVenta
+end

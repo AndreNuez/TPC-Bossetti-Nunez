@@ -15,13 +15,15 @@ namespace TPC_Bossetti_Nuñez
         {
             Usuario user = (Usuario)Session["usuario"];
             VentaNegocio pedido = new VentaNegocio();
-            dgvPedidos.DataSource = pedido.listar(user.IDUsuario);
+            dgvPedidos.DataSource = pedido.Listar(user.IDUsuario);
             dgvPedidos.DataBind();
         }
 
         protected void dgvPedidos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Session.Add("idCompra", dgvPedidos.SelectedDataKey.Value.ToString());
+            //Session.Add("idVenta", dgvPedidos.SelectedDataKey.Value.ToString());
+            string idVenta = dgvPedidos.SelectedDataKey.Value.ToString();
+            Session.Add("idVenta", idVenta);
             Response.Redirect("DetallePedido.aspx");
         }
     }

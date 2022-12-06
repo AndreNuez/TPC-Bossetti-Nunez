@@ -34,5 +34,42 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public List<ItemCarrito> Listar(int idVenta)
+        {
+            List<ItemCarrito> lista = new List<ItemCarrito>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_listarItems");
+                datos.setearParametro("@idVenta", idVenta);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    ItemCarrito item = new ItemCarrito();
+                    item.IDVenta = idVenta;
+                    item.IDItem = (int)datos.Lector["IdIitem"];
+                    item.NombreItem = (string)datos.Lector["NombreItem"];
+                    item.Cantidad = (int)datos.Lector["Cantidad"];
+                    item.Precio = (decimal)datos.Lector["Precio"];
+
+                    lista.Add(item);
+                }
+
+
+                return lista;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+
+            
+        }
     }
 }
