@@ -33,6 +33,6 @@
      </div>
     <div class="col-md-4">
         <asp:Button Text="Registrarse" runat="server" ID="btnRegistrarse" CssClass="btn btn-primary" OnClick="btnRegistrarse_Click"/>
-        <a href="Default.aspx">Cancelar</a>
+        <a href="Default.aspx" class="btn btn-danger">Cancelar</a>
     </div>
 </asp:Content>

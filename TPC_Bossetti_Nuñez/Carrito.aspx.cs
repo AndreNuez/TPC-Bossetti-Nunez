@@ -50,10 +50,10 @@ namespace TPC_Bossetti_Nuñez
             }
 
             CantidadCarrito = CalcularCantidad(Temporal);
-            
+
             Session.Add("CantidadCarrito", CantidadCarrito);
             Session.Add("ListaCarrito", Temporal);
-            
+
             Response.Redirect("Carrito.aspx", false);
 
         }
@@ -98,7 +98,10 @@ namespace TPC_Bossetti_Nuñez
 
         protected void btnComprarCarrito_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ConfirmaCompra.aspx", false);
+            if (Negocio.Seguridad.sesionActiva(Session["usuario"]))
+                Response.Redirect("ConfirmaCompra.aspx", false);
+            else
+                Response.Redirect("LogIn.aspx", false);
         }
     }
 }
