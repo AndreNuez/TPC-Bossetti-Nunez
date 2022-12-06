@@ -15,13 +15,14 @@ namespace TPC_Bossetti_Nuñez
         {
             Venta venta = new Venta();
             VentaNegocio ventaNegocio = new VentaNegocio();
-            ItemCarrito items = new ItemCarrito();
+            //ItemCarrito items = new ItemCarrito();
             ItemCarritoNegocio itemNegocio = new ItemCarritoNegocio();
 
             venta.IDVenta = int.Parse(Session["idVenta"].ToString());
             ventaNegocio.seleccionaVenta(venta);
 
-
+            dgvItems.DataSource = itemNegocio.Listar(int.Parse(Session["idVenta"].ToString()));
+            dgvItems.DataBind();
             
         }
     }

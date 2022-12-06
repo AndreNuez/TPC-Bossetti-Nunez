@@ -50,7 +50,7 @@ namespace Negocio
                 {
                     ItemCarrito item = new ItemCarrito();
                     item.IDVenta = idVenta;
-                    item.IDItem = (int)datos.Lector["IdIitem"];
+                    item.IDItem = (short)datos.Lector["IdItem"];
                     item.NombreItem = (string)datos.Lector["NombreItem"];
                     item.Cantidad = (int)datos.Lector["Cantidad"];
                     item.Precio = (decimal)datos.Lector["Precio"];
