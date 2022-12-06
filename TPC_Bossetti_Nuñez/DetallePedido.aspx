@@ -49,7 +49,7 @@
             <div class="col-6">
                 <h5>Detalle Productos</h5>
                 <div>
-                    <label class="form-label"> Mostrar grilla con Item/s del Carrito asosiado (?)</label>
+                    <asp:GridView runat="server" ID="dgvItems"></asp:GridView>
                 </div>
                 <br />
             </div>

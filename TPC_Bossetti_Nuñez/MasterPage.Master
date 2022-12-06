@@ -56,6 +56,7 @@
                         <%}
                             else
                             {%>
+                        <asp:Label Text="text" runat="server" ID="lblUser"/>
                         <asp:Button Text="Salir" runat="server" ID="btnSalir" OnClick="btnSalir_Click"/>
                         <%} %>
                     </div>

@@ -314,6 +314,20 @@ end
 go
 
 
+create procedure sp_ClienteEliminarFisico (
+	@idUsuario smallint
+)
+as
+begin
+	delete from datos_usuario
+	where IdUsuario = @idUsuario
+
+	delete from usuarios 
+	where IdUsuario = @idUsuario
+end
+go
+
+
 --TABLAS PARA VENTAS
 CREATE TABLE Ventas(
     IDVenta int PRIMARY KEY IDENTITY(1,1),
@@ -377,3 +391,66 @@ AS
 INSERT INTO ItemCarrito 
 VALUES (@IDItem,@NombreItem,@Cantidad,@Precio,@IDVenta)
 GO
+
+create procedure sp_listarVentas(
+	@idUsuario smallint
+)
+as
+begin
+	select 
+		idventa,
+		FormaPago,
+		envio,
+		importe,
+		cantidad,
+		fecha,
+		estado,
+		calle,
+		numero,
+		piso,
+		depto,
+		codPostal,
+		Localidad,
+		provincia
+	from Ventas
+	where @idUsuario = idUsuario
+end
+
+
+create procedure sp_listarItems(
+	@idVenta int
+)
+as
+begin
+	select
+		IdItem,
+		NombreItem,
+		Cantidad,
+		Precio		
+	from ItemCarrito
+	where @idVenta = IDVenta
+end
+
+
+create procedure sp_seleccionarVenta(
+	@idVenta smallint
+)
+as
+begin
+	select 
+		FormaPago,
+		envio,
+		importe,
+		cantidad,
+		fecha,
+		estado,
+		calle,
+		numero,
+		piso,
+		depto,
+		codPostal,
+		Localidad,
+		provincia
+	from Ventas
+	where @idVenta = IdVenta
+end

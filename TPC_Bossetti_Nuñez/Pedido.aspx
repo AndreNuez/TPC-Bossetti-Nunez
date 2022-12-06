@@ -3,13 +3,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <asp:GridView ID="dgvPedidos" runat="server" OnSelectedIndexChanged="dgvPedidos_SelectedIndexChanged" CssClass="table table-dark table-bordered" AutoGenerateColumns="false">
+    <asp:GridView ID="dgvPedidos" runat="server" DataKeyNames="IDVenta" OnSelectedIndexChanged="dgvPedidos_SelectedIndexChanged" CssClass="table table-dark table-bordered" AutoGenerateColumns="false">
         <Columns>
-            <asp:BoundField HeaderText="Id Venta" DataField="IDVenta" />
-            <%--<asp:BoundField HeaderText="Id Cliente" DataField="Carrito.IDCliente" />
-            <asp:BoundField HeaderText="Cant. Productos" DataField="Carrrito.Cantidad" />
-            <asp:BoundField HeaderText="$ Total Platita" DataField="Carrito.PrecioTotal" />--%>
-            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Editar" />
+            <%--<asp:BoundField HeaderText="Id Venta" DataField="IDVenta" />--%>
+            <asp:BoundField HeaderText="Cant. Productos" DataField="cantidad" />
+            <asp:BoundField HeaderText="$ Total Platita" DataField="importe" />
+            <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Ver Detalle" />
         </Columns>
     </asp:GridView>
     <div class="row">

@@ -8,40 +8,58 @@ namespace Negocio
 {
     public class VentaNegocio
     {
-        public List<Venta> listar()
+        public List<Venta> Listar(int idUsuario)
         {
             List<Venta> lista = new List<Venta>();
-            /*AccesoDatos datos = new AccesoDatos();
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("--Consulta SQL");
+                datos.setearProcedimiento("sp_listarVentas");
+                datos.setearParametro("@idUsuario", (decimal)idUsuario);
                 datos.ejecutarLectura();
 
+                while (datos.Lector.Read())
+                {
+                    Venta venta = new Venta();
+                    //venta.IDUsuario = idUsuario;
+                    venta.IDVenta = (int)datos.Lector["idventa"];
+                    //venta.FormaPago = (char)datos.Lector["formaPago"];
+                    //venta.FormaPago = (string)datos.Lector["formaPago"];
+                    venta.Envio = (bool)datos.Lector["envio"];
+                    venta.Importe = (decimal)datos.Lector["importe"];
+                    venta.Cantidad = (int)datos.Lector["cantidad"];
+                    venta.Fecha = (DateTime)datos.Lector["fecha"];
+                    //venta.Estado = (char)datos.Lector["estado"];
+                    //venta.Estado = (string)datos.Lector["estado"];
+                    venta.DomicilioEntrega = new Direccion();
+                    if(!(datos.Lector["calle"] is DBNull))
+                        venta.DomicilioEntrega.Calle = (string)datos.Lector["calle"];
+                    if(!(datos.Lector["numero"] is DBNull))
+                        venta.DomicilioEntrega.Numero = (string)datos.Lector["numero"];
+                    if(!(datos.Lector["piso"] is DBNull))
+                        venta.DomicilioEntrega.Piso = (string)datos.Lector["piso"];
+                    if(!(datos.Lector["depto"] is DBNull))
+                        venta.DomicilioEntrega.Depto = (string)datos.Lector["depto"];
+                    if(!(datos.Lector["codPostal"] is DBNull))    
+                        venta.DomicilioEntrega.CodPostal = (string)datos.Lector["codPostal"];
+                    if(!(datos.Lector["localidad"] is DBNull))
+                        venta.DomicilioEntrega.Localidad = (string)datos.Lector["localidad"];
+                    if(!(datos.Lector["provincia"] is DBNull))
+                        venta.DomicilioEntrega.Provincia = (string)datos.Lector["provincia"];
+
+                    lista.Add(venta);
+                }
                 return lista;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
-            }*/
 
-            //MockUp
-            lista.Add(new Venta());
-            lista.Add(new Venta());
-            lista[0].IDVenta = 1;
-            lista[0].IDUsuario = 112233;
-            lista[0].FormaPago = 'E';
-            lista[0].Envio = true;
-            lista[0].Importe = 9999;
-            lista[0].Cantidad = 12;
-            lista[0].DomicilioEntrega = new Direccion();
-            lista[0].DomicilioEntrega.Calle = "Calle Falsa";
-            lista[0].DomicilioEntrega.Numero = "123";
-            lista[0].Fecha = new DateTime(2022, 10, 31);
-            lista[0].Estado = 'E';
+                throw;
+            }
 
 
-            return lista;
+
         }
 
         public int Agregar(Venta nueva)
@@ -79,5 +97,54 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void seleccionaVenta (Venta seleccion)
+        {
+            Venta venta = new Venta();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_seleccionarVenta");
+                datos.setearParametro("@idVenta", seleccion.IDVenta);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    //venta.IDUsuario = idUsuario;
+                    //venta.FormaPago = (char)datos.Lector["formaPago"];
+                    //venta.FormaPago = (string)datos.Lector["formaPago"];
+                    venta.Envio = (bool)datos.Lector["envio"];
+                    venta.Importe = (decimal)datos.Lector["importe"];
+                    venta.Cantidad = (int)datos.Lector["cantidad"];
+                    venta.Fecha = (DateTime)datos.Lector["fecha"];
+                    //venta.Estado = (char)datos.Lector["estado"];
+                    //venta.Estado = (string)datos.Lector["estado"];
+                    venta.DomicilioEntrega = new Direccion();
+                    if (!(datos.Lector["calle"] is DBNull))
+                        venta.DomicilioEntrega.Calle = (string)datos.Lector["calle"];
+                    if (!(datos.Lector["numero"] is DBNull))
+                        venta.DomicilioEntrega.Numero = (string)datos.Lector["numero"];
+                    if (!(datos.Lector["piso"] is DBNull))
+                        venta.DomicilioEntrega.Piso = (string)datos.Lector["piso"];
+                    if (!(datos.Lector["depto"] is DBNull))
+                        venta.DomicilioEntrega.Depto = (string)datos.Lector["depto"];
+                    if (!(datos.Lector["codPostal"] is DBNull))
+                        venta.DomicilioEntrega.CodPostal = (string)datos.Lector["codPostal"];
+                    if (!(datos.Lector["localidad"] is DBNull))
+                        venta.DomicilioEntrega.Localidad = (string)datos.Lector["localidad"];
+                    if (!(datos.Lector["provincia"] is DBNull))
+                        venta.DomicilioEntrega.Provincia = (string)datos.Lector["provincia"];
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
+
     }
 }
