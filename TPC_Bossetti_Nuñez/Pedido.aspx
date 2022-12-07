@@ -15,7 +15,8 @@
     <div class="row">
         <div class="col-6">
             <div class="mb-3">
-                <a href="PrincipalAdmin.aspx"> Regresar </a>
+                <asp:Button Text="Regresar" ID="btnRegresar" runat="server" OnClick="btnRegresar_Click" CssClass="btn btn-link" />
+                <%--<a href="PrincipalAdmin.aspx"> Regresar </a>>--%>
             </div>
         </div>
     </div>

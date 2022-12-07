@@ -36,7 +36,8 @@
             <a href="ModificarDatos.aspx">Agregar Dirección</a>
         </div>
         <%} %>
-        <%else
+        
+        <%if (rdbDomicilio.Checked)
             {%>
         <br />
         <h5>Dirección de envío</h5>

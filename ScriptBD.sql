@@ -23,7 +23,6 @@ create table Libros (
 	)
 go
 
-
 --PROCEDIMIENTOS PARA LIBROS
 create procedure SP_librosListar as
 select l.id, l.Titulo, l.Descripcion, l.Autor, l.Editorial, l.Precio, l.Stock, g.IdGenero as Genero_ID, g.Descripcion as Genero_Desc, l.Portada, l.estado 
@@ -404,6 +403,8 @@ INSERT INTO ItemCarrito
 VALUES (@IDItem,@NombreItem,@Cantidad,@Precio,@IDVenta)
 GO
 
+
+
 create procedure sp_listarVentas(
 	@idUsuario smallint
 )
@@ -486,7 +487,7 @@ begin
 	from Ventas
 	where @idVenta = IdVenta
 end
-
+GO
 
 create procedure sp_modificaEstadoEnvio(
 	@estadoEnvio char,
@@ -498,6 +499,7 @@ begin
 	set estado = @estadoEnvio
 	where IDVenta = @idVenta
 end
+GO
 
 create procedure sp_restarStock(
 	@idItem int,
@@ -507,7 +509,7 @@ as
 begin
 	declare @stock int
 	select @stock = stock from libros where id = @idItem
-	if (@stock > 0) begin
+	if (@stock >= @cantidad) begin
 		update libros
 		set stock -= @cantidad
 		where id = @idItem
@@ -522,4 +524,4 @@ begin
 		where id = @idItem
 	end
 end
-
+GO 
