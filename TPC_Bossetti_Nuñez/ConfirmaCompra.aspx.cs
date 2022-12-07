@@ -11,20 +11,37 @@ namespace TPC_Bossetti_Nuñez
 {
     public partial class ConfirmaCompra : System.Web.UI.Page
     {
+        public bool Direccion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuario usuario = new Usuario();
             usuario = (Usuario)Session["usuario"];
 
+            Direccion = true;
+
             if (rdbDomicilio.Checked)
             {
-                lblCalle.Text = usuario.Cliente.Direccion.Calle.ToString();
-                lblCP.Text = usuario.Cliente.Direccion.CodPostal.ToString();
-                lblLocalidad.Text = usuario.Cliente.Direccion.Localidad.ToString();
-                lblProvincia.Text = usuario.Cliente.Direccion.Provincia.ToString();
+                if (!string.IsNullOrEmpty(usuario.Cliente.Direccion.Calle))
+                {
+                    lblCalle.Text = usuario.Cliente.Direccion.Calle.ToString();
+                    lblNumero.Text = usuario.Cliente.Direccion.Numero.ToString();
 
+                    if (!string.IsNullOrEmpty(usuario.Cliente.Direccion.Piso))
+                        lblPiso.Text = usuario.Cliente.Direccion.Piso.ToString();
+                    
+                    if (!string.IsNullOrEmpty(usuario.Cliente.Direccion.Depto))
+                        lblDepto.Text = usuario.Cliente.Direccion.Depto.ToString();
+
+                    lblLocalidad.Text = usuario.Cliente.Direccion.Localidad.ToString();
+                    lblProvincia.Text = "  " + usuario.Cliente.Direccion.Provincia.ToString();
+                    lblCP.Text = "CP " + usuario.Cliente.Direccion.CodPostal.ToString();
+                }
+                else
+                {
+                    Direccion = false;
+                }
             }
-                
+
         }
 
         protected void btnConfirmaCompra_Click(object sender, EventArgs e)
@@ -88,7 +105,7 @@ namespace TPC_Bossetti_Nuñez
                 Session.Add("Error", ex);
                 throw;
             }
-           
+
         }
     }
 }

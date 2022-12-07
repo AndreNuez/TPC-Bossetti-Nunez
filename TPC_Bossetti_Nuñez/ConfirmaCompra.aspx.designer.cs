@@ -60,13 +60,31 @@ namespace TPC_Bossetti_Nuñez
         protected global::System.Web.UI.WebControls.Label lblCalle;
 
         /// <summary>
-        /// Control lblCP.
+        /// Control lblNumero.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCP;
+        protected global::System.Web.UI.WebControls.Label lblNumero;
+
+        /// <summary>
+        /// Control lblPiso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPiso;
+
+        /// <summary>
+        /// Control lblDepto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDepto;
 
         /// <summary>
         /// Control lblLocalidad.
@@ -85,6 +103,15 @@ namespace TPC_Bossetti_Nuñez
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProvincia;
+
+        /// <summary>
+        /// Control lblCP.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCP;
 
         /// <summary>
         /// Control btnConfirmaCompra.

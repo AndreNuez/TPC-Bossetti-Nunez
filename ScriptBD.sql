@@ -114,6 +114,9 @@ create table datos_usuario (
 )
 go
 
+ALTER TABLE [dbo].[datos_usuario] DROP CONSTRAINT [UQ__datos_us__C035B8DD11060EC6]
+GO
+
 
 --PROCEDIMIENTOS PARA USUARIOS
 create procedure sp_login(
