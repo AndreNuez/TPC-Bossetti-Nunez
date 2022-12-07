@@ -8,6 +8,7 @@
             <%--<asp:BoundField HeaderText="Id Venta" DataField="IDVenta" />--%>
             <asp:BoundField HeaderText="Cant. Productos" DataField="cantidad" />
             <asp:BoundField HeaderText="$ Total Platita" DataField="importe" />
+            <%--<asp:BoundField HeaderText="Estado" DataField="estado" />--%>
             <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Ver Detalle" />
         </Columns>
     </asp:GridView>

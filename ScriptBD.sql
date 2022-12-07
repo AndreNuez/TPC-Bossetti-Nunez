@@ -479,7 +479,7 @@ begin
 end
 
 
-create procedure sp_estadoEnvio(
+create procedure sp_modificaEstadoEnvio(
 	@estadoEnvio char,
 	@idVenta int
 )
@@ -489,3 +489,5 @@ begin
 	set estado = @estadoEnvio
 	where IDVenta = @idVenta
 end
+
+

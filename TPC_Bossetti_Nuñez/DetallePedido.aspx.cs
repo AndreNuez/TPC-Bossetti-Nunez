@@ -24,17 +24,36 @@ namespace TPC_Bossetti_Nuñez
             dgvItems.DataSource = itemNegocio.Listar(int.Parse(Session["idVenta"].ToString()));
             dgvItems.DataBind();
 
-            if(Seguridad.esAdmin(Session["usuario"]) != TipoUsuario.ADMIN)
-            {
-                rdbPendiente.Enabled = false;
-                rdbEnPreparacion.Enabled = false;
-                rdbEnviado.Enabled = false;
-                rdbEntregado.Enabled = false;
-            
-            }
-            
+            //if(Seguridad.esAdmin(Session["usuario"]) != TipoUsuario.ADMIN)
+            //{
+            //    rdbPendiente.Enabled = false;
+            //    rdbEnPreparacion.Enabled = false;
+            //    rdbEnviado.Enabled = false;
+            //    rdbEntregado.Enabled = false;
+            //
+            //}
 
-            
+            if (char.Parse(venta.Estado.ToString()) == 'R')
+            {
+                lblEstadoPedido.Text = "Pendiente";
+                //rdbPendiente.Checked = true;
+            }
+            else if (char.Parse(venta.Estado.ToString()) == 'P')
+            {
+                lblEstadoPedido.Text = "En Preparación";
+                //rdbEnPreparacion.Checked = true;
+            }
+            else if (char.Parse(venta.Estado.ToString()) == 'E')
+            {
+                lblEstadoPedido.Text = "Enviado";
+                //rdbEnviado.Checked = true;
+            }
+            else if (char.Parse(venta.Estado.ToString()) == 'C')
+            {
+                lblEstadoPedido.Text = "Entregado";
+                //rdbEntregado.Checked = true;
+            }
+
         }
 
         protected void btnRegresar_Click(object sender, EventArgs e)
@@ -49,7 +68,7 @@ namespace TPC_Bossetti_Nuñez
                 estadoEnvio = 'C';
 
             VentaNegocio negocio = new VentaNegocio();
-            negocio.EstadoEnvio(int.Parse(Session["idVenta"].ToString()), estadoEnvio);
+            negocio.ModificaEstadoEnvio(int.Parse(Session["idVenta"].ToString()), estadoEnvio);
             Response.Redirect("PrincipalAdmin.aspx");
         }
     }
