@@ -60,10 +60,15 @@
                 <h5>Estado</h5>
                 <div>
                     <asp:Label CssClass="form-label" Style="margin-top: 10px" Text="Estado Pedido" ID="lblEstado" runat="server" />
+                    <asp:RadioButton Text="Pendiente" runat="server" ID="rdbPendiente" GroupName="EstadoEntrega" Checked="true"/>
+                    <asp:RadioButton Text="En Preparación" runat="server" ID="rdbEnPreparacion" GroupName="EstadoEntrega"/>
+                    <asp:RadioButton Text="Enviado" runat="server" ID="rdbEnviado" GroupName="EstadoEntrega"/>
+                    <asp:RadioButton Text="Entregado" runat="server" ID="rdbEntregado" GroupName="EstadoEntrega"/>
                 </div>
                 <br />
                 <div>
-                    <a href="#" class="btn btn-secondary">Regresar</a>
+                    <a href="PrincipalCliente.aspx" class="btn btn-secondary">Regresar</a>
+                    <asp:Button Text="Regresar ADMIN" runat="server" ID="btnRegresar" OnClick="btnRegresar_Click" />
                 </div>
             </div>
         </div>

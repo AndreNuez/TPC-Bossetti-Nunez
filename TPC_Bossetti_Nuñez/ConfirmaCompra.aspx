@@ -6,32 +6,62 @@
 
     <div class="col-6">
         <br />
+        <br />
         <h5>Método de Pago</h5>
         <div>
             <asp:RadioButton ID="rdbEfectivo" Text="Efectivo" runat="server" Checked="true" GroupName="Pago" />
             <asp:RadioButton ID="rdbMP" Text="Mercado Pago" runat="server" GroupName="Pago" />
         </div>
+        <br />
         <h5>Método de Envío</h5>
         <div>
-            <asp:RadioButton ID="rdbRetiro" Text="Retiro Sucursal" runat="server" Checked="true" GroupName="Envio" />
+            <asp:RadioButton ID="rdbRetiro" Text="Retiro Sucursal" runat="server" AutoPostBack="true" Checked="true" GroupName="Envio" />
             <asp:RadioButton ID="rdbDomicilio" Text="Envío a Domicilio" runat="server" AutoPostBack="true" GroupName="Envio" />
         </div>
 
+        <%if (rdbRetiro.Checked)
+            {%>
+        <br />
+        <p>Retira en nuestro local situado en</p>
+        <p>Av. Hipólito Yrigoyen 288</p>
+        <p>Gral. Pacheco, Provincia de Buenos Aires</p>
+        <br />
+        <%} %>
+
         <%if (rdbDomicilio.Checked)
             {%>
+        <%      if (!Direccion)
+            {%>
+        <div>
+            <br />
+            <h5>Por favor, registre una dirección</h5>
+            <a href="ModificarDatos.aspx">Agregar Dirección</a>
+        </div>
+        <%} %>
+        <%else
+            {%>
+        <br />
         <h5>Dirección de envío</h5>
         <div>
             <asp:Label ID="lblCalle" Text="" runat="server" />
-            <asp:Label ID="lblCP" Text="" runat="server" />
+            <asp:Label ID="lblNumero" Text="" runat="server" />
+            <asp:Label ID="lblPiso" Text="" runat="server" />
+            <asp:Label ID="lblDepto" Text="" runat="server" />
         </div>
         <div>
             <asp:Label ID="lblLocalidad" Text="" runat="server" />
-            <asp:Label ID="lblProvincia" runat="server" Text=""></asp:Label>
+            <asp:Label ID="lblProvincia" runat="server" Text="" />
+        </div>
+        <div>
+            <asp:Label ID="lblCP" Text="" runat="server" />
         </div>
     </div>
     <div>
-        <a href="ModificarDatos.aspx">Agregar/Editar Dirección</a>
+        <a href="ModificarDatos.aspx">Editar Dirección</a>
     </div>
+    <br />
+    <br />
+    <%} %>
     <%} %>
     <asp:Button CssClass="btn btn-primary" ID="btnConfirmaCompra" runat="server" Text="Confirmar" OnClick="btnConfirmaCompra_Click" />
     <a href="Carrito.aspx" class="btn btn-danger" style="margin-left: 5px">Cancelar</a>
