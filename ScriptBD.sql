@@ -415,7 +415,7 @@ begin
 	from Ventas
 	where @idUsuario = idUsuario
 end
-
+GO
 
 create procedure sp_listarItems(
 	@idVenta int
@@ -430,7 +430,7 @@ begin
 	from ItemCarrito
 	where @idVenta = IDVenta
 end
-
+GO 
 
 create procedure sp_seleccionarVenta(
 	@idVenta smallint

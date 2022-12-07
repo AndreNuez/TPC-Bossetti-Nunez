@@ -11,6 +11,7 @@ namespace TPC_Bossetti_Nuñez
 {
     public partial class Detalle : System.Web.UI.Page
     {
+        public List<Libro> ListaLibro { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             string IDLibro = Session["IDLibro"] != null ? Session["IDLibro"].ToString() : "";
@@ -33,7 +34,59 @@ namespace TPC_Bossetti_Nuñez
 
         protected void btnAgregarCarrito_Click(object sender, EventArgs e)
         {
+            string IDLibro = Session["IDLibro"].ToString();
+
+            List<ItemCarrito> ListaCarrito = (List<ItemCarrito>)Session["ListaCarrito"] != null ?
+                (List<ItemCarrito>)Session["ListaCarrito"] : ListaCarrito = new List<ItemCarrito>();
+
+            LibroNegocio negocio = new LibroNegocio();
+
+            ListaLibro = negocio.listar(IDLibro);
+
+            ItemCarrito NuevoItem = new ItemCarrito();
+            NuevoItem.IDItem = ListaLibro[0].ID;
+            NuevoItem.NombreItem = ListaLibro[0].Titulo;
+            NuevoItem.Cantidad = 1;
+            NuevoItem.Precio = ListaLibro[0].Precio;
+
+            if ((List<ItemCarrito>)Session["ListaCarrito"] != null)
+            {
+                int posItem = BuscarItem(ListaCarrito, NuevoItem);
+
+                if (posItem != -1)
+                {
+                    ListaCarrito[posItem].Cantidad++;
+                    ListaCarrito[posItem].Precio += NuevoItem.Precio;
+                }
+                else
+                {
+                    ListaCarrito.Add(NuevoItem);
+                }
+            }
+            else
+            {
+                ListaCarrito.Add(NuevoItem);
+            }
+
+            Session.Add("ListaCarrito", ListaCarrito);
             Response.Redirect("Carrito.aspx", false);
         }
+
+        protected int BuscarItem(List<ItemCarrito> ListaCarrito, ItemCarrito NuevoItem)
+        {
+            int pos;
+
+            foreach (ItemCarrito item in ListaCarrito)
+            {
+                if (item.IDItem == NuevoItem.IDItem)
+                {
+                    pos = ListaCarrito.IndexOf(item);
+                    return pos;
+                }
+            }
+
+            return -1;
+        }
+
     }
 }
