@@ -8,11 +8,17 @@ Le puse Estado = 1 (en lugar de Estado = @estado) y se solucionó.
 Usuario: andrea.nunez@alumnos.frgp.utn.edu.ar
 Pass: tpcuatrimestral2022
 
+06/12/2022
+-Modifique tabla datos_usuario porque si guardaba DNI como vacío, cuando había otro
+cliente con DNI vacío tiraba excepción.
+
 TAREAS A REALIZAR:
--Agregar enlace para redireccionar pantalla compra exitosa.
+-Agregar enlace para redireccionar pantalla compra exitosa. -- LISTO!!
 -Configurar para que si no tiene dirección cargada, muestre solo el btn agregar direccion, 
-sino tira nulo.
+sino tira nulo. -- LISTO!!
 -Registra usuario sin registrar mail y contraseña, solo ingresando nombre y apellido.
--Procedimientos para listar Ventas, tanto en pantalla admin como cliente.
+-Procedimientos para listar Ventas, tanto en pantalla admin como cliente. LISTO!! (GONZA)
+
+SEGUIR CON:
 -Modificacion de estado de venta (admin) + Listar datos de Venta en pantalla DetallePedido.
 
