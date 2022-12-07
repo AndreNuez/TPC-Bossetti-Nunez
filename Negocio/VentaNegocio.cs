@@ -22,16 +22,14 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Venta venta = new Venta();
-                    //venta.IDUsuario = idUsuario;
+                    venta.IDUsuario = idUsuario;
                     venta.IDVenta = (int)datos.Lector["idventa"];
-                    //venta.FormaPago = (char)datos.Lector["formaPago"];
-                    //venta.FormaPago = (string)datos.Lector["formaPago"];
+                    venta.FormaPago = char.Parse(datos.Lector["formaPago"].ToString());
                     venta.Envio = (bool)datos.Lector["envio"];
                     venta.Importe = (decimal)datos.Lector["importe"];
                     venta.Cantidad = (int)datos.Lector["cantidad"];
                     venta.Fecha = (DateTime)datos.Lector["fecha"];
-                    //venta.Estado = (char)datos.Lector["estado"];
-                    //venta.Estado = (string)datos.Lector["estado"];
+                    venta.Estado = char.Parse(datos.Lector["estado"].ToString());
                     venta.DomicilioEntrega = new Direccion();
                     if(!(datos.Lector["calle"] is DBNull))
                         venta.DomicilioEntrega.Calle = (string)datos.Lector["calle"];
@@ -98,28 +96,24 @@ namespace Negocio
             }
         }
 
-        public void seleccionaVenta (Venta seleccion)
+        public void seleccionaVenta (Venta venta)
         {
-            Venta venta = new Venta();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
                 datos.setearProcedimiento("sp_seleccionarVenta");
-                datos.setearParametro("@idVenta", seleccion.IDVenta);
+                datos.setearParametro("@idVenta", venta.IDVenta);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    //venta.IDUsuario = idUsuario;
-                    //venta.FormaPago = (char)datos.Lector["formaPago"];
-                    //venta.FormaPago = (string)datos.Lector["formaPago"];
+                    venta.FormaPago = char.Parse(datos.Lector["formaPago"].ToString());
                     venta.Envio = (bool)datos.Lector["envio"];
                     venta.Importe = (decimal)datos.Lector["importe"];
                     venta.Cantidad = (int)datos.Lector["cantidad"];
                     venta.Fecha = (DateTime)datos.Lector["fecha"];
-                    //venta.Estado = (char)datos.Lector["estado"];
-                    //venta.Estado = (string)datos.Lector["estado"];
+                    venta.Estado = char.Parse(datos.Lector["estado"].ToString());
                     venta.DomicilioEntrega = new Direccion();
                     if (!(datos.Lector["calle"] is DBNull))
                         venta.DomicilioEntrega.Calle = (string)datos.Lector["calle"];
@@ -163,12 +157,14 @@ namespace Negocio
                     venta.IDVenta = (int)datos.Lector["idventa"];
                     //venta.FormaPago = (char)datos.Lector["formaPago"];
                     //venta.FormaPago = (string)datos.Lector["formaPago"];
+                    venta.FormaPago = char.Parse(datos.Lector["formaPago"].ToString());
                     venta.Envio = (bool)datos.Lector["envio"];
                     venta.Importe = (decimal)datos.Lector["importe"];
                     venta.Cantidad = (int)datos.Lector["cantidad"];
                     venta.Fecha = (DateTime)datos.Lector["fecha"];
                     //venta.Estado = (char)datos.Lector["estado"];
                     //venta.Estado = (string)datos.Lector["estado"];
+                    venta.Estado = char.Parse(datos.Lector["estado"].ToString());
                     venta.DomicilioEntrega = new Direccion();
                     if (!(datos.Lector["calle"] is DBNull))
                         venta.DomicilioEntrega.Calle = (string)datos.Lector["calle"];
@@ -197,13 +193,13 @@ namespace Negocio
 
         }
 
-        public void EstadoEnvio(int idVenta, char estadoEnvio)
+        public void ModificaEstadoEnvio(int idVenta, char estadoEnvio)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearProcedimiento("sp_estadoEnvio");
+                datos.setearProcedimiento("sp_modificaEstadoEnvio");
                 datos.setearParametro("@estadoEnvio", estadoEnvio);
                 datos.setearParametro("@idVenta", idVenta);
 
@@ -216,7 +212,41 @@ namespace Negocio
             }
         }
 
+        
+        public char ConsultaEstadoEnvio(int idVenta)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_consultaEstadoEnvio");
+                datos.setearParametro("@idVenta", idVenta);
+                datos.ejecutarLectura();
+                
+                char estadoEntrega = 'R';
+                
+                while (datos.Lector.Read())
+                {
+                    estadoEntrega = (char)datos.Lector["estado"];
+                }
+
+            return estadoEntrega;
+            }
+
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
+    
+    
+    
     }
+
+
+
 
 
 }
