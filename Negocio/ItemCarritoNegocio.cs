@@ -66,10 +66,29 @@ namespace Negocio
 
                 throw;
             }
-
-
-
             
+        }
+
+        public void RestarStock(ItemCarrito item)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("sp_restarStock");
+
+                datos.setearParametro("@idItem", item.IDItem);
+                datos.setearParametro("@cantidad", item.Cantidad);
+                
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
     }
 }

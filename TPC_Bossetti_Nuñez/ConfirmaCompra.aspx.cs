@@ -92,6 +92,16 @@ namespace TPC_Bossetti_Nuñez
                     itemc.IDVenta = IDVenta;
 
                     nuevoi.Agregar(itemc);
+
+                    try
+                    {
+                        nuevoi.RestarStock(itemc);
+                    }
+                    catch (Exception)
+                    {
+                        Session.Add("error", "Verifique Stock disponible");
+                        Response.Redirect("Error.aspx");
+                    }
                 }
 
                 Session.Add("IDVenta", IDVenta);
@@ -105,7 +115,6 @@ namespace TPC_Bossetti_Nuñez
                 Session.Add("Error", ex);
                 throw;
             }
-
         }
     }
 }

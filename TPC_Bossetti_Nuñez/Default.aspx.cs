@@ -15,8 +15,9 @@ namespace TPC_Bossetti_Nuñez
         protected void Page_Load(object sender, EventArgs e)
         {
             LibroNegocio negocio = new LibroNegocio();
-            Session.Add("ListaLibro", negocio.listarConSP());
-            ListaLibro = (List<Libro>)Session["ListaLibro"];
+            //Session.Add("ListaLibro", negocio.listarConSP());
+            //ListaLibro = (List<Libro>)Session["ListaLibro"];
+            ListaLibro = negocio.listarConSP();
 
             if (!IsPostBack)
             {
@@ -25,6 +26,7 @@ namespace TPC_Bossetti_Nuñez
             }
 
         }
+
 
         protected void btnAgregarCarrito_Click(object sender, EventArgs e)
         {
@@ -42,7 +44,7 @@ namespace TPC_Bossetti_Nuñez
             NuevoItem.Cantidad = 1;
             NuevoItem.Precio = ItemAgregado.Precio;
 
-            if ((List<ItemCarrito>)Session["ListaCarrito"] != null)
+            /*if ((List<ItemCarrito>)Session["ListaCarrito"] != null)
             {
                 int posItem = BuscarItem(ListaCarrito, NuevoItem);
 
@@ -59,7 +61,21 @@ namespace TPC_Bossetti_Nuñez
             else
             {
                 ListaCarrito.Add(NuevoItem);
+            }*/
+
+
+            int posItem = BuscarItem(ListaCarrito, NuevoItem);
+         
+            if ((List<ItemCarrito>)Session["ListaCarrito"] != null && posItem != -1)
+            {
+                ListaCarrito[posItem].Cantidad++;
+                ListaCarrito[posItem].Precio += NuevoItem.Precio;
             }
+            else
+            {
+                ListaCarrito.Add(NuevoItem);
+            }
+
 
             Session.Add("ListaCarrito", ListaCarrito);
             Response.Redirect("Carrito.aspx", false);

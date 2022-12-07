@@ -210,6 +210,10 @@ namespace Negocio
 
                 throw;
             }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         

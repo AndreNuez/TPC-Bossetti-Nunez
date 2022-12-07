@@ -86,6 +86,15 @@ inner join Generos g on l.IdGenero = g.IdGenero
 GO 
 
 
+--SP quedó sin uso -> Eliminar y eliminar Método listarConStockConSP de LibroNegocio.cs
+create procedure SP_librosListarStock as
+select l.id, l.Titulo, l.Descripcion, l.Autor, l.Editorial, l.Precio, l.Stock, g.IdGenero as Genero_ID, g.Descripcion as Genero_Desc, l.Portada, l.estado 
+from Libros l 
+inner join Generos g on l.IdGenero = g.IdGenero 
+where l.Estado = 1
+and l.Stock > 0
+GO
+
 --TABLAS PARA USUARIOS
 create table usuarios (
 	IdUsuario smallint primary key identity (1,1),
@@ -490,4 +499,27 @@ begin
 	where IDVenta = @idVenta
 end
 
+create procedure sp_restarStock(
+	@idItem int,
+	@cantidad int
+)
+as
+begin
+	declare @stock int
+	select @stock = stock from libros where id = @idItem
+	if (@stock > 0) begin
+		update libros
+		set stock -= @cantidad
+		where id = @idItem
+	end
+	else begin
+		raiserror ('No contamos con stock suficiente', 16, 1)
+	end
+	select @stock = stock from libros where id = @idItem
+	if (@stock = 0) begin
+		update libros
+		set estado = 0
+		where id = @idItem
+	end
+end
 
