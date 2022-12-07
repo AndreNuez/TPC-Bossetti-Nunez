@@ -28,9 +28,7 @@
         <br />
         <%} %>
 
-        <%if (rdbDomicilio.Checked)
-            {%>
-        <%      if (!Direccion)
+        <%if (rdbDomicilio.Checked && !Direccion)
             {%>
         <div>
             <br />
@@ -61,7 +59,6 @@
     </div>
     <br />
     <br />
-    <%} %>
     <%} %>
     <asp:Button CssClass="btn btn-primary" ID="btnConfirmaCompra" runat="server" Text="Confirmar" OnClick="btnConfirmaCompra_Click" />
     <a href="Carrito.aspx" class="btn btn-danger" style="margin-left: 5px">Cancelar</a>

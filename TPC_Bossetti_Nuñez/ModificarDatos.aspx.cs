@@ -21,7 +21,7 @@ namespace TPC_Bossetti_Nuñez
                 Response.Redirect("Error.aspx");
             }
 
-            
+
             Usuario sesion = (Usuario)Session["usuario"];
             string idUsuario = sesion.IDUsuario.ToString();
 
@@ -54,7 +54,7 @@ namespace TPC_Bossetti_Nuñez
                 txtProvincia.Text = precargar.Cliente.Direccion.Provincia;
                 txtCopPostal.Text = precargar.Cliente.Direccion.CodPostal;
             }
-            
+
 
             //2da PRUEBA 
             /**
@@ -163,7 +163,16 @@ namespace TPC_Bossetti_Nuñez
             modificar.Estado = sesion.Estado;
             negocio.modificarConSP(modificar);
 
-            Response.Redirect("Default.aspx", false);
+            if (Session["CantidadCarrito"] != null)
+            {
+                Response.Redirect("ConfirmaCompra.aspx", false);
+                Session.Add("usuario", modificar);
+            }
+            else
+            {
+                Response.Redirect("Default.aspx", false);
+            }
+
         }
 
         protected void btnModificarPass_Click(object sender, EventArgs e)

@@ -17,10 +17,10 @@ namespace TPC_Bossetti_Nuñez
             Usuario usuario = new Usuario();
             usuario = (Usuario)Session["usuario"];
 
-            Direccion = true;
-
             if (rdbDomicilio.Checked)
             {
+                Direccion = true;
+
                 if (!string.IsNullOrEmpty(usuario.Cliente.Direccion.Calle))
                 {
                     lblCalle.Text = usuario.Cliente.Direccion.Calle.ToString();
