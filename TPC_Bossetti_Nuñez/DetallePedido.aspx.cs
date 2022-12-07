@@ -23,7 +23,34 @@ namespace TPC_Bossetti_Nuñez
 
             dgvItems.DataSource = itemNegocio.Listar(int.Parse(Session["idVenta"].ToString()));
             dgvItems.DataBind();
+
+            if(Seguridad.esAdmin(Session["usuario"]) != TipoUsuario.ADMIN)
+            {
+                rdbPendiente.Enabled = false;
+                rdbEnPreparacion.Enabled = false;
+                rdbEnviado.Enabled = false;
+                rdbEntregado.Enabled = false;
             
+            }
+            
+
+            
+        }
+
+        protected void btnRegresar_Click(object sender, EventArgs e)
+        {
+            char estadoEnvio = 'R';
+
+            if (rdbEnPreparacion.Checked)
+                estadoEnvio = 'P';
+            else if (rdbEnviado.Checked)
+                estadoEnvio = 'E';
+            else if (rdbEntregado.Checked)
+                estadoEnvio = 'C';
+
+            VentaNegocio negocio = new VentaNegocio();
+            negocio.EstadoEnvio(int.Parse(Session["idVenta"].ToString()), estadoEnvio);
+            Response.Redirect("PrincipalAdmin.aspx");
         }
     }
 }

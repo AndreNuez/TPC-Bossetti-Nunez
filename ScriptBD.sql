@@ -397,23 +397,43 @@ create procedure sp_listarVentas(
 )
 as
 begin
-	select 
-		idventa,
-		FormaPago,
-		envio,
-		importe,
-		cantidad,
-		fecha,
-		estado,
-		calle,
-		numero,
-		piso,
-		depto,
-		codPostal,
-		Localidad,
-		provincia
-	from Ventas
-	where @idUsuario = idUsuario
+	if(@idUsuario is null) begin
+		select 
+			idventa,
+			FormaPago,
+			envio,
+			importe,
+			cantidad,
+			fecha,
+			estado,
+			calle,
+			numero,
+			piso,
+			depto,
+			codPostal,
+			Localidad,
+			provincia
+		from Ventas
+	end
+	else begin
+		select 
+			idventa,
+			FormaPago,
+			envio,
+			importe,
+			cantidad,
+			fecha,
+			estado,
+			calle,
+			numero,
+			piso,
+			depto,
+			codPostal,
+			Localidad,
+			provincia
+		from Ventas
+		where @idUsuario = idUsuario
+	end
 end
 GO
 
@@ -453,4 +473,16 @@ begin
 		provincia
 	from Ventas
 	where @idVenta = IdVenta
+end
+
+
+create procedure sp_estadoEnvio(
+	@estadoEnvio char,
+	@idVenta int
+)
+as
+begin
+	update ventas
+	set estado = @estadoEnvio
+	where IDVenta = @idVenta
 end

@@ -20,3 +20,8 @@ Configurar Pantalla Detalle Pedido -> Cliente puede ver GridView de los items de
 No puedo castear de la DB a Char en C# -> System.InvalidCastException: 'Specified cast is not valid.'
 
 Class Carrito está para borrar... ?
+
+Creo que no debería estar la Pantalla Carrito en la condición del Evento Page_Load y el resto que necesiten que el User tenga Sesión Activa
+
+No te escribe el nombre en el Label en algunas páginas
+

@@ -4,27 +4,28 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Negocio;
 using Dominio;
+using Negocio;
 
 namespace TPC_Bossetti_Nuñez
 {
-    public partial class Pedido : System.Web.UI.Page
+    public partial class AdminCompras : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Usuario user = (Usuario)Session["usuario"];
+            Usuario cliente = new Usuario();
             VentaNegocio pedido = new VentaNegocio();
-            dgvPedidos.DataSource = pedido.ListarVentasCliente(user.IDUsuario);
+            dgvPedidos.DataSource = pedido.ListarVentas();
             dgvPedidos.DataBind();
         }
 
         protected void dgvPedidos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Session.Add("idVenta", dgvPedidos.SelectedDataKey.Value.ToString());
             string idVenta = dgvPedidos.SelectedDataKey.Value.ToString();
             Session.Add("idVenta", idVenta);
             Response.Redirect("DetallePedido.aspx");
         }
+
+
     }
 }
