@@ -11,18 +11,48 @@ namespace TPC_Bossetti_Nuñez
 {
     public partial class DetallePedido : System.Web.UI.Page
     {
+        public bool Direccion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             Venta venta = new Venta();
             VentaNegocio ventaNegocio = new VentaNegocio();
             //ItemCarrito items = new ItemCarrito();
             ItemCarritoNegocio itemNegocio = new ItemCarritoNegocio();
+            Direccion = true;
 
             venta.IDVenta = int.Parse(Session["idVenta"].ToString());
             ventaNegocio.seleccionaVenta(venta);
 
+            idventa.InnerHtml = "Detalle Pedido #" + venta.IDVenta;
+
             dgvItems.DataSource = itemNegocio.Listar(int.Parse(Session["idVenta"].ToString()));
             dgvItems.DataBind();
+
+            lblFechaPedido.Text = venta.Fecha.ToString();
+            lblCantidad.Text = venta.Cantidad.ToString();
+            lblFormaPago.Text = venta.FormaPago == 'E' ? "Efectivo" : "Mercado Pago";
+            lblTotal.Text = venta.Importe.ToString();
+
+            if (!string.IsNullOrEmpty(venta.DomicilioEntrega.Calle))
+            {
+                lblCalle.Text = venta.DomicilioEntrega.Calle.ToString();
+                lblNumero.Text = venta.DomicilioEntrega.Numero.ToString();
+
+                if (!string.IsNullOrEmpty(venta.DomicilioEntrega.Piso))
+                    lblPiso.Text = venta.DomicilioEntrega.Piso.ToString();
+
+                if (!string.IsNullOrEmpty(venta.DomicilioEntrega.Depto))
+                    lblDepto.Text = venta.DomicilioEntrega.Depto.ToString();
+
+                lblLocalidad.Text = venta.DomicilioEntrega.Localidad.ToString();
+                lblProvincia.Text = "  " + venta.DomicilioEntrega.Localidad.ToString();
+                lblCP.Text = "CP " + venta.DomicilioEntrega.CodPostal.ToString();
+            }
+            else
+            {
+                Direccion = false;
+            }
+
 
             //if(Seguridad.esAdmin(Session["usuario"]) != TipoUsuario.ADMIN)
             //{

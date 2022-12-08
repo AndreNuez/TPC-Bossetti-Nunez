@@ -23,7 +23,6 @@ create table Libros (
 	)
 go
 
-
 --PROCEDIMIENTOS PARA LIBROS
 create procedure SP_librosListar as
 select l.id, l.Titulo, l.Descripcion, l.Autor, l.Editorial, l.Precio, l.Stock, g.IdGenero as Genero_ID, g.Descripcion as Genero_Desc, l.Portada, l.estado 
@@ -325,12 +324,14 @@ where u.IdUsuario = @idUsuario
 end
 go
 
-
-create procedure sp_ClienteEliminarFisico (
+--Modificar porque tira error
+alter procedure sp_ClienteEliminarFisico (
 	@idUsuario smallint
 )
 as
 begin
+	delete from ventas 
+	where IDUsuario = @idUsuario
 	delete from datos_usuario
 	where IdUsuario = @idUsuario
 
@@ -403,6 +404,8 @@ AS
 INSERT INTO ItemCarrito 
 VALUES (@IDItem,@NombreItem,@Cantidad,@Precio,@IDVenta)
 GO
+
+
 
 create procedure sp_listarVentas(
 	@idUsuario smallint
@@ -486,7 +489,7 @@ begin
 	from Ventas
 	where @idVenta = IdVenta
 end
-
+GO
 
 create procedure sp_modificaEstadoEnvio(
 	@estadoEnvio char,
@@ -498,8 +501,9 @@ begin
 	set estado = @estadoEnvio
 	where IDVenta = @idVenta
 end
+GO
 
-create procedure sp_restarStock(
+CREATE procedure sp_restarStock(
 	@idItem int,
 	@cantidad int
 )
@@ -507,19 +511,25 @@ as
 begin
 	declare @stock int
 	select @stock = stock from libros where id = @idItem
-	if (@stock > 0) begin
+	BEGIN TRY
+	if (@stock >= @cantidad) begin
 		update libros
 		set stock -= @cantidad
 		where id = @idItem
 	end
-	else begin
-		raiserror ('No contamos con stock suficiente', 16, 1)
-	end
+	
 	select @stock = stock from libros where id = @idItem
+
 	if (@stock = 0) begin
 		update libros
 		set estado = 0
 		where id = @idItem
 	end
-end
 
+	END TRY
+	BEGIN CATCH
+		raiserror ('No contamos con stock suficiente', 16, 1)
+	END CATCH
+	
+end
+GO 

@@ -26,5 +26,13 @@ namespace TPC_Bossetti_Nuñez
             Session.Add("idVenta", idVenta);
             Response.Redirect("DetallePedido.aspx");
         }
+
+        protected void btnRegresar_Click(object sender, EventArgs e)
+        {
+            if (Seguridad.esAdmin(Session["usuario"]) != TipoUsuario.ADMIN)
+                Response.Redirect("PrincipalCliente.aspx", false);
+            else
+                Response.Redirect("PrincipalAdmin.aspx", false);
+        }
     }
 }

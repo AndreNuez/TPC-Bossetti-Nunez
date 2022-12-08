@@ -25,20 +25,20 @@
                             </li>
 
                             <%if (Negocio.Seguridad.sesionActiva(Session["usuario"]))
-                              { %>
+                                { %>
 
-                                <%if (Negocio.Seguridad.esAdmin(Session["usuario"]) == Dominio.TipoUsuario.ADMIN)
-                                  { %>
-                                        <li class="nav-item">
-                                            <a class="btn btn-primary" href="PrincipAladmin.aspx">Menú</a>
-                                        </li>
-                                <%}
-                                  else
-                                  {%>
-                                        <li class="nav-item">
-                                            <a class="btn btn-primary" href="PrincipalCliente.aspx">Menú</a>
-                                        </li>
-                               <% } %>
+                            <%if (Negocio.Seguridad.esAdmin(Session["usuario"]) == Dominio.TipoUsuario.ADMIN)
+                                { %>
+                            <li class="nav-item">
+                                <a class="btn btn-primary" href="PrincipAladmin.aspx">Menú</a>
+                            </li>
+                            <%}
+                                else
+                                {%>
+                            <li class="nav-item">
+                                <a class="btn btn-primary" href="PrincipalCliente.aspx">Menú</a>
+                            </li>
+                            <% } %>
 
                             <%} %>
                         </ul>
@@ -47,17 +47,17 @@
                         </div>
                         <%if (!Negocio.Seguridad.sesionActiva(Session["usuario"]))
                             { %>
-                                <div class="text-end">
-                                    <a class="btn btn-primary" style="margin: 5px" href="LogIn.aspx">LogIn</a>
-                                </div>
-                                <div class="text-end">
-                                    <a class="btn btn-secondary" href="SignUp.aspx">Registrarse</a>
-                                </div>
+                        <div class="text-end">
+                            <a class="btn btn-primary" style="margin: 5px" href="LogIn.aspx">LogIn</a>
+                        </div>
+                        <div class="text-end">
+                            <a class="btn btn-secondary" href="SignUp.aspx">Registrarse</a>
+                        </div>
                         <%}
                             else
                             {%>
-                        <asp:Label Text="text" runat="server" ID="lblUser"/>
-                        <asp:Button Text="Salir" runat="server" ID="btnSalir" OnClick="btnSalir_Click" CssClass="btn btn-danger"/>
+                        <%--                        <asp:Label Text="text" runat="server" ID="lblUser"/>--%>
+                        <asp:Button Text="Salir" runat="server" ID="btnSalir" OnClick="btnSalir_Click" CssClass="btn btn-danger" />
                         <%} %>
                     </div>
                 </div>

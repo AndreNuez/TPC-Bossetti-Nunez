@@ -103,5 +103,13 @@ namespace TPC_Bossetti_Nuñez
             else
                 Response.Redirect("LogIn.aspx", false);
         }
+
+        protected void btnVaciar_Click(object sender, EventArgs e)
+        {
+            Session.Remove("ListaCarrito");
+            CantidadCarrito = 0;
+            Session.Add("CantidadCarrito", CantidadCarrito);
+            Response.Redirect("Default.aspx", false);
+        }
     }
 }
