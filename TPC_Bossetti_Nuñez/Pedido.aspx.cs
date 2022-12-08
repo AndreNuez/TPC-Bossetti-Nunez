@@ -34,5 +34,11 @@ namespace TPC_Bossetti_Nuñez
             else
                 Response.Redirect("PrincipalAdmin.aspx", false);
         }
+
+        protected void dgvPedidos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvPedidos.PageIndex = e.NewPageIndex;
+            dgvPedidos.DataBind();
+        }
     }
 }

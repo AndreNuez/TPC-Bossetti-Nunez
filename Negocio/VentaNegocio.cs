@@ -155,15 +155,11 @@ namespace Negocio
                     Venta venta = new Venta();
                     //venta.IDUsuario = idUsuario;
                     venta.IDVenta = (int)datos.Lector["idventa"];
-                    //venta.FormaPago = (char)datos.Lector["formaPago"];
-                    //venta.FormaPago = (string)datos.Lector["formaPago"];
                     venta.FormaPago = char.Parse(datos.Lector["formaPago"].ToString());
                     venta.Envio = (bool)datos.Lector["envio"];
                     venta.Importe = (decimal)datos.Lector["importe"];
                     venta.Cantidad = (int)datos.Lector["cantidad"];
                     venta.Fecha = (DateTime)datos.Lector["fecha"];
-                    //venta.Estado = (char)datos.Lector["estado"];
-                    //venta.Estado = (string)datos.Lector["estado"];
                     venta.Estado = char.Parse(datos.Lector["estado"].ToString());
                     venta.DomicilioEntrega = new Direccion();
                     if (!(datos.Lector["calle"] is DBNull))

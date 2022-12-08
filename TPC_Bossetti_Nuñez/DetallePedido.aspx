@@ -56,7 +56,13 @@
             <div class="col-6">
                 <h5>Detalle Productos</h5>
                 <div>
-                    <asp:GridView runat="server" ID="dgvItems"></asp:GridView>
+                    <asp:GridView runat="server" ID="dgvItems" CssClass="table table-striped" DataKeyNames="IDItem" AutoGenerateColumns="false">
+                        <Columns>
+                            <asp:BoundField HeaderText="Cantidad" DataField="cantidad" />
+                            <asp:BoundField HeaderText="Titulo" DataField="NombreItem" />
+                            <asp:BoundField HeaderText="Importe $" DataField="precio" />
+                        </Columns>
+                    </asp:GridView>
                 </div>
                 <br />
             </div>
