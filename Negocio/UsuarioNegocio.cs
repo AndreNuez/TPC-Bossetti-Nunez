@@ -405,5 +405,29 @@ namespace Negocio
                 throw ex;
             }
         }
+        
+        public void modificarPass(int idUsuario, string pass)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_modificarPass");
+                datos.setearParametro("@idUsuario", idUsuario);
+                datos.setearParametro("@pass", pass);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+    
     }
+
 }
