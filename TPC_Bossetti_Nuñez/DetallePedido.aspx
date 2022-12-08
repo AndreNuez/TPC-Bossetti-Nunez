@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
-        <h3>Detalle Pedido #IDVenta</h3>
+        <h3 runat="server" id="idventa">Detalle Pedido #IDVenta</h3>
         <div class="row">
 
             <div class="col-6">
@@ -12,35 +12,42 @@
                 <h5>Información general</h5>
                 <div>
                     <label for="lblFechaPedido" class="form-label" style="margin-top: 10px">Realizado el:</label>
-                    <asp:Label Text="00/00/00" ID="lblFechaPedido" runat="server" />
+                    <asp:Label Text="" ID="lblFechaPedido" runat="server" />
                 </div>
                 <div>
                     <label for="lblCantidad" class="form-label">Cantidad de Productos:</label>
-                    <asp:Label Text="Cant" ID="lblCantidad" runat="server" />
+                    <asp:Label Text="" ID="lblCantidad" runat="server" />
                 </div>
                 <div>
                     <label for="lblFormaPago" class="form-label">Forma de Pago:</label>
-                    <asp:Label Text="Efectivo - Tarjeta" ID="lblFormaPago" runat="server" />
+                    <asp:Label Text="" ID="lblFormaPago" runat="server" />
                 </div>
                 <div>
                     <label for="lblTotal" class="form-label">Total abonado $:</label>
-                    <asp:Label Text="100.00" ID="lblTotal" runat="server" />
+                    <asp:Label Text="" ID="lblTotal" runat="server" />
                 </div>
             </div>
 
             <div class="col-6">
+                <%if (Direccion)
+                    {%>
                 <br />
                 <h5>Dirección de Envío</h5>
                 <div>
-                    <asp:Label CssClass="form-label" Style="margin-top: 10px" Text="Calle + Altura + Piso + Depto" ID="lblDireccion1" runat="server" />
+                    <asp:Label CssClass="form-label" Style="margin-top: 10px" Text="" ID="lblCalle" runat="server" />
+                    <asp:Label CssClass="form-label" Text="" ID="lblNumero" runat="server" />
+                    <asp:Label CssClass="form-label" Text="" ID="lblPiso" runat="server" />
+                    <asp:Label CssClass="form-label" Text="" ID="lblDepto" runat="server" />
                 </div>
                 <div>
-                    <asp:Label CssClass="form-label" Text="(CP) + Localidad" ID="lblDireccion2" runat="server" />
+                    <asp:Label CssClass="form-label" Text="" ID="lblLocalidad" runat="server" />
+                    <asp:Label CssClass="form-label" Text="" ID="lblCP" runat="server" />
                 </div>
                 <div>
                     <asp:Label CssClass="form-label" Text="Provincia" ID="lblProvincia" runat="server" />
                 </div>
                 <br />
+                <%} %>
             </div>
         </div>
         <hr />
@@ -65,17 +72,20 @@
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
                 </div>
-                <%} else if(lblEstadoPedido.Text == "En Preparación")
+                <%}
+                    else if (lblEstadoPedido.Text == "En Preparación")
                     { %>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">50%</div>
                 </div>
-                <%} else if(lblEstadoPedido.Text == "Enviado")
+                <%}
+                    else if (lblEstadoPedido.Text == "Enviado")
                     { %>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
                 </div>
-                <%} else if(lblEstadoPedido.Text == "Entregado")
+                <%}
+                    else if (lblEstadoPedido.Text == "Entregado")
                     { %>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">100%</div>
@@ -84,7 +94,11 @@
                 <div>
                     <%if (Negocio.Seguridad.esAdmin(Session["usuario"]) != Dominio.TipoUsuario.ADMIN)
                         { %>
-                    <a href="PrincipalCliente.aspx" class="btn btn-secondary">Regresar</a>
+                    <br />
+                    <div>
+                        <a href="PrincipalCliente.aspx" class="btn btn-secondary">Regresar</a>
+                    </div>
+
                     <%}
                         else
                         {%>
@@ -95,7 +109,10 @@
                         <asp:RadioButton Text="Enviado" runat="server" ID="rdbEnviado" GroupName="EstadoEntrega" />
                         <asp:RadioButton Text="Entregado" runat="server" ID="rdbEntregado" GroupName="EstadoEntrega" />
                     </div>
-                    <asp:Button Text="Regresar ADMIN" runat="server" ID="btnRegresar" OnClick="btnRegresar_Click" />
+                    <br />
+                    <div>
+                        <asp:Button Text="Regresar ADMIN" runat="server" ID="btnRegresar" OnClick="btnRegresar_Click" />
+                    </div>
                     <%} %>
                 </div>
             </div>

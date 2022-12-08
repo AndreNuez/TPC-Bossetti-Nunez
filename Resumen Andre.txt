@@ -12,6 +12,11 @@ Pass: tpcuatrimestral2022
 -Modifique tabla datos_usuario porque si guardaba DNI como vacío, cuando había otro
 cliente con DNI vacío tiraba excepción.
 
+07/12/2022
+-Modifiqué sp_restarStock
+if (@stock >= @cantidad) begin
+(estaba en stock > 0, pero lo que interesa es saber si hay stock suficiente)
+
 TAREAS A REALIZAR:
 -Agregar enlace para redireccionar pantalla compra exitosa. -- LISTO!!
 -Configurar para que si no tiene dirección cargada, muestre solo el btn agregar direccion, 
