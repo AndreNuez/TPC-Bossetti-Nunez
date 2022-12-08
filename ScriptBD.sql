@@ -533,3 +533,16 @@ begin
 	
 end
 GO 
+
+
+create procedure sp_modificarPass(
+	@idUsuario int,
+	@pass varchar(100)
+)
+as
+begin
+	update usuarios
+	set Contraseña = @pass
+	where IdUsuario = @idUsuario
+end
+go
