@@ -88,7 +88,11 @@ namespace TPC_Bossetti_Nuñez
 
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
-            char estadoEnvio = 'R';
+            Venta venta = new Venta();
+            VentaNegocio ventaNegocio = new VentaNegocio();
+            venta.IDVenta = int.Parse(Session["idVenta"].ToString());
+            ventaNegocio.seleccionaVenta(venta);
+            char estadoEnvio = char.Parse(venta.Estado.ToString());
 
             if (rdbEnPreparacion.Checked)
                 estadoEnvio = 'P';
@@ -99,7 +103,7 @@ namespace TPC_Bossetti_Nuñez
 
             VentaNegocio negocio = new VentaNegocio();
             negocio.ModificaEstadoEnvio(int.Parse(Session["idVenta"].ToString()), estadoEnvio);
-            Response.Redirect("PrincipalAdmin.aspx");
+            Response.Redirect("AdminCompras.aspx");
         }
     }
 }
