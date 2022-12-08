@@ -21,7 +21,7 @@ namespace TPC_Bossetti_Nuñez
                 else
                 {
                     Usuario user = (Usuario)Session["usuario"];
-                    lblUser.Text = user.Nombres + user.Apellidos;
+                    //lblUser.Text = user.Nombres + user.Apellidos;
                 }
             }
 

@@ -77,12 +77,13 @@ namespace TPC_Bossetti_Nuñez
                 nueva.DomicilioEntrega.Provincia = usuario.Cliente.Direccion.Provincia;
 
                 List<ItemCarrito> ListaCarrito = (List<ItemCarrito>)Session["ListaCarrito"];
-                string check = ChequearStock(ListaCarrito);
+                bool check = ChequearStock(ListaCarrito);
                 
                 //Chequeamos stock ANTES de generar Venta
-                if (check != "ok")
+                if (!check)
                 {
                     Session.Add("Error", "No hay stock disponible de " + check +"Modifique la cantidad");
+                    Response.Redirect("Error.aspx", false);
                 }
 
                 //Si check está en ok, agregamos Venta y procedemos a registrar items y restar stock
@@ -113,15 +114,14 @@ namespace TPC_Bossetti_Nuñez
             catch (Exception ex)
             {
                 Session.Add("Error", ex.ToString());
-                Response.Redirect("Error.aspx");
+                Response.Redirect("Error.aspx", false);
             }
         }
 
-        protected string ChequearStock(List<ItemCarrito> ListaCarrito)
+        protected bool ChequearStock(List<ItemCarrito> ListaCarrito)
         {
             List<Libro> ListaLibro = (List<Libro>)Session["ListaLibro"];
             Libro Libro = new Libro();
-            string ok = "ok";
             
             foreach (ItemCarrito item in ListaCarrito)
             {
@@ -129,11 +129,11 @@ namespace TPC_Bossetti_Nuñez
 
                 if(Libro.Stock < item.Cantidad)
                 {
-                    return item.NombreItem;
+                    return false;
                 }
             }
 
-            return ok;
+            return true;
         }
 
     }

@@ -324,12 +324,14 @@ where u.IdUsuario = @idUsuario
 end
 go
 
-
-create procedure sp_ClienteEliminarFisico (
+--Modificar porque tira error
+alter procedure sp_ClienteEliminarFisico (
 	@idUsuario smallint
 )
 as
 begin
+	delete from ventas 
+	where IDUsuario = @idUsuario
 	delete from datos_usuario
 	where IdUsuario = @idUsuario
 
@@ -501,7 +503,7 @@ begin
 end
 GO
 
-create procedure sp_restarStock(
+CREATE procedure sp_restarStock(
 	@idItem int,
 	@cantidad int
 )
@@ -509,19 +511,25 @@ as
 begin
 	declare @stock int
 	select @stock = stock from libros where id = @idItem
+	BEGIN TRY
 	if (@stock >= @cantidad) begin
 		update libros
 		set stock -= @cantidad
 		where id = @idItem
 	end
-	else begin
-		raiserror ('No contamos con stock suficiente', 16, 1)
-	end
+	
 	select @stock = stock from libros where id = @idItem
+
 	if (@stock = 0) begin
 		update libros
 		set estado = 0
 		where id = @idItem
 	end
+
+	END TRY
+	BEGIN CATCH
+		raiserror ('No contamos con stock suficiente', 16, 1)
+	END CATCH
+	
 end
 GO 

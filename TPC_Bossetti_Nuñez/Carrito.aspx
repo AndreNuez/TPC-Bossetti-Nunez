@@ -36,6 +36,11 @@
         <asp:Label ID="lblTotalCarrito" runat="server" />
     </div>
     <div class="text-end">
+        <asp:Button Text="Vaciar Carrito" CssClass="btn btn-warning" runat="server" Id="btnVaciar" OnClick="btnVaciar_Click" />
+    </div>
+    <br />
+    <br />
+    <div class="text-end">
         <asp:Button Text="Comprar Carrito" CssClass="btn btn-primary" runat="server" Id="btnComprarCarrito" OnClick="btnComprarCarrito_Click"/>
     </div>
     <div>

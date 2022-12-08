@@ -42,7 +42,7 @@ namespace TPC_Bossetti_Nuñez
                     usuario.Contraseña = txtConfirmarPass.Text;
                     negocio.modificarConSP(usuario);
                     //Response.Redirect("SignUp.aspx?idUsuario=" + idUsuario);
-                    Response.Redirect("Default.aspx");
+                    Response.Redirect("Default.aspx", false);
                 }
                 else
                 {
