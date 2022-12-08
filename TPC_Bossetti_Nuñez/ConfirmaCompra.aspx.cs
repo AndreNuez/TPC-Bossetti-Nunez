@@ -15,11 +15,12 @@ namespace TPC_Bossetti_Nuñez
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuario usuario = new Usuario();
-            usuario = (Usuario)Session["usuario"];
-            Direccion = true;
+            usuario = (Usuario)Session["usuario"];        
 
             if (rdbDomicilio.Checked)
             {
+                Direccion = true;
+
                 if (!string.IsNullOrEmpty(usuario.Cliente.Direccion.Calle))
                 {
                     lblCalle.Text = usuario.Cliente.Direccion.Calle.ToString();
@@ -77,38 +78,40 @@ namespace TPC_Bossetti_Nuñez
                 nueva.DomicilioEntrega.Provincia = usuario.Cliente.Direccion.Provincia;
 
                 List<ItemCarrito> ListaCarrito = (List<ItemCarrito>)Session["ListaCarrito"];
-                bool check = ChequearStock(ListaCarrito);
+                string check = ChequearStock(ListaCarrito);
                 
                 //Chequeamos stock ANTES de generar Venta
-                if (!check)
+                if (check != "ok")
                 {
-                    Session.Add("Error", "No hay stock disponible de " + check +"Modifique la cantidad");
+                    Session.Add("Error", "No contamos con la cantidad seleccionada de " + check +". Por favor, modifique la cantidad.");
                     Response.Redirect("Error.aspx", false);
                 }
-
-                //Si check está en ok, agregamos Venta y procedemos a registrar items y restar stock
-
-                int IDVenta = negocio.Agregar(nueva);
-
-                ItemCarrito itemc = new ItemCarrito();
-                ItemCarritoNegocio nuevoi = new ItemCarritoNegocio();
-               
-                foreach (ItemCarrito item in ListaCarrito)
+                else
                 {
-                    itemc.IDItem = item.IDItem;
-                    itemc.NombreItem = item.NombreItem;
-                    itemc.Cantidad = item.Cantidad;
-                    itemc.Precio = item.Precio;
-                    itemc.IDVenta = IDVenta;
+                    //Si check está en ok, agregamos Venta y procedemos a registrar items y restar stock
+                    
+                    int IDVenta = negocio.Agregar(nueva);
 
-                    nuevoi.Agregar(itemc);
-                    nuevoi.RestarStock(itemc);
+                    ItemCarrito itemc = new ItemCarrito();
+                    ItemCarritoNegocio nuevoi = new ItemCarritoNegocio();
+
+                    foreach (ItemCarrito item in ListaCarrito)
+                    {
+                        itemc.IDItem = item.IDItem;
+                        itemc.NombreItem = item.NombreItem;
+                        itemc.Cantidad = item.Cantidad;
+                        itemc.Precio = item.Precio;
+                        itemc.IDVenta = IDVenta;
+
+                        nuevoi.Agregar(itemc);
+                        nuevoi.RestarStock(itemc);
+                    }
+
+                    Session.Add("IDVenta", IDVenta);
+                    Session.Remove("CantidadCarrito");
+
+                    Response.Redirect("CompraRealizada.aspx", false);
                 }
-
-                Session.Add("IDVenta", IDVenta);
-                Session.Remove("CantidadCarrito");
-
-                Response.Redirect("CompraRealizada.aspx", false);
 
             }
             catch (Exception ex)
@@ -118,7 +121,7 @@ namespace TPC_Bossetti_Nuñez
             }
         }
 
-        protected bool ChequearStock(List<ItemCarrito> ListaCarrito)
+        protected string ChequearStock(List<ItemCarrito> ListaCarrito)
         {
             List<Libro> ListaLibro = (List<Libro>)Session["ListaLibro"];
             Libro Libro = new Libro();
@@ -129,11 +132,11 @@ namespace TPC_Bossetti_Nuñez
 
                 if(Libro.Stock < item.Cantidad)
                 {
-                    return false;
+                    return item.NombreItem;
                 }
             }
 
-            return true;
+            return "ok";
         }
 
     }
