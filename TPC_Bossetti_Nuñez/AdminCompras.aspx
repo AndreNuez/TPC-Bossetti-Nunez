@@ -12,8 +12,7 @@
         OnPageIndexChanging="dgvPedidos_PageIndexChanging"
         AllowPaging="true" PageSize="10">
         <Columns>
-            <%--<asp:BoundField HeaderText="Id Venta" DataField="IDVenta" />--%>
-            <%--<asp:BoundField HeaderText="ID Cliente" DataField="IDUsuario" />--%>
+            <asp:BoundField HeaderText="Fecha" DataField="Fecha" />
             <asp:BoundField HeaderText="Cant. Productos" DataField="cantidad" />
             <asp:BoundField HeaderText="$ Total Platita" DataField="importe" />
             <asp:BoundField HeaderText="Estado" DataField="estado" />

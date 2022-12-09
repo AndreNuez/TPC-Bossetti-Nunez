@@ -27,6 +27,8 @@ namespace TPC_Bossetti_Nuñez
             dgvItems.DataSource = itemNegocio.Listar(int.Parse(Session["idVenta"].ToString()));
             dgvItems.DataBind();
 
+            //lblCliente.Text = 
+
             lblFechaPedido.Text = venta.Fecha.ToString();
             lblCantidad.Text = venta.Cantidad.ToString();
             lblFormaPago.Text = venta.FormaPago == 'E' ? "Efectivo" : "Mercado Pago";

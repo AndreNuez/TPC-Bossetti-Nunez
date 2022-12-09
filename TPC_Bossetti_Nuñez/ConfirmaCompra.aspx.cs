@@ -110,6 +110,11 @@ namespace TPC_Bossetti_Nuñez
                     Session.Add("IDVenta", IDVenta);
                     Session.Remove("CantidadCarrito");
 
+                    //Envio de mail
+                    EmailService emailService = new EmailService();
+                    emailService.ArmarCorreo(usuario.Mail, "Confirmación de compra", "Gracias por comprar en TuLibro.com. Podrás ver todos los detalles de tu compra desde el menú Mis Pedidos.");
+                    emailService.EnviarEmail();
+
                     Response.Redirect("CompraRealizada.aspx", false);
                 }
 

@@ -6,10 +6,16 @@
     <div class="row">
         <h3 runat="server" id="idventa">Detalle Pedido #IDVenta</h3>
         <div class="row">
-
             <div class="col-6">
                 <br />
                 <h5>Información general</h5>
+                <%--<%if (Negocio.Seguridad.esAdmin(Session["usuario"]) = Dominio.TipoUsuario.ADMIN)
+                    { %>
+                <div>
+                    <label for="lblCliente" class="form-label" style="margin-top: 10px">Cliente:</label>
+                    <asp:Label Text="" runat="server" ID="lblCliente" />
+                </div>
+                <%} %>--%>
                 <div>
                     <label for="lblFechaPedido" class="form-label" style="margin-top: 10px">Realizado el:</label>
                     <asp:Label Text="" ID="lblFechaPedido" runat="server" />
@@ -102,7 +108,7 @@
                         { %>
                     <br />
                     <div>
-                        <a href="PrincipalCliente.aspx" class="btn btn-secondary">Regresar</a>
+                        <a href="Pedido.aspx" class="btn btn-secondary">Regresar</a>
                     </div>
 
                     <%}
@@ -117,7 +123,7 @@
                     </div>
                     <br />
                     <div>
-                        <asp:Button Text="Regresar ADMIN" runat="server" ID="btnRegresar" OnClick="btnRegresar_Click" />
+                        <asp:Button Text="Regresar" runat="server" ID="btnRegresar" OnClick="btnRegresar_Click" CssClass="btn btn-secondary" />
                     </div>
                     <%} %>
                 </div>
