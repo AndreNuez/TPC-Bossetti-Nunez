@@ -57,8 +57,8 @@ namespace TPC_Bossetti_Nuñez
             catch (Exception ex)
             {
 
-                Session.Add("Error", ex);
-                throw;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
 
 
@@ -92,12 +92,12 @@ namespace TPC_Bossetti_Nuñez
                     negocio.Agregar(nuevo);
 
 
-                Response.Redirect("Default.aspx", false);
+                Response.Redirect("PrincipalAdmin.aspx", false);
             }
             catch (Exception ex)
             {
-                Session.Add("Error", ex);
-                throw;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -125,7 +125,8 @@ namespace TPC_Bossetti_Nuñez
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
 
         }
@@ -144,7 +145,8 @@ namespace TPC_Bossetti_Nuñez
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
             }
         }
 

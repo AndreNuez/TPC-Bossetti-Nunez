@@ -324,19 +324,33 @@ where u.IdUsuario = @idUsuario
 end
 go
 
---Modificar porque tira error
+--Modificar porque tira error -- SOLUCIONADO!!!
 alter procedure sp_ClienteEliminarFisico (
 	@idUsuario smallint
 )
 as
 begin
+BEGIN TRY
+	
+	delete from ItemCarrito
+		from ItemCarrito IC 
+		inner join Ventas V on ic.IDVenta = v.IDVenta
+		where v.IDUsuario = @idUsuario
+
 	delete from ventas 
 	where IDUsuario = @idUsuario
+	
 	delete from datos_usuario
 	where IdUsuario = @idUsuario
-
+	
 	delete from usuarios 
 	where IdUsuario = @idUsuario
+
+END TRY
+BEGIN CATCH
+	ROLLBACK TRANSACTION
+	RAISERROR('No se pudo eliminar usuario', 16,1)
+END CATCH
 end
 go
 

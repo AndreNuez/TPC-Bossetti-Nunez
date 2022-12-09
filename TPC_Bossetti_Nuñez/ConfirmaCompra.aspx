@@ -37,7 +37,7 @@
         </div>
         <%} %>
         
-        <%if (rdbDomicilio.Checked)
+        <%if (rdbDomicilio.Checked && Direccion)
             {%>
         <br />
         <h5>Dirección de envío</h5>

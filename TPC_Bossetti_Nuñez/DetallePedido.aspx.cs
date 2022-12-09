@@ -16,7 +16,6 @@ namespace TPC_Bossetti_Nuñez
         {
             Venta venta = new Venta();
             VentaNegocio ventaNegocio = new VentaNegocio();
-            //ItemCarrito items = new ItemCarrito();
             ItemCarritoNegocio itemNegocio = new ItemCarritoNegocio();
             Direccion = true;
 
@@ -27,6 +26,8 @@ namespace TPC_Bossetti_Nuñez
 
             dgvItems.DataSource = itemNegocio.Listar(int.Parse(Session["idVenta"].ToString()));
             dgvItems.DataBind();
+
+            //lblCliente.Text = 
 
             lblFechaPedido.Text = venta.Fecha.ToString();
             lblCantidad.Text = venta.Cantidad.ToString();
@@ -54,34 +55,21 @@ namespace TPC_Bossetti_Nuñez
             }
 
 
-            //if(Seguridad.esAdmin(Session["usuario"]) != TipoUsuario.ADMIN)
-            //{
-            //    rdbPendiente.Enabled = false;
-            //    rdbEnPreparacion.Enabled = false;
-            //    rdbEnviado.Enabled = false;
-            //    rdbEntregado.Enabled = false;
-            //
-            //}
-
             if (char.Parse(venta.Estado.ToString()) == 'R')
             {
                 lblEstadoPedido.Text = "Pendiente";
-                //rdbPendiente.Checked = true;
             }
             else if (char.Parse(venta.Estado.ToString()) == 'P')
             {
                 lblEstadoPedido.Text = "En Preparación";
-                //rdbEnPreparacion.Checked = true;
             }
             else if (char.Parse(venta.Estado.ToString()) == 'E')
             {
                 lblEstadoPedido.Text = "Enviado";
-                //rdbEnviado.Checked = true;
             }
             else if (char.Parse(venta.Estado.ToString()) == 'C')
             {
                 lblEstadoPedido.Text = "Entregado";
-                //rdbEntregado.Checked = true;
             }
 
         }

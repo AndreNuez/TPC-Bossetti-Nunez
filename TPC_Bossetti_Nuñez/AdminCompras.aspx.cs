@@ -26,6 +26,10 @@ namespace TPC_Bossetti_Nuñez
             Response.Redirect("DetallePedido.aspx");
         }
 
-
+        protected void dgvPedidos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvPedidos.PageIndex = e.NewPageIndex;
+            dgvPedidos.DataBind();
+        }
     }
 }
