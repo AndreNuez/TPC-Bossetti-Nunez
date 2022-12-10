@@ -19,7 +19,7 @@
             <asp:RadioButton ID="rdbDomicilio" Text="Envío a Domicilio" runat="server" AutoPostBack="true" GroupName="Envio" />
         </div>
 
-        <%if (rdbRetiro.Checked && rdbEfectivo.Checked || rdbMP.Checked)
+        <%if (rdbRetiro.Checked && (rdbEfectivo.Checked || rdbMP.Checked))
             {%>
         <br />
         <p>Retira en nuestro local situado en</p>
@@ -28,31 +28,11 @@
         <br />
         <%} %>
 
-        <%if (rdbDomicilio.Checked && rdbEfectivo.Checked && Direccion)
+        <%if (rdbDomicilio.Checked)
+            {%>
+        <%if (Direccion)
             {%>
         <br />
-        <p>Motomensajería con pago contraentrega </p>
-        <p>$1500 - SOLO CABA Y AMBA</p>
-        <br />
-        <%} %>
-
-        <%if (rdbDomicilio.Checked && rdbMP.Checked && !Direccion)
-            {%>
-        <div>
-            <br />
-            <h5>Por favor, registre una dirección</h5>
-            <a href="ModificarDatos.aspx">Agregar Dirección</a>
-        </div>
-        <%} %>
-
-        <%if (rdbDomicilio.Checked && rdbMP.Checked && Direccion)
-            {%>
-        <div>
-            <br />
-            <h5>Correo Argentino</h5>
-            <p>Envío a Domicilio clásico - 3 a 6 días hábiles.</p>
-            <p>$1.039,59</p>
-        </div>
         <h5>Dirección de envío</h5>
         <div>
             <asp:Label ID="lblCalle" Text="" runat="server" />
@@ -67,12 +47,38 @@
         <div>
             <asp:Label ID="lblCP" Text="" runat="server" />
         </div>
+        <div>
+            <a href="ModificarDatos.aspx">Editar Dirección</a>
+        </div>
     </div>
+    <%} %>
+    <%else
+        {%>
     <div>
-        <a href="ModificarDatos.aspx">Editar Dirección</a>
+        <br />
+        <h5>Por favor, registre una dirección</h5>
+        <a href="ModificarDatos.aspx">Agregar Dirección</a>
     </div>
+    <%} %>
+
+    <%if (rdbEfectivo.Checked)
+        {%>
     <br />
+    <h6>Motomensajería</h6>
+    <p>Pago contraentrega $1500 </p>
+    <p>SOLO CABA Y AMBA</p>
     <br />
+    <%} %>
+
+    <%if (rdbMP.Checked)
+        {%>
+    <div>
+        <br />
+        <h6>Correo Argentino</h6>
+        <p>Envío a Domicilio clásico - 3 a 6 días hábiles.</p>
+        <p>$1.039,59</p>
+    </div>
+    <%} %>
     <%} %>
     <asp:Button CssClass="btn btn-primary" ID="btnConfirmaCompra" runat="server" Text="Confirmar" OnClick="btnConfirmaCompra_Click" />
     <a href="Carrito.aspx" class="btn btn-danger" style="margin-left: 5px">Cancelar</a>

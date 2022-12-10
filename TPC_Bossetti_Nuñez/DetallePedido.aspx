@@ -4,20 +4,26 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
-        <h3 runat="server" id="idventa">Detalle Pedido #IDVenta</h3>
+        <h3 runat="server" id="idventa" class="text-center">Detalle Pedido #IDVenta</h3>
         <div class="row">
-            <div class="col-6">
+            <%if (Negocio.Seguridad.esAdmin(Session["usuario"]) == Dominio.TipoUsuario.ADMIN)
+                { %>
+            <div class="text-center">
                 <br />
+                <label for="lblCliente" class="form-label" style="font-weight: bold">Cliente:</label>
+                <asp:Label Text="" runat="server" ID="lblCliente" />
+            </div>
+            <div class="text-center">
+                <label for="lblMail" class="form-label" style="font-weight: bold">Mail:</label>
+                <asp:Label Text="" runat="server" ID="lblMail" />
+            </div>
+            <%} %>
+            <br />
+            <hr />
+            <div class="col-6">
                 <h5>Información general</h5>
-                <%--<%if (Negocio.Seguridad.esAdmin(Session["usuario"]) = Dominio.TipoUsuario.ADMIN)
-                    { %>
                 <div>
-                    <label for="lblCliente" class="form-label" style="margin-top: 10px">Cliente:</label>
-                    <asp:Label Text="" runat="server" ID="lblCliente" />
-                </div>
-                <%} %>--%>
-                <div>
-                    <label for="lblFechaPedido" class="form-label" style="margin-top: 10px">Realizado el:</label>
+                    <label for="lblFechaPedido" class="form-label">Realizado el:</label>
                     <asp:Label Text="" ID="lblFechaPedido" runat="server" />
                 </div>
                 <div>
@@ -38,7 +44,7 @@
                 <%if (Direccion)
                     {%>
                 <br />
-                <h5>Dirección de Envío</h5>
+                <h6>Dirección de Envío</h6>
                 <div>
                     <asp:Label CssClass="form-label" Style="margin-top: 10px" Text="" ID="lblCalle" runat="server" />
                     <asp:Label CssClass="form-label" Text="" ID="lblNumero" runat="server" />
@@ -93,7 +99,7 @@
                     <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">50%</div>
                 </div>
                 <br />
-                <h6>Ya estamos preparando tu pedido.</h6>
+                <h6>Ya estamos preparando tu pedido. Te avisaremos cuando esté en camino.</h6>
                 <%}
                     else if (lblEstadoPedido.Text == "Enviado")
                     { %>
@@ -109,7 +115,7 @@
                     <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">100%</div>
                 </div>
                 <br />
-                <h6>Desde el correo nos informan que tu pedido ha sido entregado. ¡Que disfrutes tu compra!</h6>
+                <h6>Tu pedido ha sido entregado. ¡Que lo disfrutes!</h6>
                 <%}%>
                 <div>
                     <%if (Negocio.Seguridad.esAdmin(Session["usuario"]) != Dominio.TipoUsuario.ADMIN)
@@ -123,7 +129,10 @@
                         else
                         {%>
                     <div>
-                        <asp:Label CssClass="form-label" Style="margin-top: 10px" Text="Estado Pedido" ID="lblEstado" runat="server" />
+                        <div>
+                            <br />
+                            <asp:Label CssClass="form-label" Style="font-weight:bold" Text="Estado Pedido" ID="lblEstado" runat="server" />
+                        </div>
                         <asp:RadioButton Text="Pendiente" runat="server" ID="rdbPendiente" GroupName="EstadoEntrega" />
                         <asp:RadioButton Text="En Preparación" runat="server" ID="rdbEnPreparacion" GroupName="EstadoEntrega" />
                         <asp:RadioButton Text="Enviado" runat="server" ID="rdbEnviado" GroupName="EstadoEntrega" />

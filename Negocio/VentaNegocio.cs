@@ -108,6 +108,7 @@ namespace Negocio
 
                 while (datos.Lector.Read())
                 {
+                    venta.IDUsuario = (short)datos.Lector["IDUsuario"];
                     venta.FormaPago = char.Parse(datos.Lector["formaPago"].ToString());
                     venta.Envio = (bool)datos.Lector["envio"];
                     venta.Importe = (decimal)datos.Lector["importe"];
