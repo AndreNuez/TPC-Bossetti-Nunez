@@ -9,8 +9,8 @@
         <br />
         <h5>Método de Pago</h5>
         <div>
-            <asp:RadioButton ID="rdbEfectivo" Text="Efectivo" runat="server" Checked="true" GroupName="Pago" />
-            <asp:RadioButton ID="rdbMP" Text="Mercado Pago" runat="server" GroupName="Pago" />
+            <asp:RadioButton ID="rdbEfectivo" Text="Efectivo" runat="server" AutoPostBack="true" Checked="true" GroupName="Pago" />
+            <asp:RadioButton ID="rdbMP" Text="Mercado Pago" runat="server" AutoPostBack="true" GroupName="Pago" />
         </div>
         <br />
         <h5>Método de Envío</h5>
@@ -19,7 +19,7 @@
             <asp:RadioButton ID="rdbDomicilio" Text="Envío a Domicilio" runat="server" AutoPostBack="true" GroupName="Envio" />
         </div>
 
-        <%if (rdbRetiro.Checked)
+        <%if (rdbRetiro.Checked && rdbEfectivo.Checked || rdbMP.Checked)
             {%>
         <br />
         <p>Retira en nuestro local situado en</p>
@@ -28,7 +28,15 @@
         <br />
         <%} %>
 
-        <%if (rdbDomicilio.Checked && !Direccion)
+        <%if (rdbDomicilio.Checked && rdbEfectivo.Checked && Direccion)
+            {%>
+        <br />
+        <p>Motomensajería con pago contraentrega </p>
+        <p>$1500 - SOLO CABA Y AMBA</p>
+        <br />
+        <%} %>
+
+        <%if (rdbDomicilio.Checked && rdbMP.Checked && !Direccion)
             {%>
         <div>
             <br />
@@ -36,10 +44,15 @@
             <a href="ModificarDatos.aspx">Agregar Dirección</a>
         </div>
         <%} %>
-        
-        <%if (rdbDomicilio.Checked && Direccion)
+
+        <%if (rdbDomicilio.Checked && rdbMP.Checked && Direccion)
             {%>
-        <br />
+        <div>
+            <br />
+            <h5>Correo Argentino</h5>
+            <p>Envío a Domicilio clásico - 3 a 6 días hábiles.</p>
+            <p>$1.039,59</p>
+        </div>
         <h5>Dirección de envío</h5>
         <div>
             <asp:Label ID="lblCalle" Text="" runat="server" />
