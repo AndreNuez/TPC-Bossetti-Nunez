@@ -84,24 +84,32 @@
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
                 </div>
+                <br />
+                <h6>Estaremos procesando tu pedido a la brevedad.</h6>
                 <%}
                     else if (lblEstadoPedido.Text == "En Preparación")
                     { %>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">50%</div>
                 </div>
+                <br />
+                <h6>Ya estamos preparando tu pedido.</h6>
                 <%}
                     else if (lblEstadoPedido.Text == "Enviado")
                     { %>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
                 </div>
+                <br />
+                <h6>¡Tu pedido ha sido enviado! Recibirás un correo con el número de seguimiento.</h6>
                 <%}
                     else if (lblEstadoPedido.Text == "Entregado")
                     { %>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">100%</div>
                 </div>
+                <br />
+                <h6>Desde el correo nos informan que tu pedido ha sido entregado. ¡Que disfrutes tu compra!</h6>
                 <%}%>
                 <div>
                     <%if (Negocio.Seguridad.esAdmin(Session["usuario"]) != Dominio.TipoUsuario.ADMIN)
