@@ -579,8 +579,10 @@ create table codigos(
 
 
 insert into codigos (codigo) values('od34j');
-insert into codigos (codigo) values('ouhd6')
-insert into codigos (codigo) values('uLd72')
+insert into codigos (codigo) values('uLd72');
+insert into codigos (codigo) values('ouhd6');
+insert into codigos (codigo) values('ueJ2q');
+insert into codigos (codigo) values('splu1');
 
 
 
@@ -639,6 +641,17 @@ begin
 end
 go
 
+create procedure sp_enviarCodigo(
+	@mail varchar (100)
+)
+as
+begin
+	select codigo
+	from codigos c
+	inner join clientes_codigos cc on c.id_codigo = cc.id_codigo
+	where cc.mail = @mail
+end
+go
 
 
 
@@ -683,3 +696,23 @@ ALTER TABLE [dbo].[clientes_codigos]  WITH CHECK ADD FOREIGN KEY([id_usuario])
 REFERENCES [dbo].[usuarios] ([IdUsuario])
 GO
 /**********************************************/
+
+
+
+/***************VENTAS**********************/
+create table estadoVenta(
+	idVenta int not null foreign key references ventas (idventa),
+	codPago varchar (20),
+	envio datetime,
+	entrega datetime
+)
+
+
+create procedure sp_estadoCompra(
+	@idVenta int
+)	
+as
+begin
+	insert into estadoVenta (idVenta)
+	values (@idVenta)
+end
