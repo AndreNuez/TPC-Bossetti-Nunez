@@ -481,12 +481,14 @@ begin
 end
 GO 
 
+--MODIFICADO 10/12 !!!
 create procedure sp_seleccionarVenta(
 	@idVenta smallint
 )
 as
 begin
-	select 
+	select
+		IDUsuario, 
 		FormaPago,
 		envio,
 		importe,
