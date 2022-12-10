@@ -428,6 +428,28 @@ namespace Negocio
             }
         }
     
+
+        public void RestablecerPass(string mail, string nuevaPass, string codigo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_restablecerPass");
+                datos.setearParametro("@mail", mail);
+                datos.setearParametro("@nuevaPass", nuevaPass);
+                datos.setearParametro("@codigoCliente", codigo);
+                
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
     }
 
 }

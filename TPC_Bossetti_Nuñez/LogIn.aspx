@@ -15,6 +15,7 @@
                 <asp:TextBox ID="txtPassword" runat="server" type="password" CssClass="form-control"/> 
             </div>
             <asp:Button CssClass="btn btn-primary" ID="btnAceptar" OnClick="btnAceptar_Click" runat="server" Text="Aceptar" />
+            <a href="EnviarCodigo.aspx">Olvidé mi contraseña</a>
         </div>
         <div class="col-4"></div>
     </div>

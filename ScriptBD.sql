@@ -481,12 +481,14 @@ begin
 end
 GO 
 
+--MODIFICADO 10/12 !!!
 create procedure sp_seleccionarVenta(
 	@idVenta smallint
 )
 as
 begin
-	select 
+	select
+		IDUsuario, 
 		FormaPago,
 		envio,
 		importe,
@@ -560,3 +562,124 @@ begin
 	where IdUsuario = @idUsuario
 end
 go
+
+
+/********************************************************/
+
+create table clientes_codigos(
+	mail varchar (100) not null unique,
+	id_codigo smallint not null
+)
+
+
+create table codigos( 
+	id_codigo smallint primary key identity (1,1),
+	codigo varchar (5) not null
+) 
+
+
+insert into codigos (codigo) values('od34j');
+insert into codigos (codigo) values('ouhd6')
+insert into codigos (codigo) values('uLd72')
+
+
+
+create procedure sp_restablecerPass(
+	@mail varchar (100),
+	@nuevaPass varchar (100),
+	@codigoCliente varchar(5)
+)
+as
+begin
+	declare @codigo varchar(5)
+
+	select @codigo = codigo 
+		from codigos c
+		inner join clientes_codigos cc on c.id_codigo = cc.id_codigo
+		where cc.mail = @mail
+
+
+	if (@codigoCliente = @codigo) begin
+		update usuarios
+		set Contraseña = @nuevaPass
+		where mail = @mail
+
+		delete from clientes_codigos
+		where mail = @mail
+	end
+	else begin
+		raiserror ('El codigo ingresado es incorrecto', 16, 1)
+	end
+end
+go
+
+
+create procedure sp_setearCodigo(
+	@mail varchar (100),
+	@random smallint
+)
+as
+begin
+	declare @mailExiste varchar(100)
+
+	select @mailExiste = mail 
+		from clientes_codigos
+		where mail = @mail
+
+	if (@mailExiste is null) begin
+		insert into clientes_codigos
+		values (@mail, @random)
+	end
+	else
+	begin
+		update clientes_codigos
+		set id_codigo = @random
+		where mail = @mail
+	end
+end
+go
+
+
+
+
+
+--Procedimientos sacados del MANAGMENT
+/**********************************/
+CREATE TABLE [dbo].[codigos](
+	[id_codigo] [smallint] IDENTITY(1,1) NOT NULL,
+	[codigo] [varchar](5) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[id_codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[codigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[codigos]  WITH CHECK ADD CHECK  ((len([codigo])=(5)))
+GO
+
+
+
+
+CREATE TABLE [dbo].[clientes_codigos](
+	[id_usuario] [smallint] NOT NULL,
+	[id_codigo] [smallint] NOT NULL,
+UNIQUE NONCLUSTERED 
+(
+	[id_usuario] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[clientes_codigos]  WITH CHECK ADD FOREIGN KEY([id_codigo])
+REFERENCES [dbo].[codigos] ([id_codigo])
+GO
+
+ALTER TABLE [dbo].[clientes_codigos]  WITH CHECK ADD FOREIGN KEY([id_usuario])
+REFERENCES [dbo].[usuarios] ([IdUsuario])
+GO
+/**********************************************/

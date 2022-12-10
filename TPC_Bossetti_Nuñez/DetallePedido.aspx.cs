@@ -27,7 +27,12 @@ namespace TPC_Bossetti_Nuñez
             dgvItems.DataSource = itemNegocio.Listar(int.Parse(Session["idVenta"].ToString()));
             dgvItems.DataBind();
 
-            //lblCliente.Text = 
+            UsuarioNegocio clientenegocio = new UsuarioNegocio();
+            string id = venta.IDUsuario.ToString();
+            Usuario cliente = (clientenegocio.listar(id))[0];
+
+            lblCliente.Text = cliente.Apellidos + ',' + cliente.Nombres;
+            lblMail.Text = cliente.Mail;
 
             lblFechaPedido.Text = venta.Fecha.ToString();
             lblCantidad.Text = venta.Cantidad.ToString();
