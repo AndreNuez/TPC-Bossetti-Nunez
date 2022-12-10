@@ -107,6 +107,9 @@ namespace TPC_Bossetti_Nuñez
                         nuevoi.RestarStock(itemc);
                     }
 
+                    //Se crea registro para tabla EstadoVenta con IdVenta
+
+
                     Session.Add("IDVenta", IDVenta);
                     Session.Remove("CantidadCarrito");
 
