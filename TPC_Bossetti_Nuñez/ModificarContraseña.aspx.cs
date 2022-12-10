@@ -12,8 +12,8 @@ namespace TPC_Bossetti_Nuñez
 
     public partial class ModificarContraseña : System.Web.UI.Page
     {
-        private string pass1 { get; set; }
-        private string pass2 { get; set; }
+        private string Pass1 { get; set; }
+        private string Pass2 { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["usuario"] == null)
@@ -27,10 +27,10 @@ namespace TPC_Bossetti_Nuñez
         {
             try
             {
-                pass1 = txtNuevaPass.Text;
-                pass2 = txtConfirmarPass.Text;
+                Pass1 = txtNuevaPass.Text;
+                Pass2 = txtConfirmarPass.Text;
 
-                if (pass1 == pass2)
+                if (Pass1 == Pass2)
                 {
                     /*Usuario seleccionado = (Usuario)Session["usuario"];
                     string idUsuario = seleccionado.IDUsuario.ToString();
@@ -45,7 +45,7 @@ namespace TPC_Bossetti_Nuñez
                     Usuario user = (Usuario)Session["usuario"];
                     UsuarioNegocio negocio = new UsuarioNegocio();
 
-                    negocio.modificarPass(user.IDUsuario, pass2);
+                    negocio.modificarPass(user.IDUsuario, Pass2);
                     Response.Redirect("Default.aspx", false);
 
                 }

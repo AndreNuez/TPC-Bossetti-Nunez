@@ -18,7 +18,6 @@
             </div>
             <asp:Button CssClass="btn btn-primary" ID="btnGuardarPass" runat="server" Text="Guardar" OnClick="btnGuardarPass_Click" />
             <a href="Default.aspx" class="btn btn-danger" style="margin-left: 5px">Cancelar</a>
-            <a href="RestablecerContraseña.aspx">Olvidé mi contraseña</a>
         </div>
         <div class="col-4"></div>
     </div>
