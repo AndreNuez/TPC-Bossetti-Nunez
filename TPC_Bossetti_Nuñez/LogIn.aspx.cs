@@ -23,6 +23,10 @@ namespace TPC_Bossetti_Nuñez
 
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
+
                 usuario = new Usuario(txtEmail.Text, txtPassword.Text);
                 if (negocio.Loguear(usuario))
                 {

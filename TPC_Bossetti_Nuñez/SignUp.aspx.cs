@@ -21,6 +21,10 @@ namespace TPC_Bossetti_Nuñez
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
+
                 Usuario user = new Usuario();
                 UsuarioNegocio usuarionegocio = new UsuarioNegocio();
                 EmailService emailService = new EmailService();
