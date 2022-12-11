@@ -8,7 +8,7 @@
         <div class="col">
             <h5>Modificar Contraseña</h5>
             <p>Para verificar su identidad se ha enviado a su casilla de correo electrónico un código de confirmación.</p>
-            <div class="m`b-3">
+            <div class="mb-3">
                 <label class="form-label">Mail</label>
                 <asp:TextBox runat="server" ID="txtMail" CssClass="form-control" />
             </div>
