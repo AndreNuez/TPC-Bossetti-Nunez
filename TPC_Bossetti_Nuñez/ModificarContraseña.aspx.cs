@@ -27,6 +27,10 @@ namespace TPC_Bossetti_Nuñez
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
+
                 Pass1 = txtNuevaPass.Text;
                 Pass2 = txtConfirmarPass.Text;
 

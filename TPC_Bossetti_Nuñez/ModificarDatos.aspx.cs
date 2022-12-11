@@ -133,6 +133,9 @@ namespace TPC_Bossetti_Nuñez
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+            if (!Page.IsValid)
+                return;
 
             Usuario modificar = new Usuario();
             UsuarioNegocio negocio = new UsuarioNegocio();
