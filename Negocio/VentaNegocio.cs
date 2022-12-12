@@ -189,7 +189,8 @@ namespace Negocio
             }
 
         }
-
+        
+        //  CORROBORAR QUE ESTE MÉTODO NO SE USA -> ELIMINAR
         public void ModificaEstadoEnvio(int idVenta, char estadoEnvio)
         {
             AccesoDatos datos = new AccesoDatos();

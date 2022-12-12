@@ -77,34 +77,47 @@ namespace TPC_Bossetti_Nuñez
                 lblEstadoPedido.Text = "Entregado";
             }
 
-            EstadoCompra estadoCompra = new EstadoCompra();
-            //estadoCompra.IdVenta = int.Parse(Session["idVenta"].ToString());
-            estadoCompra.IdVenta = venta.IDVenta;
-            ventaNegocio.leeEstadoCompra(estadoCompra);
+            if (!IsPostBack)
+            {
+                EstadoCompra estadoCompra = new EstadoCompra();
+                //estadoCompra.IdVenta = int.Parse(Session["idVenta"].ToString());
+                estadoCompra.IdVenta = venta.IDVenta;
+                ventaNegocio.leeEstadoCompra(estadoCompra);
 
-            //txtPendiente.Text = estadoCompra.IdVenta.ToString();
-            //if (estadoCompra.CodCompra != null)
-            //    txtEnPreparacion.Text = estadoCompra.CodCompra.ToString();
-            //if(estadoCompra.Envio != null)
-            //    txtEnviado.Text = estadoCompra.Envio.ToString();
-            //if(estadoCompra.Entrega != null)
-            //    txtEntregado.Text = estadoCompra.Entrega.ToString();
+                //txtPendiente.Text = estadoCompra.IdVenta.ToString();
+                //if (estadoCompra.CodCompra != null)
+                //    txtEnPreparacion.Text = estadoCompra.CodCompra.ToString();
+                //if(estadoCompra.Envio != null)
+                //    txtEnviado.Text = estadoCompra.Envio.ToString();
+                //if(estadoCompra.Entrega != null)
+                //    txtEntregado.Text = estadoCompra.Entrega.ToString();
 
-            if (estadoCompra.CodCompra != null)
-                txtEnPreparacion.Text = estadoCompra.CodCompra.ToString();
-            if (string.IsNullOrEmpty(estadoCompra.Envio.ToString()))
-                txtEnviado.Text = estadoCompra.Envio.ToString("yyyy-MM-dd");
-            if (string.IsNullOrEmpty(estadoCompra.Entrega.ToString()))
-                txtEntregado.Text = estadoCompra.Entrega.ToString("yyyy-MM-dd");
+                if (estadoCompra.CodCompra != null)
+                    txtEnPreparacion.Text = estadoCompra.CodCompra.ToString();
+                if (!string.IsNullOrEmpty(estadoCompra.Envio.ToString()))
+                {
+                    estadoCompra.Envio2 = (DateTime)estadoCompra.Envio;
+                    txtEnviado.Text = estadoCompra.Envio2.ToString("yyyy-MM-dd");
+                }
+                if (!string.IsNullOrEmpty(estadoCompra.Entrega.ToString()))
+                {
+                    estadoCompra.Entrega2 = (DateTime)estadoCompra.Entrega;
+                    txtEntregado.Text = estadoCompra.Entrega2.ToString("yyyy-MM-dd");
+                }
+            }
+            
         }
 
         protected void btnRegresar_Click(object sender, EventArgs e)
         {
+            /*
             Venta venta = new Venta();
             VentaNegocio ventaNegocio = new VentaNegocio();
             venta.IDVenta = int.Parse(Session["idVenta"].ToString());
             ventaNegocio.seleccionaVenta(venta);
-            char estadoEnvio = char.Parse(venta.Estado.ToString());
+            */
+            
+            //char estadoEnvio = char.Parse(venta.Estado.ToString());
 
             //Modifico para modificar estado compra con TextBox
             /*
@@ -125,12 +138,14 @@ namespace TPC_Bossetti_Nuñez
                 estadoEnvio = 'C';
             */
             EstadoCompra estadoCompra = new EstadoCompra();
-            estadoCompra.IdVenta = venta.IDVenta;
+            //estadoCompra.IdVenta = venta.IDVenta;
+            estadoCompra.IdVenta = int.Parse(Session["idVenta"].ToString());
             if (txtEnPreparacion.Text != "")
                 estadoCompra.CodCompra = txtEnPreparacion.Text;
             if (txtEnviado.Text != "")
                 estadoCompra.Envio = DateTime.Parse(txtEnviado.Text);
-           
+            else
+                estadoCompra.Envio = null;
             /*
             else
             {
@@ -139,14 +154,15 @@ namespace TPC_Bossetti_Nuñez
             */
             if (txtEntregado.Text != "")
                 estadoCompra.Entrega = DateTime.Parse(txtEntregado.Text);
-
+            else
+                estadoCompra.Entrega = null;
+            
+            VentaNegocio ventaNegocio = new VentaNegocio();
             ventaNegocio.cargaEstadoCompra(estadoCompra);
+            ventaNegocio.cambiaEstadoCompra(int.Parse(Session["idVenta"].ToString()));
 
-
-            ventaNegocio.cambiaEstadoCompra((int)venta.IDVenta);
-
-            VentaNegocio negocio = new VentaNegocio();
-            negocio.ModificaEstadoEnvio(int.Parse(Session["idVenta"].ToString()), estadoEnvio);
+            //VentaNegocio negocio = new VentaNegocio();
+            //negocio.ModificaEstadoEnvio(int.Parse(Session["idVenta"].ToString()), estadoEnvio);
             Response.Redirect("AdminCompras.aspx");
         }
     }
