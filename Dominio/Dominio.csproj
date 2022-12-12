@@ -71,6 +71,7 @@
     <Compile Include="Carrito.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Direccion.cs" />
+    <Compile Include="EstadoCompra.cs" />
     <Compile Include="Genero.cs" />
     <Compile Include="ItemCarrito.cs" />
     <Compile Include="Libro.cs" />

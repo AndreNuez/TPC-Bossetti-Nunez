@@ -716,3 +716,60 @@ begin
 	insert into estadoVenta (idVenta)
 	values (@idVenta)
 end
+
+
+create procedure sp_registroEstadoCompra(
+	@idVenta int
+)
+as
+begin
+	select 
+		codPago,
+		envio,
+		entrega
+	from estadoVenta
+	where idVenta = @idVenta
+end
+
+
+create procedure sp_modificaEstadoCompra(
+	@idVenta int,
+	@codPago varchar (20),
+	@envio datetime,
+	@entrega datetime
+)
+as 
+begin
+	update estadoVenta
+	set codPago = @codPago, 
+		envio = @envio,
+		entrega = @entrega
+	where idVenta = @idVenta
+end
+go
+
+
+create procedure sp_cambiaEstadoCompra(
+	@idVenta int
+)
+as
+begin
+	declare @codPago varchar (20)
+	declare @enviado datetime, @entregado datetime
+
+	select @codPago = codPago from estadoVenta where idVenta = @idVenta
+	select @enviado = envio from estadoVenta where idVenta = @idVenta
+	select @entregado = entrega from estadoVenta where idVenta = @idVenta
+
+	if (@entregado is not null) begin
+		update Ventas set Estado = 'C' where IDVenta = @idVenta
+	end
+	else if (@enviado is not null) begin
+		update Ventas set Estado = 'E' where IDVenta = @idVenta
+	end
+	else if (@codPago is not null) begin
+		update Ventas set Estado = 'P' where IDVenta = @idVenta
+	end
+end
+go
+

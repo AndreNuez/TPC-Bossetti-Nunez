@@ -242,8 +242,112 @@ namespace Negocio
             
         }
     
+
+        public void creaRegistroEstadoCompra(int idVenta)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_estadoCompra");
+                datos.setearParametro("@idVenta", idVenta);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+        public void leeEstadoCompra(EstadoCompra compra)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_registroEstadoCompra");
+                datos.setearParametro("@idVenta", compra.IdVenta);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    if (!(datos.Lector["codPago"] is DBNull))
+                        compra.CodCompra = (string)datos.Lector["codPago"];
+                    if (!(datos.Lector["envio"] is DBNull))
+                        compra.Envio = DateTime.Parse(datos.Lector["envio"].ToString());
+                    if (!(datos.Lector["entrega"] is DBNull))
+                        compra.Entrega = DateTime.Parse(datos.Lector["entrega"].ToString());
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     
-    
+        public void cargaEstadoCompra(EstadoCompra compra)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_modificaEstadoCompra");
+                datos.setearParametro("@idVenta", compra.IdVenta);
+                //datos.setearParametro("@codPago", (object)compra.CodCompra ?? DBNull.Value);
+                //datos.setearParametro("@envio", (object)compra.Envio ?? DBNull.Value);
+                //datos.setearParametro("@entrega", (object)compra.Entrega ?? DBNull.Value);
+                datos.setearParametro("@codPago", compra.CodCompra != null ? compra.CodCompra : (object)DBNull.Value);
+                datos.setearParametro("@envio", compra.Envio != null ? compra.Envio : (object)DBNull.Value);
+                datos.setearParametro("@entrega", compra.Entrega != null ? compra.Entrega : (object)DBNull.Value);
+
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+        public void cambiaEstadoCompra(int idVenta)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("sp_cambiaEstadoCompra");
+                datos.setearParametro("@idVenta", idVenta);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 
 

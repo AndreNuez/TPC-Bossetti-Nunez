@@ -108,7 +108,7 @@ namespace TPC_Bossetti_Nuñez
                     }
 
                     //Se crea registro para tabla EstadoVenta con IdVenta
-
+                    negocio.creaRegistroEstadoCompra(IDVenta);
 
                     Session.Add("IDVenta", IDVenta);
                     Session.Remove("CantidadCarrito");
