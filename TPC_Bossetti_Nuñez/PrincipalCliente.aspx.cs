@@ -21,7 +21,8 @@ namespace TPC_Bossetti_Nuñez
             Usuario user = (Usuario)Session["usuario"];
             UsuarioNegocio negocio = new UsuarioNegocio();
 
-            negocio.eliminarFisicoClienteConSP(user.IDUsuario);
+            //negocio.eliminarFisicoClienteConSP(user.IDUsuario);
+            negocio.eliminarLogico(user.IDUsuario, !user.Estado);
             Session.Clear();
             Response.Redirect("Default.aspx");
         }
