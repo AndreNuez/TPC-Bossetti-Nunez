@@ -138,7 +138,7 @@
                         <asp:RadioButton Text="Enviado" runat="server" ID="rdbEnviado" GroupName="EstadoEntrega" />
                         <asp:RadioButton Text="Entregado" runat="server" ID="rdbEntregado" GroupName="EstadoEntrega" />
 
-                        <asp:TextBox runat="server" ID="txtPendiente"/>
+                        <%--<asp:TextBox runat="server" ID="txtPendiente"/>--%>
                         <asp:TextBox runat="server" ID="txtEnPreparacion"/>
                         <asp:TextBox runat="server" ID="txtEnviado" TextMode="Date"/>
                         <asp:TextBox runat="server" ID="txtEntregado" TextMode="Date"/>

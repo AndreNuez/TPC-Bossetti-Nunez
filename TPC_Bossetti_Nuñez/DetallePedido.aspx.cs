@@ -77,6 +77,25 @@ namespace TPC_Bossetti_Nuñez
                 lblEstadoPedido.Text = "Entregado";
             }
 
+            EstadoCompra estadoCompra = new EstadoCompra();
+            //estadoCompra.IdVenta = int.Parse(Session["idVenta"].ToString());
+            estadoCompra.IdVenta = venta.IDVenta;
+            ventaNegocio.leeEstadoCompra(estadoCompra);
+
+            //txtPendiente.Text = estadoCompra.IdVenta.ToString();
+            //if (estadoCompra.CodCompra != null)
+            //    txtEnPreparacion.Text = estadoCompra.CodCompra.ToString();
+            //if(estadoCompra.Envio != null)
+            //    txtEnviado.Text = estadoCompra.Envio.ToString();
+            //if(estadoCompra.Entrega != null)
+            //    txtEntregado.Text = estadoCompra.Entrega.ToString();
+
+            if (estadoCompra.CodCompra != null)
+                txtEnPreparacion.Text = estadoCompra.CodCompra.ToString();
+            if (string.IsNullOrEmpty(estadoCompra.Envio.ToString()))
+                txtEnviado.Text = estadoCompra.Envio.ToString("yyyy-MM-dd");
+            if (string.IsNullOrEmpty(estadoCompra.Entrega.ToString()))
+                txtEntregado.Text = estadoCompra.Entrega.ToString("yyyy-MM-dd");
         }
 
         protected void btnRegresar_Click(object sender, EventArgs e)
@@ -87,12 +106,44 @@ namespace TPC_Bossetti_Nuñez
             ventaNegocio.seleccionaVenta(venta);
             char estadoEnvio = char.Parse(venta.Estado.ToString());
 
+            //Modifico para modificar estado compra con TextBox
+            /*
             if (rdbEnPreparacion.Checked)
                 estadoEnvio = 'P';
             else if (rdbEnviado.Checked)
                 estadoEnvio = 'E';
             else if (rdbEntregado.Checked)
                 estadoEnvio = 'C';
+            */
+
+            //Esto debería de tomarse según a Tabla EstadoVenta -> que lea los campos de la tabla y en función de si es Null o no, vaya cambiando estar de compra
+            /*if (txtEnPreparacion.Text != null && txtEnPreparacion.Text != "")
+                estadoEnvio = 'P';
+            else if (txtEnviado.Text != null && txtEnviado.Text != "")
+                estadoEnvio = 'E';
+            else if (txtEntregado.Text != null && txtEntregado.Text != "")
+                estadoEnvio = 'C';
+            */
+            EstadoCompra estadoCompra = new EstadoCompra();
+            estadoCompra.IdVenta = venta.IDVenta;
+            if (txtEnPreparacion.Text != "")
+                estadoCompra.CodCompra = txtEnPreparacion.Text;
+            if (txtEnviado.Text != "")
+                estadoCompra.Envio = DateTime.Parse(txtEnviado.Text);
+           
+            /*
+            else
+            {
+                estadoCompra.Envio = (DateTime?) null;
+            }
+            */
+            if (txtEntregado.Text != "")
+                estadoCompra.Entrega = DateTime.Parse(txtEntregado.Text);
+
+            ventaNegocio.cargaEstadoCompra(estadoCompra);
+
+
+            ventaNegocio.cambiaEstadoCompra((int)venta.IDVenta);
 
             VentaNegocio negocio = new VentaNegocio();
             negocio.ModificaEstadoEnvio(int.Parse(Session["idVenta"].ToString()), estadoEnvio);
