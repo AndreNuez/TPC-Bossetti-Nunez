@@ -168,42 +168,6 @@ namespace TPC_Bossetti_Nuñez
         protected global::System.Web.UI.WebControls.Label lblEstado;
 
         /// <summary>
-        /// rdbPendiente control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbPendiente;
-
-        /// <summary>
-        /// rdbEnPreparacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbEnPreparacion;
-
-        /// <summary>
-        /// rdbEnviado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbEnviado;
-
-        /// <summary>
-        /// rdbEntregado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbEntregado;
-
-        /// <summary>
         /// txtEnPreparacion control.
         /// </summary>
         /// <remarks>
