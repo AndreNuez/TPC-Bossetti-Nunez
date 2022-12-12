@@ -133,10 +133,10 @@
                             <br />
                             <asp:Label CssClass="form-label" Style="font-weight:bold" Text="Estado Pedido" ID="lblEstado" runat="server" />
                         </div>
-                        <asp:RadioButton Text="Pendiente" runat="server" ID="rdbPendiente" GroupName="EstadoEntrega" />
+                       <%-- <asp:RadioButton Text="Pendiente" runat="server" ID="rdbPendiente" GroupName="EstadoEntrega" />
                         <asp:RadioButton Text="En Preparación" runat="server" ID="rdbEnPreparacion" GroupName="EstadoEntrega" />
                         <asp:RadioButton Text="Enviado" runat="server" ID="rdbEnviado" GroupName="EstadoEntrega" />
-                        <asp:RadioButton Text="Entregado" runat="server" ID="rdbEntregado" GroupName="EstadoEntrega" />
+                        <asp:RadioButton Text="Entregado" runat="server" ID="rdbEntregado" GroupName="EstadoEntrega" />--%>
 
                         <%--<asp:TextBox runat="server" ID="txtPendiente"/>--%>
                         <asp:TextBox runat="server" ID="txtEnPreparacion"/>
