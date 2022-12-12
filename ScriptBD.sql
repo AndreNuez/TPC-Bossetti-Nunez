@@ -770,6 +770,9 @@ begin
 	else if (@codPago is not null) begin
 		update Ventas set Estado = 'P' where IDVenta = @idVenta
 	end
+	else begin
+		update Ventas set Estado = 'R' where IDVenta = @idVenta
+	end
 end
 go
 
