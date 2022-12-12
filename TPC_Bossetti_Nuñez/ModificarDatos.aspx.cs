@@ -173,6 +173,7 @@ namespace TPC_Bossetti_Nuñez
             }
             else
             {
+                Session.Add("usuario", modificar);
                 Response.Redirect("Default.aspx", false);
             }
 
