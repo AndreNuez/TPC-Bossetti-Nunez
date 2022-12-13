@@ -131,17 +131,23 @@
                     <div>
                         <div>
                             <br />
-                            <asp:Label CssClass="form-label" Style="font-weight:bold" Text="Estado Pedido" ID="lblEstado" runat="server" />
+                            <asp:Label CssClass="form-label" Style="font-weight: bold" Text="Estado Pedido" ID="lblEstado" runat="server" />
                         </div>
-                       <%-- <asp:RadioButton Text="Pendiente" runat="server" ID="rdbPendiente" GroupName="EstadoEntrega" />
-                        <asp:RadioButton Text="En Preparación" runat="server" ID="rdbEnPreparacion" GroupName="EstadoEntrega" />
-                        <asp:RadioButton Text="Enviado" runat="server" ID="rdbEnviado" GroupName="EstadoEntrega" />
-                        <asp:RadioButton Text="Entregado" runat="server" ID="rdbEntregado" GroupName="EstadoEntrega" />--%>
+                            <div class="mb-3">
+                                <asp:Label Text="Código de pago" runat="server" />
+                                <asp:TextBox runat="server" ID="txtEnPreparacion" />
 
-                        <%--<asp:TextBox runat="server" ID="txtPendiente"/>--%>
-                        <asp:TextBox runat="server" ID="txtEnPreparacion"/>
-                        <asp:TextBox runat="server" ID="txtEnviado" TextMode="Date"/>
-                        <asp:TextBox runat="server" ID="txtEntregado" TextMode="Date"/>
+                            </div>
+                            <div class="mb-3"> 
+                                <asp:Label Text="Fecha envío" runat="server" />
+                                <asp:TextBox runat="server" ID="txtEnviado" TextMode="Date" />
+
+                            </div>
+                            <div class="mb-3">
+                                <asp:Label Text="Fecha entrega" runat="server" />
+                                <asp:TextBox runat="server" ID="txtEntregado" TextMode="Date" />
+                            </div>
+
                     </div>
                     <br />
                     <div>
