@@ -21,11 +21,8 @@ namespace TPC_Bossetti_Nuñez
             UsuarioNegocio usuario = new UsuarioNegocio();
             Session.Add("ListaClientes", usuario.listarClientesConSP());
 
-            if (!IsPostBack)
-            {
-                dgvClientesAdmin.DataSource = Session["ListaClientes"];
-                dgvClientesAdmin.DataBind();
-            }
+            dgvClientesAdmin.DataSource = Session["ListaClientes"];
+            dgvClientesAdmin.DataBind();
 
         }
 
