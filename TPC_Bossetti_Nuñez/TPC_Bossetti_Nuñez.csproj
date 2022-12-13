@@ -75,8 +75,6 @@
     <Content Include="Default.aspx" />
     <Content Include="Detalle.aspx" />
     <Content Include="DetallePedido.aspx" />
-    <Content Include="EditarDireccion.aspx" />
-    <Content Include="EditarPedido.aspx" />
     <Content Include="EnviarCodigo.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Global.asax" />
@@ -161,20 +159,6 @@
     </Compile>
     <Compile Include="DetallePedido.aspx.designer.cs">
       <DependentUpon>DetallePedido.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EditarDireccion.aspx.cs">
-      <DependentUpon>EditarDireccion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EditarDireccion.aspx.designer.cs">
-      <DependentUpon>EditarDireccion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EditarPedido.aspx.cs">
-      <DependentUpon>EditarPedido.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EditarPedido.aspx.designer.cs">
-      <DependentUpon>EditarPedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="EnviarCodigo.aspx.cs">
       <DependentUpon>EnviarCodigo.aspx</DependentUpon>

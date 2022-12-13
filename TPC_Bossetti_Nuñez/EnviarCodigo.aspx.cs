@@ -18,10 +18,24 @@ namespace TPC_Bossetti_Nuñez
 
         protected void btnGenerarCodigo_Click(object sender, EventArgs e)
         {
-            Password pass = new Password();
-            pass.generarCodigo(txtMail.Text);
-            pass.EnviarCodigo(txtMail.Text);
-            Response.Redirect("RestablecerContraseña.aspx", false);
+            try
+            {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
+
+                Password pass = new Password();
+                pass.generarCodigo(txtMail.Text);
+                pass.EnviarCodigo(txtMail.Text);
+                Response.Redirect("RestablecerContraseña.aspx", false);
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
+            }
+ 
         }
     }
 }

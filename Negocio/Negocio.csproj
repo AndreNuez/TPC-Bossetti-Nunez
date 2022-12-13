@@ -69,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
-    <Compile Include="ClienteNegocio.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="ItemCarritoNegocio.cs" />
     <Compile Include="Password.cs" />
