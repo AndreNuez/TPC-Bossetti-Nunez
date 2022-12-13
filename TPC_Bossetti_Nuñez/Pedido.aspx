@@ -13,8 +13,6 @@
         OnPageIndexChanging="dgvPedidos_PageIndexChanging"
         AllowPaging="true" PageSize="10">
         <Columns>
-            <%--<asp:BoundField HeaderText="Id Venta" DataField="IDVenta" />--%>
-            <%--<asp:BoundField HeaderText="Cant. Productos" DataField="cantidad" />--%>
             <asp:BoundField HeaderText="Realizado el:" DataField="Fecha" />
             <asp:BoundField HeaderText="$ Total Platita" DataField="importe" />
             <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" HeaderText="Ver Detalle" />
