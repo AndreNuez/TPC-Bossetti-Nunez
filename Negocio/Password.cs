@@ -54,6 +54,7 @@ namespace Negocio
                     string asunto = "Codigo de confirmacion mail";
                     string cuerpo = "El código es: " + code;
                     enviarMail.ArmarCorreo(mail, asunto, cuerpo);
+                    enviarMail.EnviarEmail();
 
                 }
 

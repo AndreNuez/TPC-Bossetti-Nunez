@@ -22,7 +22,7 @@
                 <a href="Pedido.aspx" class="btn btn-primary" style="margin-top: 20px"  >Ver Mis Pedidos</a>
             </div>
             <div class="d-grid mx-auto">
-                <asp:Button Text="Eliminar Usuario" runat="server" ID="btnEliminarUsuario" OnClick="btnEliminarUsuario_Click" CssClass="btn btn-primary" style="margin-top: 20px"/>
+                <asp:Button Text="Desactivar Cuenta" runat="server" ID="btnEliminarUsuario" OnClick="btnEliminarUsuario_Click" CssClass="btn btn-primary" style="margin-top: 20px"/>
             </div>
             <br />
             <br />

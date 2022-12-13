@@ -48,7 +48,7 @@
                 <asp:UpdatePanel ID="UpdatePanel" runat="server">
                     <ContentTemplate>
                         <div class="mb-3">
-                            <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-secondary" OnClick="btnEliminar_Click"/>
+                            <%--<asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-secondary" OnClick="btnEliminar_Click"/>--%>
                             <asp:Button ID="btnActivar" CssClass="btn btn-warning" runat="server" Text="Inactivar" OnClick="btnActivar_Click" />
                         </div>
 
