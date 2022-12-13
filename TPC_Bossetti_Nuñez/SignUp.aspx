@@ -78,7 +78,7 @@
             </div>
             <div class="mb-3">
                 <label for="txtMail" class="form-label">Mail</label>
-                <asp:TextBox ID="txtMail" CssClass="form-control" runat="server" TextMode="Email"/>
+                <asp:TextBox ID="txtMail" CssClass="form-control" runat="server" TextMode="Email" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
                     runat="server" ControlToValidate="txtMail"
                     ErrorMessage="Por favor, ingrese un mail"></asp:RequiredFieldValidator>

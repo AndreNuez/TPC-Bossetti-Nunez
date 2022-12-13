@@ -68,6 +68,10 @@ namespace TPC_Bossetti_Nuñez
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
+
                 Libro nuevo = new Libro();
                 LibroNegocio negocio = new LibroNegocio();
 

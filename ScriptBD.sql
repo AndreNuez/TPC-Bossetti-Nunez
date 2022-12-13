@@ -127,7 +127,9 @@ GO
 
 
 --PROCEDIMIENTOS PARA USUARIOS
-create procedure sp_login(
+
+--12/12/2022 SE MODIFICA PROCEDIMIENTO PARA QUE NO PERMITA LOGUEAR USUARIOS INACTIVOS
+alter procedure sp_login(
 @mail varchar (500), 
 @pass varchar (500)
 )
@@ -152,6 +154,7 @@ from usuarios u
 left join datos_usuario du on u.IdUsuario = du.IdUsuario
 where u.Mail = @mail
 and u.Contraseña = @pass
+and u.Estado = 1
 GO
 
 
@@ -584,7 +587,7 @@ insert into codigos (codigo) values('ouhd6');
 insert into codigos (codigo) values('ueJ2q');
 insert into codigos (codigo) values('splu1');
 
-
+GO
 
 create procedure sp_restablecerPass(
 	@mail varchar (100),
@@ -706,7 +709,7 @@ create table estadoVenta(
 	envio datetime,
 	entrega datetime
 )
-
+go
 
 create procedure sp_estadoCompra(
 	@idVenta int
@@ -716,7 +719,7 @@ begin
 	insert into estadoVenta (idVenta)
 	values (@idVenta)
 end
-
+go
 
 create procedure sp_registroEstadoCompra(
 	@idVenta int
@@ -730,7 +733,7 @@ begin
 	from estadoVenta
 	where idVenta = @idVenta
 end
-
+go
 
 create procedure sp_modificaEstadoCompra(
 	@idVenta int,

@@ -15,8 +15,12 @@ namespace TPC_Bossetti_Nuñez
         {
             LibroNegocio negocio = new LibroNegocio();
             Session.Add("ListadoLibros", negocio.ListarSPInactivos());
-            dgvListaLibros.DataSource = Session["ListadoLibros"];
-            dgvListaLibros.DataBind();
+
+            if (!IsPostBack)
+            {
+                dgvListaLibros.DataSource = Session["ListadoLibros"];
+                dgvListaLibros.DataBind();
+            }
 
         }
 
