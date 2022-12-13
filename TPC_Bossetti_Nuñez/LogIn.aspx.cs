@@ -38,7 +38,7 @@ namespace TPC_Bossetti_Nuñez
                     }
                     else
                     {
-                        if(Session["CantidadCarrito"] != null)
+                        if((int)Session["CantidadCarrito"] != 0)
                             Response.Redirect("Carrito.aspx", false);
                         else
                             Response.Redirect("PrincipalCliente.aspx", false);
