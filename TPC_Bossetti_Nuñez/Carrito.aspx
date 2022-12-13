@@ -18,8 +18,8 @@
             </Columns>
         </asp:GridView>
           <% }
-            else
-            {%>
+              else
+              {%>
         <div class="text-center">
             <br />
             <br />
@@ -40,9 +40,12 @@
     </div>
     <br />
     <br />
+    <%if ((int)Session["CantidadCarrito"] != 0)
+        {%>
     <div class="text-end">
         <asp:Button Text="Comprar Carrito" CssClass="btn btn-primary" runat="server" Id="btnComprarCarrito" OnClick="btnComprarCarrito_Click"/>
     </div>
+     <% }%>
     <div>
         <a class="nav-link" href="Default.aspx">Regresar al catalogo</a>
     </div>

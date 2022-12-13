@@ -166,7 +166,7 @@ namespace TPC_Bossetti_Nuñez
             modificar.Estado = sesion.Estado;
             negocio.modificarConSP(modificar);
 
-            if (Session["CantidadCarrito"] != null)
+            if ((int)Session["CantidadCarrito"] != 0)
             {
                 Response.Redirect("ConfirmaCompra.aspx", false);
                 Session.Add("usuario", modificar);
