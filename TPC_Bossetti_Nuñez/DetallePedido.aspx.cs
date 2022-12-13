@@ -163,6 +163,22 @@ namespace TPC_Bossetti_Nuñez
 
             //VentaNegocio negocio = new VentaNegocio();
             //negocio.ModificaEstadoEnvio(int.Parse(Session["idVenta"].ToString()), estadoEnvio);
+
+
+            Venta venta = new Venta();
+            venta.IDVenta = int.Parse(Session["idVenta"].ToString());
+            ventaNegocio.seleccionaVenta(venta);
+            UsuarioNegocio clientenegocio = new UsuarioNegocio();
+            string id = venta.IDUsuario.ToString();
+            Usuario cliente = (clientenegocio.listar(id))[0];
+            EmailService enviarMail = new EmailService();
+            string asunto = "Estado Compra";
+            string cuerpo = "Se han realizado modificaciones en el Estado de su Compra";
+            enviarMail.ArmarCorreo(cliente.Mail, asunto, cuerpo);
+            enviarMail.EnviarEmail();
+
+
+
             Response.Redirect("AdminCompras.aspx");
         }
     }

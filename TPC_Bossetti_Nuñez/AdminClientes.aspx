@@ -21,7 +21,7 @@
                 CssClass="table table-hover" AutoGenerateColumns="false"
                 OnSelectedIndexChanged="dgvClientesAdmin_SelectedIndexChanged"
                 OnPageIndexChanging="dgvClientesAdmin_PageIndexChanging"
-                AllowPaging="true" PageSize="4">
+                AllowPaging="true" PageSize="9">
                 <Columns>
                     <asp:BoundField HeaderText="Id Clientes" DataField="IdUsuario" />
                     <asp:BoundField HeaderText="Mail" DataField="Mail" />
@@ -30,7 +30,7 @@
                     <asp:CheckBoxField HeaderText="Activo" DataField="Estado" />
                     <asp:CommandField HeaderText="Modificar Estado" ShowSelectButton="true" SelectText="X" />
                     <%--<asp:CommandField HeaderText="Ver Compras" ShowSelectButton="true" SelectText="O" />--%>
-                    <%--                    <asp:ButtonField Buttontype="Button" Commandname="Select" Headertext="Select Customer" Text="Ver Compras" ID="btnVerCompras"/>  --%>
+                    <%--<asp:ButtonField Buttontype="Button" Commandname="Select" Headertext="Select Customer" Text="Ver Compras" ID="btnVerCompras"/>  --%>
                 </Columns>
             </asp:GridView>
         </ContentTemplate>

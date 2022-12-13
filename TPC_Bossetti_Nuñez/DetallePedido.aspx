@@ -151,7 +151,8 @@
                     </div>
                     <br />
                     <div>
-                        <asp:Button Text="Regresar" runat="server" ID="btnRegresar" OnClick="btnRegresar_Click" CssClass="btn btn-secondary" />
+                        <asp:Button Text="GuardarCambios" runat="server" ID="btnRegresar" OnClick="btnRegresar_Click" CssClass="btn btn-secondary" />
+                        <a href="AdminCompras.aspx">Cancelar</a>
                     </div>
                     <%} %>
                 </div>
