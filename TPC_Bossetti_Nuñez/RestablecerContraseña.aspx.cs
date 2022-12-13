@@ -32,10 +32,6 @@ namespace TPC_Bossetti_Nuñez
 
                 try
                 {
-                    Page.Validate();
-                    if (!Page.IsValid)
-                        return;
-
                     negocio.RestablecerPass(txtMail.Text, txtConfirmarPass.Text, txtCodigo.Text);
                     Response.Redirect("LogIn.aspx", false);
                 }

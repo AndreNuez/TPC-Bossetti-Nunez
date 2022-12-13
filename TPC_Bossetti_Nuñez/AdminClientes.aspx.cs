@@ -28,12 +28,30 @@ namespace TPC_Bossetti_Nuñez
 
         protected void dgvClientesAdmin_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //string idCliente = dgvClientesAdmin.SelectedDataKey.Value.ToString();
+            //Response.Redirect("DatosCliente.aspx?idCliente=" + idCliente);
+
             string idUsuario = dgvClientesAdmin.SelectedDataKey.Value.ToString();
             Session.Add("idUsuario", idUsuario);
             Response.Redirect("DatosCliente.aspx");
 
+
+
         }
 
+        /*protected void dgvClientesAdmin_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idCliente = (int)dgvClientesAdmin.SelectedDataKey.Value;
+            //Response.Redirect("DatosCliente.aspx?idCliente=" + idCliente);
+            Usuario seleccionado = new Usuario();
+            seleccionado.IDUsuario = idCliente;
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            if (negocio.seleccionarClienteConSP(seleccionado))
+            {
+                Session.Add("usuarioSeleccionado", seleccionado);
+            }
+        }
+        */
         protected void dgvClientesAdmin_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvClientesAdmin.PageIndex = e.NewPageIndex;
